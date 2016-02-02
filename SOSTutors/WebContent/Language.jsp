@@ -18,23 +18,12 @@
 
 </c:url>
 
-<a href="${engURL}"> <img src="english.gif" /> </a>
+<a href="${engURL}"> English </a>
 
 <br />
 
 <br />
 
-<c:url value="login.jsp" var="chineseURL">
-
-<c:param name="locale" value="zh_HK" />
-
-</c:url>
-
-<a href="${chineseURL}"> <img src="chinese.gif" /> </a>
-
-<br />
-
-<br />
 
 <c:url value="login.jsp" var="frenchURL">
 
@@ -42,6 +31,6 @@
 
 </c:url>
 
-<a href="${frenchURL}"> <img src="french.gif" /> </a>
+<a href="${frenchURL}"> French </a>
 
 </body>
