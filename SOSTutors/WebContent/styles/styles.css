@@ -23,6 +23,15 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+.title {
+    background-color: #F44336;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+	margin: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
 
 /*
    FILTER FORM
@@ -85,6 +94,7 @@
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
+
 
 .tutorform .row {
     margin: 0px;
