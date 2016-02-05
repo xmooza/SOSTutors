@@ -3,10 +3,10 @@
 <html>  
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-<title>Login Application</title>  
+<title>Login Application</title>
+<link href="${pageContext.request.contextPath}/styles/mystyles.css" rel="stylesheet" type="text/css" >  
 </head>  
-<body>  
-<link href="${pageContext.request.contextPath}/styles/mystyles.css" rel="stylesheet" type="text/css" > 
+<body>   
     <form action="loginServlet" method="post">  
         <fieldset style="width: 300px">  
             <legend> Login to App </legend>  
