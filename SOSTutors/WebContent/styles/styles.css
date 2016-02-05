@@ -11,9 +11,28 @@ GENERAL
     font-family: 'Roboto', sans-serif;
     color: white;
     margin: 0px;
-    padding: 10px;
+    padding: 5px;
+    padding-left: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.table {
+    text-align: center;
+}
+
+.calctable {
+    margin: 10px;
+}
+
+blockquote {
+    margin: 10px;
+    background-color: #FAFAFA;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+blockquote p {
+    font-size: 0.75em;
 }
 
 
@@ -39,7 +58,7 @@ NAVBAR
 
 
 /*
-   FILTER FORM
+FILTER FORM
 */
 
 .filterform {
@@ -67,17 +86,10 @@ NAVBAR
     height: 45px;
 }
 
-.filterform .row div button {
-    width: 100%;
-    background-color: white;
-    font-size: 1.20em;
-}
-
 
 /*
-   RESULT / TUTOR FORM
+RESULT / TUTOR FORM
 */
-
 
 .contactResolution {
     margin: auto;
@@ -110,7 +122,9 @@ NAVBAR
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.resultform .row .col-md-6 {
+.resultform .row .col-md-6,
+.resultform .row .col-md-8,
+.resultform .row .col-md-4 {
     margin: 0px;
     padding: 10px;
 }
@@ -121,10 +135,6 @@ NAVBAR
     background-color: #FAFAFA;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.tutorform .row {
-    margin: 0px;
 }
 
 .tutorform .tutimg {
@@ -165,18 +175,18 @@ NAVBAR
 
 
 /*
-   BUTTON IDs
+BUTTON IDs and CLASSES
 */
 
-#tutinfobtn {
+.fullwidthbtn {
     width: 100%;
 }
 
-#advancedbtn {
+.whitebtn {
     border-bottom: 3px solid #BDBDBD;
 }
 
-#searchbtn {
+.greenbtn {
     background-color: #4CAF50;
     border-bottom: 3px solid #388E3C;
     color: white;
