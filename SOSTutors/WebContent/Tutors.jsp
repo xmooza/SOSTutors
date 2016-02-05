@@ -33,7 +33,7 @@
         <div class="container-fluid filterform">
             <div class="row">
                 <div class="col-md-5">
-                    <input class="form-control input-lg" type="text" placeholder="Search...">
+                    <input class="form-control input-lg" type="text">
                 </div>
                 <div class="col-md-3">
                     <div class="col-xs-5">
