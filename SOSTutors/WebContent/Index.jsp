@@ -72,13 +72,13 @@
 		<div class="row">
 
 			<div class="col-sm-6 col-md-6">
-				<div class="title">
+				<div class="titlebar">
 					<h3>Login</h3>
 				</div>
 			</div>
 
 			<div class="col-sm-6 col-md-6">
-				<div class="title">
+				<div class="titlebar">
 					<h3>Register</h3>
 				</div>
 			</div>
