@@ -1,0 +1,147 @@
+.body {
+    background-color: #F5F5F5;
+}
+
+
+/*
+   NAVBAR
+*/
+
+.navbar {
+    background-color: #F44336;
+    color: white;
+    padding: 25px;
+    line-height: 3.0em;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.navbar .navbar-brand {
+    margin-left: -25px;
+    color: white;
+    font-size: 3.0em;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/*
+   FILTER FORM
+*/
+
+.filterform {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 125px;
+    width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #E0E0E0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.filterform .row div {
+    padding-top: 14px;
+    height: 75px;
+}
+
+.filterform .row div div {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.filterform .row div div select {
+    height: 45px;
+}
+
+.filterform .row div button {
+    width: 100%;
+    background-color: white;
+    font-size: 1.20em;
+}
+
+
+/*
+   RESULT / TUTOR FORM
+*/
+
+.resultform {
+    font-family: 'Roboto', sans-serif;
+    margin: 25px;
+    width: 95%;
+    border-radius: 5px;
+    background-color: #E0E0E0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.resultform .row .col-md-6 {
+    margin: 0px;
+    padding: 10px;
+}
+
+.tutorform {
+    margin: 0px;
+    padding: 10px;
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.tutorform .row {
+    margin: 0px;
+}
+
+.tutorform .tutimg {
+    width: 100%;
+    height: 175px;
+    padding: 10px;
+}
+
+.tutorform .tutdesc {
+    height: 200px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.tutorform .tutinfo {
+    display: inline-flex;
+    padding: 0px;
+}
+
+.tutorform .tutrating {
+    margin-top: 10px;
+    padding: 0px;
+    height: 50px;
+    text-align: center;
+}
+
+.tutorform .tutrating * {
+    padding: 0px;
+}
+
+.tutorform .tutimg img {
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    margin-left: -75px;
+    width: 150px;
+}
+
+
+/*
+   BUTTON IDs
+*/
+
+#tutinfobtn {
+    //float: right;
+    width: 100%;
+}
+
+#advancedbtn {
+    border-bottom: 3px solid #BDBDBD;
+}
+
+#searchbtn {
+    background-color: #4CAF50;
+    border-bottom: 3px solid #388E3C;
+    color: white;
+}
