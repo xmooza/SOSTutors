@@ -8,7 +8,7 @@
     <meta name="description" content="Tutor Scheduling Website">
     <meta name="author" content="SOSTutors">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>SOSTutors - Tutors</title>
+    <title>SOSTutors - Tutor</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <div class="table-responsive calctable">
+                        <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
