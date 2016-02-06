@@ -57,14 +57,14 @@
 					type="button">Advanced</button>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6">
-				<a href="TutoringSessions.jsp"><button id="searchbtn" class="btn btn-default input-lg"
+				<a href="TutorSearch.jsp"><button id="searchbtn" class="btn btn-default input-lg"
 					type="submit">Search</button></a>
 			</div>
 		</div>
 </div>
 <div class="container-fluid resultform">
-<h1>Welcome, you know what this is. So lets go meet our <a href="Tutors.jsp">Tutors</a>. If not learn about us at our <a href="About.jsp">About</a> page. While navigating this beta site you might come across our <a href="404.jsp">404</a> page, please bear with us.
-</h1>
+<h2>Welcome! Lets go meet one of our <a href="Tutor.jsp">Tutor</a>. If not learn about us at our <a href="About.jsp">About</a> page. While navigating this alpha site you might come across error pages, please <a href="Contact.jsp">Contact Us</a>.
+</h2>
 </div>
 	<!-- RESULTS FORM -->
 	<div class="container-fluid resultform">
