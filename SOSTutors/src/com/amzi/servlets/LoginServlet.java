@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;  
   
+
+import com.amzi.dao.Login;
 import com.amzi.dao.LoginDao;  
   
 public class LoginServlet extends HttpServlet{  
@@ -22,20 +24,22 @@ public class LoginServlet extends HttpServlet{
         response.setContentType("text/html");    
         PrintWriter out = response.getWriter();    
           
-        String n=request.getParameter("username");    
-        String p=request.getParameter("userpass");   
+        String e=request.getParameter("loginUseremail");    
+        String p=request.getParameter("loginUserpass");   
           
-        HttpSession session = request.getSession(false);  
-        if(session!=null)  
-        session.setAttribute("name", n);  
-  
-        if(LoginDao.validate(n, p)){    
-            RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
+        if(Login.validate(e, p)){   
+        	HttpSession session = request.getSession(false);  
+            if(session!=null) {
+            	session.setAttribute("name",e);
+                session.setAttribute("dateRegistered", Login.dateRegistered);
+            }
+
+            RequestDispatcher rd=request.getRequestDispatcher("TutorSearch.jsp");    
             rd.forward(request,response);    
         }    
         else{    
-            out.print("<p style=\"color:red\">Sorry username or password error</p>");    
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
+            out.print("<p style=\"color:red\">But they really like appearing here. <br> Sorry username or password error on login.</p>");    
+            RequestDispatcher rd=request.getRequestDispatcher("Index.jsp");    
             rd.include(request,response);    
         }    
   

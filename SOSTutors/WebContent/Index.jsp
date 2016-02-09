@@ -85,27 +85,29 @@
 
 			<div class="col-sm-6 col-md-6">
 				<div class="tutorform">
-					<h4>Email</h4>
-					<input class="form-control input-lg" type="text">
-					<h4>Password</h4>
-					<input class="form-control input-lg" type="password"> <br />
-					<button id="searchbtn" class="btn btn-default input-lg"
-						type="submit">Login</button>
+					<form name="LoginForm" action="loginServlet" method="post">
+						<h4>Email</h4>
+						<input type=text name=loginUseremail maxlength=100 class="form-control input-lg" value="" /><br />
+						<h4>Password</h4>
+						<input type=password name=loginUserpass  maxlength=100 class="form-control input-lg" /><br />
+						<input class="btn btn-default input-lg" type=submit value="Login"/>
+					</form>
 				</div>
 			</div>
 
 			<div class="col-sm-6 col-md-6">
 				<div class="tutorform">
-					<h4>Name</h4>
-					<input class="form-control input-lg" type="text">
-					<h4>Last name</h4>
-					<input class="form-control input-lg" type="text">
-					<h4>Email</h4>
-					<input class="form-control input-lg" type="text">
-					<h4>Password</h4>
-					<input class="form-control input-lg" type="password"> <br />
-					<button id="searchbtn" class="btn btn-default input-lg"
-						type="submit">Register</button>
+					<form name="LoginForm" action="registerServlet" method="post">
+						<h4>Name</h4>
+						<input type=text name=registerFname value="" maxlength=100 class="form-control input-lg" value="" /><br />
+						<h4>Last Name</h4>
+						<input type=text name=registerLname value="" maxlength=100 class="form-control input-lg" value="" /><br />
+						<h4>Email</h4>
+						<input type=text name=registerUseremail value="" maxlength=100 class="form-control input-lg" value="" /><br />
+						<h4>Password</h4>
+						<input type=password name=registerUserpass maxlength=100 class="form-control input-lg" /><br />
+						<input class="btn btn-default input-lg" type=submit value="Register"/>
+					</form>
 				</div>
 			</div>
 		</div>
