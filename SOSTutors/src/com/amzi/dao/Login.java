@@ -19,7 +19,7 @@ public class Login {
 		String dbName = "sostutors";
 		String driver = "com.mysql.jdbc.Driver";
 		String dbUserName = "root";
-		String dbPassword = "Vegeta99";
+		String dbPassword = "password";
 		try {
 			Class.forName(driver).newInstance();
 			conn = DriverManager.getConnection(url + dbName, dbUserName, dbPassword);

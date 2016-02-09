@@ -20,7 +20,7 @@ public class Register {
 		String dbName = "sostutors";
 		String driver = "com.mysql.jdbc.Driver";
 		String dbUserName = "root";
-		String dbPassword = "Vegeta99";
+		String dbPassword = "password";
 
 		try {
 
