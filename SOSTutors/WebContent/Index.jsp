@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page language="java"
+	import="com.amzi.dao.Student,java.util.Locale,java.util.ResourceBundle"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -26,12 +28,65 @@
 <!-- Google -->
 <link href='https://fonts.googleapis.com/css?family=Quicksand|Roboto'
 	rel='stylesheet' type='text/css'>
+
+<!-- initialization variables needed for page -->
+<%
+	//for generating the french/english page link
+	session.setAttribute("currentPage", "Index");
+
+	if (getServletContext().getAttribute("errorCode") == null) {
+		getServletContext().setAttribute("errorCode", 0);
+	}
+
+	if (getServletContext().getAttribute("errorMessage") == null) {
+		getServletContext().setAttribute("errorMessage", "");
+	}
+
+	//used to set keep the language consistent between pages
+	if (session.getAttribute("language") == null) {
+		session.setAttribute("language", "EN");
+	}
+
+	ResourceBundle lang = ResourceBundle.getBundle("Index_EN");
+
+	//if the session language is FR switch to french, otherwise remains english as set above
+	if (session.getAttribute("language").toString().equals("FR")) {
+		lang = ResourceBundle.getBundle("Index_FR");
+	}
+
+	//if the user clicked change language, set to appropriate language
+	if (request.getParameter("language") != null) {
+		if (request.getParameter("language").equals("FR")) {
+			lang = ResourceBundle.getBundle("Index_FR");
+			session.setAttribute("language", "FR");
+		} else {
+			lang = ResourceBundle.getBundle("Index_EN");
+			session.setAttribute("language", "EN");
+		}
+	}
+%>
 </head>
 
 <body class="body">
 	<!-- HEADER -->
 	<div class="navbar navbar-fixed-top">
 		<a class="navbar-brand" href="#">SOSTutors</a>
+
+		<%
+			//EN language is the default, then check if needs to be changed to FR
+			String languageSwitch = "FR";
+			if (session.getAttribute("language") != null) {
+				if (session.getAttribute("language").equals("FR")) {
+					languageSwitch = "EN";
+				}
+			}
+		%>
+		<form name="langForm"
+			action="<%=session.getAttribute("currentPage")%>.jsp" method="post">
+			<input type=hidden name=language value="<%=languageSwitch%>" /> <input
+				class="btn" type=submit name=langbutton maxlength=100
+				value="<%=lang.getString("gotolang")%>" />
+		</form>
 	</div>
 
 	<!-- SEARCH & FILTER FORM -->
@@ -43,29 +98,127 @@
 			<div class="col-md-3">
 				<div class="col-xs-5">
 					<select name="subject" class="form-control">
-						<option value="AllSub">All Subjects</option>
-						<option value="Math">Mathematics</option>
-						<option value="Science">Science</option>
-						<option value="English">English</option>
-						<option value="French">French</option>
-						<option value="Computers">Computer Science</option>
+						<option value="AllSub">
+							<%
+								out.println(lang.getString("ddl.AllSub"));
+							%>
+						</option>
+						<option value="Math">
+							<%
+								out.println(lang.getString("ddl.Math"));
+							%>
+						</option>
+						<option value="Science">
+							<%
+								out.println(lang.getString("ddl.Science"));
+							%>
+						</option>
+						<option value="English">
+							<%
+								out.println(lang.getString("ddl.English"));
+							%>
+						</option>
+						<option value="French">
+							<%
+								out.println(lang.getString("ddl.French"));
+							%>
+						</option>
+						<option value="Computers">
+							<%
+								out.println(lang.getString("ddl.Computers"));
+							%>
+						</option>
 					</select>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6">
 				<button id="advancedbtn" class="btn btn-default input-lg"
-					type="button">Advanced</button>
+					type="button">
+					<%
+						out.println(lang.getString("btn.Adv"));
+					%>
+				</button>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6">
-				<a href="TutorSearch.jsp"><button id="searchbtn" class="btn btn-default input-lg"
-					type="submit">Search</button></a>
+				<a href="TutorSearch.jsp"><button id="searchbtn"
+						class="btn btn-default input-lg" type="submit">
+						<%
+							out.println(lang.getString("btn.S"));
+						%>
+					</button></a>
 			</div>
 		</div>
-</div>
-<div class="container-fluid resultform">
-<h2>Welcome! Lets go meet one of our <a href="Tutor.jsp">Tutor</a>. If not learn about us at our <a href="About.jsp">About</a> page. While navigating this alpha site you might come across error pages, please <a href="Contact.jsp">Contact Us</a>.
-</h2>
-</div>
+	</div>
+
+	<div class="container-fluid resultform">
+		<h2>
+			<%
+				out.println(lang.getString("content.1"));
+			%>
+			<a href="Tutor.jsp">
+				<%
+					out.println(lang.getString("content.2"));
+				%>
+			</a>.
+			<%
+				out.println(lang.getString("content.3"));
+			%>
+			<a href="About.jsp">
+				<%
+					out.println(lang.getString("content.4"));
+				%>
+			</a>. <a href="Contact.jsp">
+				<%
+					out.println(lang.getString("content.5"));
+				%>
+			</a>.
+		</h2>
+	</div>
+
+	<div>
+		<!--Output area for error messages related to registration and login -->
+
+		<%
+			if (request.getAttribute("errorMessage") != null) {
+		%>
+		<div class="container">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<%=lang.getString(request.getAttribute("errorMessage")
+						.toString())%>
+			</div>
+		</div>
+		<%
+			}
+		%>
+
+	</div>
+
+	<!-- If the user is logged in and has navigated back to the home page, display a greeting message that directs them back to their profile -->
+
+	<%
+		if (session.getAttribute("currentUser") != null) {
+	%>
+
+	<div class="FillScreenTextCentered" style="color: LightBlue;">
+		<p style="font-size: 18px;">
+			<%=lang.getString("content.4")%>,
+			<%=((Student) session.getAttribute("currentUser"))
+						.getEmail()%>.<br>
+			<%=lang.getString("content.5")%></p>
+	</div>
+
+	<%
+		}
+	%>
+
+
+	<%
+		if (session.getAttribute("currentUser") == null) {
+	%>
+
 	<!-- RESULTS FORM -->
 	<div class="container-fluid resultform">
 
@@ -73,24 +226,40 @@
 
 			<div class="col-sm-6 col-md-6">
 				<div class="titlebar">
-					<h3>Login</h3>
+					<h3>
+						<%
+							out.println(lang.getString("login"));
+						%>
+					</h3>
 				</div>
 			</div>
 
 			<div class="col-sm-6 col-md-6">
 				<div class="titlebar">
-					<h3>Register</h3>
+					<h3>
+						<%out.println(lang.getString("register"));%>
+					</h3>
 				</div>
 			</div>
 
 			<div class="col-sm-6 col-md-6">
 				<div class="tutorform">
 					<form name="LoginForm" action="loginServlet" method="post">
-						<h4>Email</h4>
-						<input type=text name=loginUseremail maxlength=100 class="form-control input-lg" value="" /><br />
-						<h4>Password</h4>
-						<input type=password name=loginUserpass  maxlength=100 class="form-control input-lg" /><br />
-						<input class="btn btn-default input-lg" type=submit value="Login"/>
+						<h4>
+							<%
+								out.println(lang.getString("email"));
+							%>
+						</h4>
+						<input type=text name=loginUseremail maxlength=100
+							class="form-control input-lg" value="" /><br />
+						<h4>
+							<%
+								out.println(lang.getString("password"));
+							%>
+						</h4>
+						<input type=password name=loginUserpassword maxlength=100
+							class="form-control input-lg" /><br /> <input
+							class="btn btn-default input-lg" type=submit value="Login" />
 					</form>
 				</div>
 			</div>
@@ -98,21 +267,40 @@
 			<div class="col-sm-6 col-md-6">
 				<div class="tutorform">
 					<form name="LoginForm" action="registerServlet" method="post">
-						<h4>Name</h4>
-						<input type=text name=registerFname value="" maxlength=100 class="form-control input-lg" value="" /><br />
-						<h4>Last Name</h4>
-						<input type=text name=registerLname value="" maxlength=100 class="form-control input-lg" value="" /><br />
-						<h4>Email</h4>
-						<input type=text name=registerUseremail value="" maxlength=100 class="form-control input-lg" value="" /><br />
-						<h4>Password</h4>
-						<input type=password name=registerUserpass maxlength=100 class="form-control input-lg" /><br />
-						<input class="btn btn-default input-lg" type=submit value="Register"/>
+						<h4>
+							<%
+								out.println(lang.getString("fname"));
+							%>
+						</h4>
+						<input type=text name=registerUserfname value="" maxlength=100
+							class="form-control input-lg" value="" /><br />
+						<h4>
+							<%
+								out.println(lang.getString("lname"));
+							%>
+						</h4>
+						<input type=text name=registerUserlname value="" maxlength=100
+							class="form-control input-lg" value="" /><br />
+						<h4>
+							<%
+								out.println(lang.getString("email"));
+							%>
+						</h4>
+						<input type=text name=registerUseremail value="" maxlength=100
+							class="form-control input-lg" value="" /><br />
+						<h4>
+							<% out.println(lang.getString("password")); %>
+						</h4>
+						<input type=password name=registerUserpassword maxlength=100
+							class="form-control input-lg" /><br /> <input
+							class="btn btn-default input-lg" type=submit value="Register" />
 					</form>
 				</div>
 			</div>
 		</div>
 
 	</div>
+	<% } %>
 </body>
 
 </html>
