@@ -78,6 +78,18 @@
 	<!-- HEADER -->
 	<div class="navbar navbar-fixed-top">
 		<a class="navbar-brand" href="#">SOSTutors</a>
+		<%
+			//EN language is the default, then check if needs to be changed to FR
+			String languageSwitch = "FR";
+			if (session.getAttribute("language") != null) {
+				if (session.getAttribute("language").equals("FR")) {
+					languageSwitch = "EN";
+				}
+			}
+		%>
+		<form name="langForm" action="<%=session.getAttribute("currentPage")%>.jsp" method="post">
+			<input type=hidden name=language value="<%=languageSwitch%>" /> <input class="btn btn-default input-lg" type=submit name=langbutton maxlength=100 value="<%=lang.getString("gotolang")%>" />
+		</form>
 	</div>
 
 	<!-- TITLE -->
