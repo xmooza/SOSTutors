@@ -91,7 +91,7 @@
 	<!-- RESULTS FORM -->
 	<div class="container-fluid aboutform">
 		<h1>
-			Welcome, <%=s.getFName()%>
+			<%out.println(lang.getString("welcome"));%>, <%=s.getFName()%>!
 		</h1>
 	</div>
 
