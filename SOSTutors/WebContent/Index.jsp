@@ -81,11 +81,8 @@
 				}
 			}
 		%>
-		<form name="langForm"
-			action="<%=session.getAttribute("currentPage")%>.jsp" method="post">
-			<input type=hidden name=language value="<%=languageSwitch%>" /> <input
-				class="btn" type=submit name=langbutton maxlength=100
-				value="<%=lang.getString("gotolang")%>" />
+		<form name="langForm" action="<%=session.getAttribute("currentPage")%>.jsp" method="post">
+			<input type=hidden name=language value="<%=languageSwitch%>" /> <input class="btn btn-default input-lg" type=submit name=langbutton maxlength=100 value="<%=lang.getString("gotolang")%>" />
 		</form>
 	</div>
 
@@ -155,20 +152,17 @@
 			<%
 				out.println(lang.getString("content.1"));
 			%>
-			<a href="Tutor.jsp">
-				<%
+			<a href="Tutor.jsp"> <%
 					out.println(lang.getString("content.2"));
 				%>
 			</a>.
 			<%
 				out.println(lang.getString("content.3"));
 			%>
-			<a href="About.jsp">
-				<%
+			<a href="About.jsp"> <%
 					out.println(lang.getString("content.4"));
 				%>
-			</a>. <a href="Contact.jsp">
-				<%
+			</a>. <a href="Contact.jsp"> <%
 					out.println(lang.getString("content.5"));
 				%>
 			</a>.
@@ -182,12 +176,8 @@
 			if (request.getAttribute("errorMessage") != null) {
 		%>
 		<div class="container">
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert">
-					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-				</button>
-				<%=lang.getString(request.getAttribute("errorMessage")
-						.toString())%>
+			<div role="alert">
+				<%=lang.getString(request.getAttribute("errorMessage").toString())%>
 			</div>
 		</div>
 		<%
@@ -195,111 +185,101 @@
 		%>
 
 	</div>
+<!-- If the user is logged in and has navigated back to the home page, display a greeting message that directs them back to their profile -->
 
-	<!-- If the user is logged in and has navigated back to the home page, display a greeting message that directs them back to their profile -->
-
-	<%
-		if (session.getAttribute("currentUser") != null) {
-	%>
-
-	<div class="FillScreenTextCentered" style="color: LightBlue;">
-		<p style="font-size: 18px;">
-			<%=lang.getString("content.4")%>,
-			<%=((Student) session.getAttribute("currentUser"))
-						.getEmail()%>.<br>
-			<%=lang.getString("content.5")%></p>
-	</div>
-
-	<%
-		}
-	%>
-
-
-	<%
-		if (session.getAttribute("currentUser") == null) {
-	%>
-
-	<!-- RESULTS FORM -->
-	<div class="container-fluid resultform">
-
-		<div class="row">
-
-			<div class="col-sm-6 col-md-6">
-				<div class="titlebar">
-					<h3>
-						<%
-							out.println(lang.getString("login"));
-						%>
-					</h3>
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-6">
-				<div class="titlebar">
-					<h3>
-						<%out.println(lang.getString("register"));%>
-					</h3>
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-6">
-				<div class="tutorform">
-					<form name="LoginForm" action="loginServlet" method="post">
-						<h4>
-							<%
-								out.println(lang.getString("email"));
-							%>
-						</h4>
-						<input type=text name=loginUseremail maxlength=100
-							class="form-control input-lg" value="" /><br />
-						<h4>
-							<%
-								out.println(lang.getString("password"));
-							%>
-						</h4>
-						<input type=password name=loginUserpassword maxlength=100
-							class="form-control input-lg" /><br /> <input
-							class="btn btn-default input-lg" type=submit value="Login" />
-					</form>
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-6">
-				<div class="tutorform">
-					<form name="LoginForm" action="registerServlet" method="post">
-						<h4>
-							<%
-								out.println(lang.getString("fname"));
-							%>
-						</h4>
-						<input type=text name=registerUserfname value="" maxlength=100
-							class="form-control input-lg" value="" /><br />
-						<h4>
-							<%
-								out.println(lang.getString("lname"));
-							%>
-						</h4>
-						<input type=text name=registerUserlname value="" maxlength=100
-							class="form-control input-lg" value="" /><br />
-						<h4>
-							<%
-								out.println(lang.getString("email"));
-							%>
-						</h4>
-						<input type=text name=registerUseremail value="" maxlength=100
-							class="form-control input-lg" value="" /><br />
-						<h4>
-							<% out.println(lang.getString("password")); %>
-						</h4>
-						<input type=password name=registerUserpassword maxlength=100
-							class="form-control input-lg" /><br /> <input
-							class="btn btn-default input-lg" type=submit value="Register" />
-					</form>
-				</div>
-			</div>
+	<%if (session.getAttribute("currentStudent") != null){%>
+		<div class="FillScreenTextCentered" style="color: LightBlue;">
+			<p style="font-size: 18px;">
+				<%=lang.getString("content.4")%>,
+				<%=((Student) session.getAttribute("currentStudent")).getEmail()%>.<br>
+				<%=lang.getString("content.5")%>
+			</p>
 		</div>
 
-	</div>
+	<%}%>
+	
+	<%if (session.getAttribute("currentStudent") == null) {%>
+		<!-- RESULTS FORM -->
+		<div class="container-fluid resultform">
+	
+			<div class="row">
+	
+				<div class="col-sm-6 col-md-6">
+					<div class="titlebar">
+						<h3>
+							<%
+								out.println(lang.getString("login"));
+							%>
+						</h3>
+					</div>
+				</div>
+	
+				<div class="col-sm-6 col-md-6">
+					<div class="titlebar">
+						<h3>
+							<%out.println(lang.getString("register"));%>
+						</h3>
+					</div>
+				</div>
+	
+				<div class="col-sm-6 col-md-6">
+					<div class="tutorform">
+						<form name="LoginForm" action="loginServlet" method="post">
+							<h4>
+								<%
+									out.println(lang.getString("email"));
+								%>
+							</h4>
+							<input type=text name=loginUseremail maxlength=100
+								class="form-control input-lg" value="" /><br />
+							<h4>
+								<%
+									out.println(lang.getString("password"));
+								%>
+							</h4>
+							<input type=password name=loginUserpassword maxlength=100
+								class="form-control input-lg" /><br /> <input
+								class="btn btn-default input-lg" type=submit value="<%out.println(lang.getString("login"));%>" />
+						</form>
+					</div>
+				</div>
+	
+				<div class="col-sm-6 col-md-6">
+					<div class="tutorform">
+						<form name="LoginForm" action="registerServlet" method="post">
+							<h4>
+								<%
+									out.println(lang.getString("fname"));
+								%>
+							</h4>
+							<input type=text name=registerUserfname value="" maxlength=100
+								class="form-control input-lg" value="" /><br />
+							<h4>
+								<%
+									out.println(lang.getString("lname"));
+								%>
+							</h4>
+							<input type=text name=registerUserlname value="" maxlength=100
+								class="form-control input-lg" value="" /><br />
+							<h4>
+								<%
+									out.println(lang.getString("email"));
+								%>
+							</h4>
+							<input type=text name=registerUseremail value="" maxlength=100
+								class="form-control input-lg" value="" /><br />
+							<h4>
+								<% out.println(lang.getString("password")); %>
+							</h4>
+							<input type=password name=registerUserpassword maxlength=100
+								class="form-control input-lg" /><br /> <input
+								class="btn btn-default input-lg" type=submit value="<%out.println(lang.getString("register"));%>" />
+						</form>
+					</div>
+				</div>
+			</div>
+	
+		</div>
 	<% } %>
 </body>
 

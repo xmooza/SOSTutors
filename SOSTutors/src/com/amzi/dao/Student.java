@@ -161,45 +161,6 @@ public class Student{
 	     return s;
 	}
 	
-	public static int getUserIdFromDatabaseByUsername(String email){
-		int studentID = 0;
-		 PreparedStatement pst = null; 
-	     ResultSet rs = null;
-	     DbConnection connectionManager = null;
-	     
-	     connectionManager = DbConnection.getInstance();
-	     
-	     if(DbConnection.testConnection(connectionManager) == false){
-	    	 	System.out.println("Error with User retrieval by studentID: Unable to establish connection with database.");
-				return -1;
-		 }
-	       
-	     try {
-	    	 pst = connectionManager.getConnection().prepareStatement("select studentID from students where email = ?");
-	    	 pst.setString(1, email);
-			 rs = pst.executeQuery();
-			 rs.first();
-
-		     studentID = rs.getInt("studentID");
-		    
-		     rs.close();
-		     pst.close();
-		    
-	     } catch (SQLException sqlE) {
-	    	 System.out.println("Error with User Retrieval by studentID: Unable to retrieve User information based on studentID");
-	    	 sqlE.printStackTrace();
-			 return -2;
-	     }finally { 
-	    	 try {  
-	    		 rs.close();
-	    		 pst.close();  
-	         } catch (SQLException sqlE) {  
-	        	 sqlE.printStackTrace();  
-	         }  
-	     }   
-	     return studentID;
-	}
-	
 	//Called when the user completes registration
 	public static int insertUserIntoDatabase(String email, String password, String fname, String lname){
 		 PreparedStatement pst = null;

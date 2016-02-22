@@ -1,83 +1,65 @@
-package com.amzi.dao;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-
-public class Register {
-	public static String dateRegistered;
-
-	public static boolean validate(String fname, String lname, String email, String pass) {
-		boolean status = true;
-		Connection conn = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		Exception ex = new Exception();
-
-		String url = "jdbc:mysql://localhost:3306/";
-		String dbName = "sostutors";
-		String driver = "com.mysql.jdbc.Driver";
-		String dbUserName = "root";
-		String dbPassword = "password";
-
-		try {
-
-			fname = fname.trim();
-			lname = lname.trim();
-			email = email.trim();
-			pass = pass.trim();
-
-			if (email.equals("")) 
-			{
-				System.out.println("No email entered, throwing Java.lang.exception");
-				throw ex;
-			}
-
-			if (pass.equals("")) {
-				System.out.println("No password entered, throwing Java.lang.exception");
-				throw ex;
-			}
-
-			Class.forName(driver).newInstance();
-			conn = DriverManager.getConnection(url + dbName, dbUserName, dbPassword);
-
-			pst = conn.prepareStatement("insert into students values('" + fname + "','" + email + "','" + pass + "', curdate(), '" + lname + "' );");
-			pst.executeUpdate();
-			pst.close();
-			pst = conn.prepareStatement("select * from students where email=? and password=?");
-			pst.setString(1, email);
-			pst.setString(2, pass);
-			rs = pst.executeQuery();
-			rs.first();
-			dateRegistered = rs.getString("DateRegistered");
-		} catch (Exception e) {
-			System.out.println(e);
-			status = false;
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (pst != null) {
-				try {
-					pst.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return status;
-	}
-}
+package com.amzi.dao;  
+    
+public class Register {  
+	
+	public static String error = null;
+	
+	//could return a user object instead and if null an error occured.
+	public static Student validate(String email, String password, String fname, String lname) {          
+        Student s = null;
+        int errorCode = 0;
+        
+        email = email.trim();
+        password = password.trim();
+        fname = fname.trim();
+        lname = lname.trim();
+        	
+        if(email.equals("")){
+        	System.out.println("Username was not entered.");
+        	error = "errorregister.nousername";
+        	return null;
+        }
+        	
+        if(password.equals("")){
+        	System.out.println("Password was not entered.");
+        	error = "errorregister.nopass";
+        	return null;
+        }
+        
+        if(fname.equals("")){
+        	System.out.println("First name was not entered.");
+        	error = "errorregister.nousername";
+        	return null;
+        }
+        	
+        if(lname.equals("")){
+        	System.out.println("Last name was not entered.");
+        	error = "errorregister.nopass";
+        	return null;
+        }
+        	
+        errorCode = Student.insertUserIntoDatabase(email, password, fname, lname);
+        
+        if(errorCode == -1){
+        	System.out.println("Unable to establish connection with database.");
+        	error = "errorregister.sqlconnection";
+        	return null;
+        }
+        
+        if(errorCode == -2){
+        	System.out.println("A user with the same name already exists within BlogShare.");
+        	error = "errorregister.userexists";
+        	return null;
+        }
+        
+        if(errorCode == -3){
+        	System.out.println("Error with database interaction.");
+        	error = "errorregister.sql";
+        	return null;
+        }
+        
+        s = Student.getUserFromDatabaseByCredentials(email, password);
+          
+        return s;  
+    }  
+}  

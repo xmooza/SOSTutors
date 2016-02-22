@@ -2,6 +2,7 @@
     <wb-module deploy-name="SOSTutors">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/lang"/>
         <property name="context-root" value="SOSTutors"/>
         <property name="java-output-path" value="/SOSTutors/build/classes"/>
     </wb-module>
