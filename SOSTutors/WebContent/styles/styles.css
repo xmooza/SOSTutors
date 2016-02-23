@@ -1,139 +1,184 @@
-/*
-GENERAL
-*/
+/********************************************************************************
 
-.body {
-    background-color: #F5F5F5;
+                          ( ((
+                           ) ))
+  .::.                    / /(
+ '  .-;-.-.-.-.-.-.-.-.-/| ((::::::::::::::::::::::::::::::::::::::::::::::.._
+(  ( ( ( ( ( ( ( ( ( ( ( |  ))   -===========    Dev Team Six    =====-      _.>
+ `  `-;-`-`-`-`-`-`-`-`-\| ((::::::::::::::::::::::::::::::::::::::::::::::''
+  `::'                    \ \(
+                           ) ))
+                          (_((
+
+********************************************************************************/
+
+
+/* GENERAL */
+
+body {
+    background-color: #FAFAFA;
 }
 
-.titlebar {
-    background-color: #F44336;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    margin: 0px;
-    padding: 5px;
-    padding-left: 10px;
+.content {
+    margin-top: 100px;
+}
+
+.form {
     border-radius: 5px;
+    background-color: #E0E0E0;
+    font-family: 'Roboto', sans-serif;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.table {
+.blackform {
+    background-color: rgba(33, 33, 33, 0.75);
+}
+
+.background-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    height: auto;
+    position: fixed;
+    min-height: 100%;
+    min-width: 1024px;
+}
+
+.titlebar {
+    color: white;
+    border-radius: 5px;
+    padding: 5px 5px 5px 10px;
+    background-color: #F44336;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+table {
     text-align: center;
+}
+
+.table-responsive {
+    padding: 0px 10px 0px 10px;
 }
 
 blockquote {
     margin: 10px;
+    font-size: 1.0em;
     background-color: #FAFAFA;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-blockquote p {
-    font-size: 0.75em;
+
+/* BUTTON IDs and CLASSES */
+
+.fullwidthbtn {
+    width: 100%;
+}
+
+.whitebtn {
+    border: none;
+    background-color: #EEEEEE;
+    border-bottom: 3px solid #BDBDBD;
+}
+
+.greenbtn {
+    color: white;
+    border: none;
+    background-color: #4CAF50;
+    border-bottom: 3px solid #388E3C;
 }
 
 
-/*
-NAVBAR
-*/
+/* NAVBAR */
 
 .navbar {
+    border: none;
+    line-height: 75px;
     background-color: #F44336;
-    color: white;
-    padding: 25px;
-    line-height: 3.0em;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.navbar .navbar-brand {
-    margin-left: -25px;
+.navbar-brand {
     color: white;
-    font-size: 3.0em;
-    font-family: 'Quicksand', sans-serif;
+    height: 75px;
+    font-size: 3.5em;
+    line-height: 75px;
+    padding: 0px 0px 0px 10px;
+}
+
+.navbar-brand:hover,
+.navbar-brand:active,
+.navbar-brand:focus {
+    color: white;
+}
+
+.navbar li a:hover,
+.navbar li a:focus {
+    background-color: #D32F2F;
+}
+
+.navbar-header .icon-bar {
+    margin-top: 13px;
+    margin-right: 10px;
+    line-height: 75px;
+    background-color: white;
+}
+
+.navbar li a {
+    color: white;
+    font-size: 1.50em;
+    line-height: 75px;
+    padding: 0px 20px 0px 20px;
+}
+
+.navbar-collapse {
+    max-height: 100% !important;
 }
 
 
-/*
-FILTER FORM
-*/
+/* SEARCH FORM */
 
-.filterform {
-    font-family: 'Roboto', sans-serif;
-    margin-top: 125px;
+.searchform {
     width: 80%;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #E0E0E0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.filterform .row div {
-    padding-top: 14px;
+.searchform .row div {
+    padding-top: 15px;
     height: 75px;
 }
 
-.filterform .row div div {
+.searchform .row div div {
     width: 100%;
-    margin: 0px;
     padding: 0px;
 }
 
-.filterform .row div div select {
+.searchform .row div div select {
     height: 45px;
 }
 
 
-/*
-RESULT / TUTOR FORM
-*/
-
-.contactResolution {
-    margin: auto;
-    margin-top: 80px;
-    padding: 30px;
-    width: 600px;
-    height: 555px;
-    border-radius: 5px;
-    background-color: #E0E0E0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.aboutform {
-    margin: auto;
-    margin-top: 25px;
-    padding: 50px;
-    width: 70%;
-    height: 500px;
-    border-radius: 5px;
-    background-color: #E0E0E0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
+/* RESULT FORM */
 
 .resultform {
-    font-family: 'Roboto', sans-serif;
     margin: 25px;
-    border-radius: 5px;
-    background-color: #E0E0E0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .resultform .row .col-md-6,
 .resultform .row .col-md-8,
 .resultform .row .col-md-4 {
-    margin: 0px;
     padding: 10px;
 }
 
+
+/* TUTOR FORM */
+
 .tutorform {
-    margin: 0px;
     padding: 10px;
     background-color: #FAFAFA;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .tutorform .tutimg {
-    width: 100%;
     height: 175px;
     padding: 10px;
 }
@@ -170,23 +215,4 @@ RESULT / TUTOR FORM
     left: 50%;
     margin-left: -75px;
     width: 150px;
-}
-
-
-/*
-BUTTON IDs and CLASSES
-*/
-
-.fullwidthbtn {
-    width: 100%;
-}
-
-.whitebtn {
-    border-bottom: 3px solid #BDBDBD;
-}
-
-.greenbtn {
-    background-color: #4CAF50;
-    border-bottom: 3px solid #388E3C;
-    color: white;
 }
