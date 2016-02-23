@@ -129,7 +129,7 @@ INSERT INTO notifications(subject,content,date_posted,tutors_tutorID,students_st
 
 INSERT INTO comments(subject,content,date_posted,tutors_tutorID,students_studentID) VALUES ('Great tutor!', 'Easy explainations', '2016-01-11', 1, 1);
 
-INSERT INTO sessions(subject,content,date_posted,booking_available,booking_confirmed,booking_date,booking_location,tutors_tutorID,students_studentID) VALUES ('Calculus', 'What is the derivative of...', '2016-01-11', 1, 0, '2016-01-12', 'Campus',1,1);
+INSERT INTO sessions(subject,content,date_posted,booking_available,booking_confirmed,booking_date,booking_location,tutors_tutorID,students_studentID,categories_categoryID) VALUES ('Calculus', 'What is the derivative of...', '2016-01-11', 1, 0, '2016-01-12', 'Campus',1,1,1);
 
 INSERT INTO categories(subjectEN,subjectFR,descriptionEN,descriptionFR) VALUES ('Calculus', 'French Calculus', 'Calculus is fun', 'French Calculus');
 
