@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `SOSTutors`.`tutors` (
   `profile` VARCHAR(100) NULL,
   `hourly` VARCHAR(15) NULL,
   `rating` VARCHAR(15) NULL,
+  `picture` VARCHAR(45) NULL,
   `date_joined` DATE NULL,
   PRIMARY KEY (`tutorID`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
@@ -122,8 +123,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 INSERT INTO students(email,password,fname,lname,profile,date_joined) VALUES ('student1@here.com', 'password','John', 'Doe', 'Hi, this is my profile.', '2016-02-03');
 INSERT INTO students(email,password,fname,lname,profile,date_joined) VALUES ('student2@here.com', 'password','Jane', 'Doe', 'Hi, this is my profile.', '2016-01-13');
 
-INSERT INTO tutors(email,password,fname,lname,profile,hourly,rating,date_joined) VALUES ('tutor1@here.com', 'password', 'Jake', 'Smith', 'Hi, this is my profile.', '15', '5', '2016-01-11');
-INSERT INTO tutors(email,password,fname,lname,profile,hourly,rating,date_joined) VALUES ('tutor2@here.com', 'password', 'Jane', 'Smith', 'Hi, this is my profile.', '15', '5', '2016-02-03');
+INSERT INTO tutors(email,password,fname,lname,profile,hourly,rating,picture,date_joined) VALUES ('tutor1@here.com', 'password', 'Jake', 'Smith', 'Hi, this is my profile.', '15', '5', 'mug1.jpg','2016-01-11');
+INSERT INTO tutors(email,password,fname,lname,profile,hourly,rating,picture,date_joined) VALUES ('tutor2@here.com', 'password', 'Jane', 'Smith', 'Hi, this is my profile.', '15', '5', 'mug2.jpg','2016-02-03');
 
 INSERT INTO notifications(subject,content,date_posted,tutors_tutorID,students_studentID,sessions_sessionID) VALUES ('You have a session booked!', 'The following are the details...', '2016-01-11', 1, 1, 1);
 
