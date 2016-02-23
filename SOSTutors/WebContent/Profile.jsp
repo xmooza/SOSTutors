@@ -103,7 +103,7 @@
 	<!-- RESULTS FORM -->
 	<div class="container-fluid aboutform">
 		<h1>
-			<%out.println(lang.getString("welcome"));%>, <%=s.getFName()%>!
+			<%out.println(lang.getString("welcome"));%>,<%=s.getFName()%>!
 		</h1>
 	</div>
 

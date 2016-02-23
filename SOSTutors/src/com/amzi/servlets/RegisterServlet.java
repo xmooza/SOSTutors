@@ -23,8 +23,8 @@ public class RegisterServlet extends HttpServlet {
 	    String fname = "";
 	    String lname = "";
 	    	    	      
-	    email=request.getParameter("registerUserEmail");    
-	    password=request.getParameter("registerUserPassword");
+	    email=request.getParameter("registerUseremail");    
+	    password=request.getParameter("registerUserpassword");
 	    fname=request.getParameter("registerUserfname");    
 	    lname=request.getParameter("registerUserlname");
 	         
@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 	    if(s != null){    		        	
 	        request.getSession().setAttribute("currentStudent", s);
 	        	
-	        //username variable is added for use in the header section of the page's where the header is shown.
+	        //email variable is added for use in the header section of the page's where the header is shown.
 	        request.getSession().setAttribute("email",email);
 	           
 	        RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");    

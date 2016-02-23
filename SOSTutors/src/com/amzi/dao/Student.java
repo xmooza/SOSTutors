@@ -174,7 +174,7 @@ public class Student{
 		 }
 	     
 		 try {
-			pst = connectionManager.getConnection().prepareStatement("insert into students (studentID, email, password, fname, lname, date_joined)  values(0, ?,?,?,?, curdate())");
+			pst = connectionManager.getConnection().prepareStatement("insert into students(email, password, fname, lname, date_joined) values(?,?,?,?, curdate())");
 			pst.setString(1,email);
 	        pst.setString(2, password);
 	        pst.setString(3, fname);
