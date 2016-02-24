@@ -4,7 +4,6 @@ public class Login {
 	
 	public static String error = null;
 	
-	//could return a user object instead, and if null then there was an error.
     public static Student validate(String email, String password) {          
         Student s = null;
 

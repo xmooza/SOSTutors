@@ -4,7 +4,6 @@ public class Register {
 	
 	public static String error = null;
 	
-	//could return a user object instead and if null an error occured.
 	public static Student validate(String email, String password, String fname, String lname) {          
         Student s = null;
         int errorCode = 0;
@@ -47,7 +46,7 @@ public class Register {
         }
         
         if(errorCode == -2){
-        	System.out.println("A user with the same name already exists within BlogShare.");
+        	System.out.println("A user with the same name already exists within SOSTutors.");
         	error = "errorregister.userexists";
         	return null;
         }

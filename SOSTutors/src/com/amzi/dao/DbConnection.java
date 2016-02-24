@@ -5,21 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-/* Adapted from design found at https://en.wikipedia.org/wiki/Singleton_pattern#Lazy_initialization
- * used second example on page resembling
- * 
- * public class SingletonDemo {
-  		private static SingletonDemo instance = null;
-   		private SingletonDemo() { }
-   		public static synchronized SingletonDemo getInstance() {
-   		if (instance == null) {
-   			instance = new SingletonDemo();
-   		}
-        return instance;
-    }
- **/
-
 public class DbConnection {
 	
 	private String url = "jdbc:mysql://localhost:3306/";  
