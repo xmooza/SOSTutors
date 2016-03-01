@@ -161,7 +161,6 @@ public class Student{
 	     return s;
 	}
 	
-	//Called when the user completes registration
 	public static int insertUserIntoDatabase(String email, String password, String fname, String lname){
 		 PreparedStatement pst = null;
 		 DbConnection connectionManager = null;
@@ -202,8 +201,6 @@ public class Student{
 	public static int updateUserCredentialsInDatabase(String newEmail, String newPass, int studentID) {
 		PreparedStatement pst = null;  
 	    DbConnection connectionManager = null;
-	       	    	
-	    //gaining access to the shared database connection
 	    connectionManager = DbConnection.getInstance();
 	    
 	    if(DbConnection.testConnection(connectionManager) == false){
@@ -219,10 +216,7 @@ public class Student{
 	        pst.setString(2, newPass); 
 	        pst.setString(3, Integer.toString(studentID));  
 
-	        //returns the row count or 0 if nothing was updated 
 	        if (pst.executeUpdate() > 1){
-	        	//System.out.println("Password change affected multiple rows of user table.\n");
-	        	//need to rollBack
 	        }
 	        
 	    } catch (SQLException sqlE) {  
@@ -240,7 +234,6 @@ public class Student{
 		return 0;
 	}
 	
-	//get a list of the titles of a particular user's blogs
 	public ArrayList<String> getStudentBookings(int studentID) {          
         
         PreparedStatement pst = null; 
@@ -256,7 +249,6 @@ public class Student{
 	    }
         	
         try { 
-        	
         	pst = connectionManager.getConnection().prepareStatement("select * from bookings b, student s"
 				       + "where b.studentID = s.studentID"
 				       + "order by b.bookingID desc");

@@ -45,11 +45,6 @@ public class DbConnection {
 		
 		try{
     		conn.close();
-    		
-    		/*connectionHelper is set to null.
-    		 * This is done, since when the connection is closed 
-    		 * the only way to create a new connection is to create a 
-    		 * new instance of DbConnection and instantiate it into connectionHelper*/
     		connectionHelper = null;
     		
     	}catch(SQLException sqlCloseE){
@@ -64,8 +59,6 @@ public class DbConnection {
 	public static synchronized DbConnection getInstance() {
 		if(connectionHelper == null) {
 			connectionHelper = new DbConnection();
-			
-			//if the connection was not established with the database, it is useless. 
 			if(connectionHelper.conn == null){
 				connectionHelper = null;
 			}
