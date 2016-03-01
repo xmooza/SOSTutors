@@ -72,9 +72,9 @@
                     <li><a href="TutorSearch.jsp">Tutors</a></li>
                     <li><a href="Contact.jsp">Contact</a></li>
                     <%if (session.getAttribute("currentStudent") != null){%>
-                    	<li><a href="#"><%=((Student) session.getAttribute("currentStudent")).getFName()%></a></li>
+                    	<li><a href="#" style="background-color: #424242"><i class="fa fa-user"></i>&nbsp;&nbsp;<%=((Student) session.getAttribute("currentStudent")).getFName()%></a></li>
                     <%}else{%>
-                    	<li><a href="#" style="background-color: #424242"><i class="fa fa-user"></i>&nbsp;&nbsp;Harry</a></li>
+                    	<li><a href="#">Login / Register</a></li>
                     <%}%>
                 </ul>
             </div>
