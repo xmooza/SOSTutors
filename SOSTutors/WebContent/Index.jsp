@@ -52,7 +52,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">SOSTutors</a>
+                
             </div>
+            <div><%
+			//EN language is the default, then check if needs to be changed to FR
+			String languageSwitch = "FR";
+			if (session.getAttribute("language") != null) {
+				if (session.getAttribute("language").equals("FR")) {
+					languageSwitch = "EN";
+				}
+			}
+		%>
+		 <form name="langForm" action="<%=session.getAttribute("currentPage")%>.jsp" method="post">
+			<input type=hidden name=language value="<%=languageSwitch%>" /> <input class="btn btn-default input-lg" type=submit name=langbutton maxlength=100 value="<%=lang.getString("gotolang")%>" />
+		</form></div>
             <div class="collapse navbar-collapse" id="header-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="Index.jsp">Home</a></li>
