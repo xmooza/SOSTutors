@@ -114,8 +114,11 @@ blockquote {
 }
 
 .navbar li a:hover,
-.navbar li a:focus {
+.navbar li a:focus,
+.navbar li input:hover,
+.navbar li input:focus {
     background-color: #D32F2F;
+    color: white;
 }
 
 .navbar-header .icon-bar {
@@ -125,11 +128,16 @@ blockquote {
     background-color: white;
 }
 
-.navbar li a {
+.navbar li a,
+.navbar li input {
     color: white;
     font-size: 1.50em;
     line-height: 75px;
+    height: 75px;
     padding: 0px 20px 0px 20px;
+    background-color: transparent;
+  	border: none;
+  	border-radius: 0px;
 }
 
 .navbar-collapse {
