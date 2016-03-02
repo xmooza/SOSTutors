@@ -23,46 +23,18 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    
-    <!-- Language Bundles -->
-    <%@include file="Lang.jsp" %>
 </head>
 
-<body class="body">
-    
-    <!-- HEADER -->
-    <div class="navbar navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SOSTutors</a>
-            </div>
-            <div class="collapse navbar-collapse" id="header-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="Index.jsp">Home</a></li>
-                    <li><a href="About.jsp">About</a></li>
-                    <li><a href="TutorSearch.jsp">Tutors</a></li>
-                    <li><a href="Contact.jsp">Contact</a></li>
-                    <%if (session.getAttribute("currentStudent") != null){%>
-                    	<li><a href="#"><%=((Student) session.getAttribute("currentStudent")).getFName()%></a></li>
-                    <%}else{%>
-                    	<li><a href="#">Login/Register</a></li>
-                    <%}%>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+<body>
+	<!-- HEADER -->
+	<%@include file="Header.jsp" %>
+	
 	<!-- CONTENT -->
 	<div class="content">
+		<img class="background-image" src="images/main-wall.jpg">
 		
 		<!-- SEARCH & FILTER FORM -->
-	    <div class="container-fluid searchform form">
+	    <div class="container-fluid searchform form blackform">
 	        <div class="row">
 	            <div class="col-md-5">
 	                <input class="form-control input-lg" type="text">
@@ -89,7 +61,7 @@
 	    </div>
 	
 	    <!-- RESULTS FORM -->
-	    <div class="container-fluid resultform form">
+	    <div class="container-fluid resultform form blackform">
 	
 	        <div class="row">
 	
@@ -112,7 +84,7 @@
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a faucibus ipsum, sit amet luctus massa. Ut gravida est ac.</p>
 	                        </div>
 	                        <div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-	                            <a class="btn btn-default fullwidthbtn" role="button" href="Tutor.jsp">More Info</a>
+	                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="Tutor.jsp">More Info</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -137,7 +109,7 @@
 	                            <p>Vestibulum a dignissim nisl, quis iaculis risus. Integer commodo elit eget est elementum volutpat. Pellentesque egestas magna vitae metus porttitor.</p>
 	                        </div>
 	                        <div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-	                            <a class="btn btn-default fullwidthbtn" role="button">More Info</a>
+	                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="Tutor.jsp">More Info</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -162,7 +134,7 @@
 	                            <p>Nullam ipsum nisi, consequat eget pellentesque at, egestas et tortor. Praesent id lacus sollicitudin, fringilla felis sit amet, commodo nunc.</p>
 	                        </div>
 	                        <div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-	                            <a class="btn btn-default fullwidthbtn" role="button">More Info</a>
+	                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="Tutor.jsp">More Info</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -187,13 +159,13 @@
 	                            <p>Fusce scelerisque interdum dictum. Aliquam erat volutpat. In hendrerit, sapien ut malesuada mattis, orci risus sollicitudin arcu, ac aliquam ligula.</p>
 	                        </div>
 	                        <div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-	                            <a class="btn btn-default fullwidthbtn" role="button">More Info</a>
+	                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="Tutor.jsp">More Info</a>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-	        <h5 style="text-align: center">Showing 4 of 4 results.</h5>
+	        <h5 style="text-align: center; color: white">Showing 4 of 4 results.</h5>
 	    </div>
 	</div>
 

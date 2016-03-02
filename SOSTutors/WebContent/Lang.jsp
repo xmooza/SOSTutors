@@ -2,7 +2,7 @@
 <%@ page language="java" import="com.amzi.dao.Student,java.util.Locale,java.util.ResourceBundle"%>
 <%
 	//for generating the french/english page link
-	session.setAttribute("currentPage", "Index");
+	session.setAttribute("currentPage", "LoginRegister");
 
 	//used to set keep the language consistent between pages
 	if (session.getAttribute("language") == null) {
