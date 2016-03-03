@@ -23,46 +23,17 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    
-    <!-- Language Bundles -->
-    <%@include file="Lang.jsp" %>
 </head>
 
 <body>
-
-    <!-- HEADER -->
-    <div class="navbar navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SOSTutors</a>
-            </div>
-            <div class="collapse navbar-collapse" id="header-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="Index.jsp">Home</a></li>
-                    <li><a href="About.jsp">About</a></li>
-                    <li><a href="TutorSearch.jsp">Tutors</a></li>
-                    <li><a href="Contact.jsp">Contact</a></li>
-                    <%if (session.getAttribute("currentStudent") != null){%>
-                    	<li><a href="#"><%=((Student) session.getAttribute("currentStudent")).getFName()%></a></li>
-                    <%}else{%>
-                    	<li><a href="#">Login/Register</a></li>
-                    <%}%>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-    <!--CONTENT-->
-    <div class="content">
+	<!-- HEADER -->
+	<%@include file="Header.jsp" %>
     
-	    <div class="container-fluid resultform form">
+    <!-- CONTENT -->
+	<div class="content">
+		<img class="background-image" src="images/main-wall.jpg">
+    
+	    <div class="container-fluid resultform form blackform">
 	
 	        <div class="row tutpage">
 	

@@ -1,226 +1,235 @@
-/********************************************************************************
-
-                          ( ((
-                           ) ))
-  .::.                    / /(
- '  .-;-.-.-.-.-.-.-.-.-/| ((::::::::::::::::::::::::::::::::::::::::::::::.._
-(  ( ( ( ( ( ( ( ( ( ( ( |  ))   -===========    Dev Team Six    =====-      _.>
- `  `-;-`-`-`-`-`-`-`-`-\| ((::::::::::::::::::::::::::::::::::::::::::::::''
-  `::'                    \ \(
-                           ) ))
-                          (_((
-
-********************************************************************************/
-
-
 /* GENERAL */
-
 body {
-    background-color: #FAFAFA;
+	background-color: #FAFAFA;
 }
 
 .content {
-    margin-top: 100px;
+	margin-top: 100px;
 }
 
 .form {
-    border-radius: 5px;
-    background-color: #E0E0E0;
-    font-family: 'Roboto', sans-serif;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	border-radius: 5px;
+	background-color: #E0E0E0;
+	font-family: 'Roboto', sans-serif;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .blackform {
-    background-color: rgba(33, 33, 33, 0.75);
+	background-color: rgba(33, 33, 33, 0.85);
 }
 
 .background-image {
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-    height: auto;
-    position: fixed;
-    min-height: 100%;
-    min-width: 1024px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+	height: auto;
+	position: fixed;
+	min-height: 100%;
+	min-width: 1024px;
 }
 
 .titlebar {
-    color: white;
-    border-radius: 5px;
-    padding: 5px 5px 5px 10px;
-    background-color: #F44336;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	color: white;
+	border-radius: 5px;
+	padding: 5px 5px 5px 10px;
+	background-color: #F44336;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 table {
-    text-align: center;
+	text-align: center;
 }
 
 .table-responsive {
-    padding: 0px 10px 0px 10px;
+	padding: 0px 10px 0px 10px;
+}
+
+.table-striped {
+	margin-top: 10px;
+}
+
+.table-striped>thead {
+	background-color: #E0E0E0;
+}
+
+.table-striped>tbody {
+	background-color: #E0E0E0;
 }
 
 blockquote {
-    margin: 10px;
-    font-size: 1.0em;
-    background-color: #FAFAFA;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	margin: 10px;
+	font-size: 1.0em;
+	background-color: #FAFAFA;
+	border-left: 5px solid #E0E0E0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-
 /* BUTTON IDs and CLASSES */
-
 .fullwidthbtn {
-    width: 100%;
+	width: 100%;
 }
 
 .whitebtn {
-    border: none;
-    background-color: #EEEEEE;
-    border-bottom: 3px solid #BDBDBD;
+	border: none;
+	background-color: #EEEEEE;
+	border-bottom: 3px solid #BDBDBD;
 }
 
 .greenbtn {
-    color: white;
-    border: none;
-    background-color: #4CAF50;
-    border-bottom: 3px solid #388E3C;
+	color: white;
+	border: none;
+	background-color: #4CAF50;
+	border-bottom: 3px solid #388E3C;
 }
 
+.greenbtn:hover {
+	color: white;
+	background-color: #43A047;
+	border-bottom: 3px solid #388E3C;
+}
+.langbtn {
+	color: white;
+	position: absolute;
+	margin: 11px 0px 0px 3px;
+	border: none;
+	background-color: transparent;
+	padding: 0px;
+	outline: none;
+}
+
+.langbtn:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#userbtn {
+	background-color: #424242;
+}
+
+#userbtn:hover {
+	background-color: #616161;
+}
 
 /* NAVBAR */
-
 .navbar {
-    border: none;
-    line-height: 75px;
-    background-color: #F44336;
-    font-family: 'Quicksand', sans-serif;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	border: none;
+	line-height: 75px;
+	background-color: #F44336;
+	font-family: 'Quicksand', sans-serif;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .navbar-brand {
-    color: white;
-    height: 75px;
-    font-size: 3.5em;
-    line-height: 75px;
-    padding: 0px 0px 0px 10px;
+	color: white;
+	height: 75px;
+	font-size: 3.5em;
+	line-height: 75px;
+	padding: 0px 0px 0px 10px;
 }
 
-.navbar-brand:hover,
-.navbar-brand:active,
-.navbar-brand:focus {
-    color: white;
+.navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus {
+	color: white;
 }
 
-.navbar li a:hover,
-.navbar li a:focus,
-.navbar li input:hover,
-.navbar li input:focus {
-    background-color: #D32F2F;
-    color: white;
+.navbar li a:hover, .navbar li a:focus, .navbar li input:hover, .navbar li input:focus
+	{
+	background-color: #D32F2F;
+	color: white;
 }
 
 .navbar-header .icon-bar {
-    margin-top: 13px;
-    margin-right: 10px;
-    line-height: 75px;
-    background-color: white;
+	margin-top: 13px;
+	margin-right: 10px;
+	line-height: 75px;
+	background-color: white;
 }
 
-.navbar li a,
-.navbar li input {
-    color: white;
-    font-size: 1.50em;
-    line-height: 75px;
-    height: 75px;
-    padding: 0px 20px 0px 20px;
-    background-color: transparent;
-  	border: none;
-  	border-radius: 0px;
+.navbar li a, .navbar li input {
+	color: white;
+	font-size: 1.50em;
+	line-height: 75px;
+	height: 75px;
+	padding: 0px 20px 0px 20px;
+	background-color: transparent;
+	border: none;
+	border-radius: 0px;
 }
 
 .navbar-collapse {
-    max-height: 100% !important;
+	max-height: 100% !important;
 }
 
-
 /* SEARCH FORM */
-
 .searchform {
-    width: 80%;
+	width: 80%;
 }
 
 .searchform .row div {
-    padding-top: 15px;
-    height: 75px;
+	padding-top: 15px;
+	height: 75px;
 }
 
 .searchform .row div div {
-    width: 100%;
-    padding: 0px;
+	width: 100%;
+	padding: 0px;
 }
 
 .searchform .row div div select {
-    height: 45px;
+	height: 45px;
 }
-
 
 /* RESULT FORM */
-
 .resultform {
-    margin: 25px;
+	margin: 25px 35px 25px 35px;
 }
 
-.resultform .row .col-md-6,
-.resultform .row .col-md-8,
-.resultform .row .col-md-4 {
-    padding: 10px;
+.resultform .row .col-md-6, .resultform .row .col-md-8, .resultform .row .col-md-4
+	{
+	padding: 10px;
 }
-
 
 /* TUTOR FORM */
-
 .tutorform {
-    padding: 10px;
-    background-color: #FAFAFA;
+	padding: 10px;
+	background-color: #FAFAFA;
 }
 
 .tutorform .tutimg {
-    height: 175px;
-    padding: 10px;
+	height: 175px;
+	padding: 10px;
 }
 
 .tutorform .tutdesc {
-    height: 200px;
-    padding: 10px;
-    overflow: hidden;
+	height: 200px;
+	padding: 10px;
+	overflow: hidden;
 }
 
 .tutorform .tutinfo {
-    display: inline-flex;
-    padding: 0px;
+	display: inline-flex;
+	padding: 0px;
 }
 
 .tutorform .tutrating {
-    margin-top: 10px;
-    padding: 0px;
-    height: 50px;
-    text-align: center;
+	margin-top: 10px;
+	padding: 0px;
+	height: 50px;
+	text-align: center;
 }
 
 .tutorform .row {
-    margin: 0px;
+	margin: 0px;
 }
 
 .tutorform .tutrating * {
-    padding: 0px;
+	padding: 0px;
 }
 
 .tutorform .tutimg img {
-    padding: 10px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    width: 150px;
+	padding: 10px;
+	position: absolute;
+	left: 50%;
+	margin-left: -75px;
+	width: 150px;
 }
