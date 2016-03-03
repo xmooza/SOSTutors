@@ -11,22 +11,18 @@ public class Login {
         password = password.trim();
             
         if(email == ""){
-            System.out.println("Username was not entered\n");
-            error = "error.nousername";
+            error = "error.invlaidusername";
             return null;
         }
-            
         if(password == ""){
-        	System.out.println("Password was not entered\n");
-        	error = "error.nopass";
+        	error = "error.invalidpass";
             return null;
         }
             
-        s = Student.getUserFromDatabaseByCredentials(email, password);
+        s = Student.getStudentDB(email, password);
             
         if(s == null){
-        	System.out.println("The entered username and password do not match registered users, throwing SQLException\n");
-            error = "error.wrongcredentials";
+            error = "error.invalidlogin";
             return null;
         }
         return s;   

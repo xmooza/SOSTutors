@@ -33,11 +33,11 @@ public class RegisterServlet extends HttpServlet {
 	    if(s != null){    		        	
 	        request.getSession().setAttribute("currentStudent", s);
 	        	
-	        //email variable is added for use in the header section of the page's where the header is shown.
+	        //Add user most used data into session.
 	        request.getSession().setAttribute("email",email);
-	           
+	        request.getSession().setAttribute("fname",fname);
+	        request.getSession().setAttribute("fname",lname);
 	        RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");    
-	            
 	        try {
 	        	rd.forward(request,response);
 			} catch (ServletException e) {

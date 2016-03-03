@@ -5,18 +5,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbConnection {
+public class DBConnector {
 	
 	private String url = "jdbc:mysql://localhost:3306/";  
     private String dbName = "sostutors";  
     private String driver = "com.mysql.jdbc.Driver";  
     private String dbUserName = "root";  
-    private String dbPassword = "Vegeta99";
+    private String dbPassword = "Password123";
     
     private Connection conn = null;  
-    private static DbConnection connectionHelper = null;
+    private static DBConnector connectionHelper = null;
 	
-	private DbConnection() {
+	private DBConnector() {
 		
 		 try{
 			 Class.forName(driver).newInstance();  
@@ -34,7 +34,6 @@ public class DbConnection {
 	
 	public Connection getConnection(){
 		if(conn == null){
-			System.out.println("Error obtaining database connection object - Connection object has not been initialized.\n");
 			return null;
 		}
 		
@@ -48,7 +47,6 @@ public class DbConnection {
     		connectionHelper = null;
     		
     	}catch(SQLException sqlCloseE){
-    		System.out.println("Error closing database connection - connection object has not been initialized.\n");
     		sqlCloseE.printStackTrace();
     		return -1;
     	}
@@ -56,9 +54,9 @@ public class DbConnection {
 	}
 	
 	
-	public static synchronized DbConnection getInstance() {
+	public static synchronized DBConnector getInstance() {
 		if(connectionHelper == null) {
-			connectionHelper = new DbConnection();
+			connectionHelper = new DBConnector();
 			if(connectionHelper.conn == null){
 				connectionHelper = null;
 			}
@@ -66,7 +64,7 @@ public class DbConnection {
 		return connectionHelper;
 	}
 	
-	public static synchronized boolean testConnection(DbConnection connectionManager){
+	public static synchronized boolean testConnection(DBConnector connectionManager){
 		
 		if(connectionManager == null){
 			return false;
