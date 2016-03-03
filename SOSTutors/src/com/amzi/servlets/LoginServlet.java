@@ -1,13 +1,16 @@
 package com.amzi.servlets;  
   
 import java.io.IOException;  
+
 import javax.servlet.RequestDispatcher;  
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
+
 import com.amzi.dao.Login; 
 import com.amzi.dao.Student;
+import com.amzi.dao.Tutor;
   
 public class LoginServlet extends HttpServlet{  
     private static final long serialVersionUID = 1L;  
@@ -18,18 +21,33 @@ public class LoginServlet extends HttpServlet{
     
     public void doPost(HttpServletRequest request, HttpServletResponse response){ 
     	Student s = null;
+    	Tutor t = null;
     	       
         String email=request.getParameter("loginUseremail");    
-        String password=request.getParameter("loginUserpassword");   
-            
-        s = Login.validate(email, password);
-        
-        if(s != null){   
+        String password=request.getParameter("loginUserpassword"); 
+        String role=request.getParameter("loginUserrole");
+        if(role=="student")
+        	s = Login.validateStudent(email, password);
+    	else
+    		t = Login.validateTutor(email, password);
+        if(s != null && role=="student"){   
         	
         	request.getSession().setAttribute("currentStudent", s);
         	
         	RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");    
             
+        	try {
+				rd.forward(request,response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}    
+        }
+        else if(t != null && role=="tutor")
+        {   
+        	request.getSession().setAttribute("currentTutor", t);
+        	RequestDispatcher rd=request.getRequestDispatcher("~/Tutor/Profile.jsp");
         	try {
 				rd.forward(request,response);
 			} catch (ServletException e) {
