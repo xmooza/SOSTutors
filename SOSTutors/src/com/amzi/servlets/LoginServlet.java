@@ -57,10 +57,8 @@ public class LoginServlet extends HttpServlet{
 			}    
         }    
         else{
-
 	        request.setAttribute("errorMessage", Login.error);
             RequestDispatcher rd=request.getRequestDispatcher("Index.jsp");    
-            
             try {
 				rd.include(request,response);
 			} catch (ServletException e) {
@@ -70,8 +68,6 @@ public class LoginServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
         }    
-     
     }    
 }   
