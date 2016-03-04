@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="java.util.ArrayList, java.io.IOException,com.amzi.dao.Student,java.util.Locale,java.util.ResourceBundle"%>
+	import="java.util.ArrayList, java.io.IOException,com.amzi.beans.Student,java.util.Locale,java.util.ResourceBundle"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -53,7 +53,7 @@
 	}
 	//ArrayList<String> studentBookings = s.getStudentBookings(s.getStudentID());
 	%>
-	<title><%=s.getFName()%>'s Profile</title>
+	<title><%=s.getFname()%>'s Profile</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -99,7 +99,7 @@
 	<!-- RESULTS FORM -->
 	<div class="container-fluid aboutform">
 		<h1>
-			<%out.println(lang.getString("welcome"));%>,<%=s.getFName()%>!
+			<%out.println(lang.getString("welcome"));%>,<%=s.getFname()%>!
 		</h1>
 	</div>
 

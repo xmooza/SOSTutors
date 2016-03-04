@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <!-- Language Bundles -->
 <%@include file="Lang.jsp"%>
@@ -37,11 +36,11 @@
 				<li class="active"><a href="Index.jsp">Home</a></li>
 				<li><a href="About.jsp">About</a></li>
 				<li><a href="Contact.jsp">Contact</a></li>
-				<li><a href="TutorSearch.jsp">Tutor Search</a></li>
+				<li><a href="tutorsearch">Tutor Search</a></li>
 				<%
 					if (session.getAttribute("currentStudent") != null) {
 				%>
-				<li><a id="userbtn" href="Profile.jsp"><%=((Student) session.getAttribute("currentStudent")).getFName()%></a></li>
+				<li><a id="userbtn" href="Profile.jsp"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
 				<%
 					} else {
 				%>

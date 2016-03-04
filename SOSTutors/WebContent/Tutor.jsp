@@ -68,7 +68,7 @@
 	                                <thead>
 	                                    <tr>
 	                                        <th style="text-align: center">Day</th>
-	                                        <th style="text-align: center">Timeslot</th>
+	                                        <th style="text-align: center">Time-Slot</th>
 	                                        <th style="text-align: center">Subject</th>
 	                                        <th style="text-align: center">Book</th>
 	                                    </tr>

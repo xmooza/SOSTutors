@@ -1,6 +1,8 @@
-package com.amzi.dao;  
-    
-public class Register {  
+package com.amzi.dao;
+
+import com.amzi.beans.Student;
+
+public class RegisterDAO {  
 	
 	public static String error = null;
 	
@@ -33,7 +35,7 @@ public class Register {
         	return null;
         }
         	
-        errorCode = Student.addStudentDB(email, password, fname, lname);
+        //errorCode = StudentDAO.addStudentDB(email, password, fname, lname);
         
         if(errorCode == -1){
         	error = "errorregister.sqlconnection";
@@ -46,7 +48,7 @@ public class Register {
         	return null;
         }
         
-        s = Student.getStudentDB(email, password);
+        s = StudentDAO.getStudentDB(email, password);
           
         return s;  
     }  

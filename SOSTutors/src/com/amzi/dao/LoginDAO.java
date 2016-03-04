@@ -1,6 +1,7 @@
-package com.amzi.dao;  
-  
-public class Login { 
+package com.amzi.dao;
+import com.amzi.beans.*;
+
+public class LoginDAO { 
 	
 	public static String error = null;
 	
@@ -19,7 +20,7 @@ public class Login {
             return null;
         }
             
-        s = Student.getStudentDB(email, password);
+        s = StudentDAO.getStudentDB(email, password);
             
         if(s == null){
             error = "error.invalidlogin";
@@ -42,7 +43,7 @@ public class Login {
             return null;
         }
             
-        t = Tutor.getTutorDB(email, password);
+        t = TutorDAO.getTutorDB(email, password);
             
         if(t == null){
             error = "error.invalidlogin";

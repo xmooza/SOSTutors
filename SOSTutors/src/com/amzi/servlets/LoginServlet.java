@@ -6,18 +6,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
+import javax.servlet.http.HttpServletResponse;
 
-import com.amzi.dao.Login; 
-import com.amzi.dao.Student;
-import com.amzi.dao.Tutor;
+import com.amzi.beans.Student;
+import com.amzi.beans.Tutor;
+import com.amzi.dao.LoginDAO;
   
 public class LoginServlet extends HttpServlet{  
     private static final long serialVersionUID = 1L;  
-
-    public LoginServlet() {
-		 super();
-	}
     
     public void doPost(HttpServletRequest request, HttpServletResponse response){ 
     	Student s = null;
@@ -26,10 +22,11 @@ public class LoginServlet extends HttpServlet{
         String email=request.getParameter("loginUseremail");    
         String password=request.getParameter("loginUserpassword"); 
         String role=request.getParameter("loginUserrole");
+        
         if(role=="student")
-        	s = Login.validateStudent(email, password);
+        	s = LoginDAO.validateStudent(email, password);
     	else
-    		t = Login.validateTutor(email, password);
+    		t = LoginDAO.validateTutor(email, password);
         if(s != null && role=="student"){   
         	
         	request.getSession().setAttribute("currentStudent", s);
@@ -57,7 +54,7 @@ public class LoginServlet extends HttpServlet{
 			}    
         }    
         else{
-	        request.setAttribute("errorMessage", Login.error);
+	        request.setAttribute("errorMessage", LoginDAO.error);
             RequestDispatcher rd=request.getRequestDispatcher("Index.jsp");    
             try {
 				rd.include(request,response);

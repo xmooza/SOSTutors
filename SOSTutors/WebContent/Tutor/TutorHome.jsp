@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="java.util.ArrayList, java.io.IOException,com.amzi.dao.Tutor,com.amzi.dao.TutoringSession,com.amzi.dao.Booking,java.util.Locale,java.util.ResourceBundle"%>
+	import="java.util.ArrayList, java.io.IOException,com.amzi.beans.Tutor,com.amzi.beans.Session, com.amzi.dao.TutorDAO, java.util.Locale,java.util.ResourceBundle"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 <%	
 	Tutor t = null;
+	TutorDAO td = new TutorDAO();
 	Boolean tutorProfile;
-	
 	
 	session.setAttribute("currentPage","Profile");
 	ResourceBundle lang = ResourceBundle.getBundle("Profile_EN");
@@ -53,7 +53,7 @@
 			}
 		}
 	}
-	ArrayList<Booking> tutoringBookings = t.getTutorBookings(t.getTutorID());
+	ArrayList<Session> tutoringBookings = td.getTutorSessions(t.getTutorID());
 %>
 </head>
 <body>

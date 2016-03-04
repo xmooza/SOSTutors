@@ -1,22 +1,18 @@
 package com.amzi.servlets;
 
 import java.io.IOException;  
-import javax.servlet.RequestDispatcher;  
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
-import com.amzi.dao.Register; 
-import com.amzi.dao.Student;
+import javax.servlet.http.HttpServletResponse;
+
+import com.amzi.beans.Student;
+import com.amzi.dao.RegisterDAO;
 
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;  
-	 
-	public RegisterServlet() {
-		 super();
-	}
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response){ 
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
 	    Student s = null;
 	    String email = "";
 	    String password = "";
@@ -28,35 +24,14 @@ public class RegisterServlet extends HttpServlet {
 	    fname=request.getParameter("registerUserfname");    
 	    lname=request.getParameter("registerUserlname");
 	         
-	    s = Register.validate(email, password, fname, lname);
+	    s = RegisterDAO.validate(email, password, fname, lname);
 	        
 	    if(s != null){    		        	
 	        request.getSession().setAttribute("currentStudent", s);
-	        	
-	        //Add user most used data into session.
-	        request.getSession().setAttribute("email",email);
-	        request.getSession().setAttribute("fname",fname);
-	        request.getSession().setAttribute("fname",lname);
-	        RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");    
-	        try {
-	        	rd.forward(request,response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}    
+	        request.getRequestDispatcher("Profile.jsp").forward(request, response);    
 	    }else{
-	        request.setAttribute("errorMessage", Register.error);
-	        	
-	        RequestDispatcher rd=request.getRequestDispatcher("Index.jsp");    
-	            
-	        try {
-				rd.include(request,response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}    
+	        request.setAttribute("errorMessage", RegisterDAO.error);
+	        request.getRequestDispatcher("Index.jsp").forward(request, response);   	            
 	   }    
 	}
 }
