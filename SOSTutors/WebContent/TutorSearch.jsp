@@ -37,7 +37,7 @@
 		<!-- SEARCH & FILTER FORM -->
 	    <div class="container-fluid searchform form blackform">
 	        <div class="row">
-	            <div class="col-md-5">
+	            <div class="col-md-7">
 	                <input class="form-control input-lg" type="text">
 	            </div>
 	            <div class="col-md-3">
@@ -52,13 +52,10 @@
 	                    </select>
 	                </div>
 	            </div>
-	            <div class="col-md-2 col-sm-6 col-xs-6">
-	                <button class="btn btn-default input-lg whitebtn fullwidthbtn" type="button">Advanced</button>
-	            </div>
-	            <div class="col-md-2 col-sm-6 col-xs-6">
-	                <button class="btn btn-default input-lg greenbtn fullwidthbtn" type="button">Search</button>
-	            </div>
-	        </div>
+				<div class="col-md-2 col-sm-6 col-xs-6">
+					<button class="btn btn-default input-lg greenbtn fullwidthbtn" type="button">Search</button>
+				</div>
+			</div>
 	    </div>
 	
 	    <!-- RESULTS FORM -->
@@ -73,11 +70,20 @@
 		                    <div class="row">
 		                        <div class="col-md-4">
 		                            <div class="tutimg">
-		                                <img src="images/pic1_thumb.png">
+		                                <img src="images/blank_profile.png">
 		                            </div>
 		                            <div class="tutrating">
 		                                <h4><b>$${ tutor.hourly }/hour</b></h4>
-		                                <h4><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></h4>
+		                                <h4>
+		                                	<c:forEach begin="1" end="5" varStatus="loop">
+		                                		<c:if test="${ tutor.rating >= loop.index }">
+		                                			<i class="fa fa-star"></i>
+		                                		</c:if>
+		                                		<c:if test="${ tutor.rating < loop.index }">
+		                                			<i class="fa fa-star-o"></i>
+		                                		</c:if>
+		                                	</c:forEach>
+		                                </h4>
 		                            </div>
 		                        </div>
 		                        <div class="col-md-8 tutdesc">
@@ -87,15 +93,23 @@
 		                            <p>${ tutor.profile }</p>
 		                        </div>
 		                        <div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-		                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="Tutor.jsp">More Info</a>
+		                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="tutorProfile?tutorID=${tutor.tutorID}">More Info</a>
 		                        </div>
 		                    </div>
 		                </div>
 		            </div>
 		            
 	        	</c:forEach>
-	            
-	        	<h5 style="text-align: center; color: white">Showing 4 of 4 results.</h5>
+	        	<div class="col-md-12" style="text-align: center; color: white; padding: 10px;">
+	        		<c:if test="${currentPage != 1}">
+						<a style="float:left; color:white" href="tutorSearch?page=${currentPage - 1}">Prev</a>
+					</c:if>
+		        	Page ${currentPage} of ${noOfPages}
+		        	<c:if test="${currentPage < noOfPages}">
+						<a style="float:right; color:white" href="tutorSearch?page=${currentPage + 1}">Next</a>
+					</c:if>
+	        	</div>
+
 	        </div>
 	    </div>
 	</div>

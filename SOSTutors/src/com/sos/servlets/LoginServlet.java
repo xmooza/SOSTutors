@@ -1,4 +1,4 @@
-package com.amzi.servlets;  
+package com.sos.servlets;  
   
 import java.io.IOException;  
 
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
 
-import com.amzi.beans.Student;
-import com.amzi.beans.Tutor;
-import com.amzi.dao.LoginDAO;
+import com.sos.dao.LoginDAO;
+import com.sos.to.Student;
+import com.sos.to.Tutor;
   
 public class LoginServlet extends HttpServlet{  
     private static final long serialVersionUID = 1L;  

@@ -1,4 +1,4 @@
-package com.amzi.dao;
+package com.sos.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amzi.beans.Session;
-import com.amzi.beans.Tutor;
+import com.sos.to.Session;
+import com.sos.to.Tutor;
 
 public class TutorDAO {
+	private int noOfRecords;
 	
-	public List<Tutor> list() throws SQLException {
+	public List<Tutor> list(int offset, int noOfRecords) throws SQLException {
 		Tutor tutor;
 		ResultSet rs = null;
 		PreparedStatement pst = null;
@@ -19,7 +20,7 @@ public class TutorDAO {
 		DBConnector connectionManager = new DBConnector();
 		
 		try {
-			pst = connectionManager.getConnection().prepareStatement("SELECT tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS");
+			pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS limit " + offset + ", " + noOfRecords);
 			rs = pst.executeQuery();
 		} finally {
 			while(rs.next()){
@@ -29,8 +30,16 @@ public class TutorDAO {
 						rs.getString("image"), rs.getString("college"));
 				tutors.add(tutor);
 			}
+			rs = pst.executeQuery("SELECT FOUND_ROWS()");
+			if (rs.next()) {
+				this.noOfRecords = rs.getInt(1);
+			}
 		}
 		return tutors;
+	}
+	
+	public int getNoRecords(){
+		return noOfRecords;
 	}
 	
 	public static Tutor getTutorDB(String email, String password){
@@ -199,7 +208,7 @@ public class TutorDAO {
 		return tutorComments;
 	}
 	
-	public static Tutor getTutorFromDatabaseById(int tutorId){
+	public Tutor getTutorFromDatabaseById(int tutorId){
 		Tutor tutor = null;
 		ResultSet rs = null;
 		PreparedStatement pst = null;

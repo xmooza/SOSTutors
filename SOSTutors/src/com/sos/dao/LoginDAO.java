@@ -1,5 +1,5 @@
-package com.amzi.dao;
-import com.amzi.beans.*;
+package com.sos.dao;
+import com.sos.to.*;
 
 public class LoginDAO { 
 	

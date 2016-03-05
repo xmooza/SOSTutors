@@ -3,17 +3,25 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-		<servlet>
+	<servlet>
+		<servlet-name>tutorProfile</servlet-name>
+		<servlet-class>com.sos.servlets.TutorProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tutorProfile</servlet-name>
+		<url-pattern>/tutorProfile</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>search</servlet-name>
-		<servlet-class>com.amzi.servlets.SearchServlet</servlet-class>
+		<servlet-class>com.sos.servlets.SearchServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>search</servlet-name>
-		<url-pattern>/tutorsearch</url-pattern>
+		<url-pattern>/tutorSearch</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>login</servlet-name>
-		<servlet-class>com.amzi.servlets.LoginServlet</servlet-class>
+		<servlet-class>com.sos.servlets.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>login</servlet-name>
@@ -21,7 +29,7 @@
 	</servlet-mapping>
 	<servlet>  
         <servlet-name>register</servlet-name>  
-        <servlet-class>com.amzi.servlets.RegisterServlet</servlet-class>  
+        <servlet-class>com.sos.servlets.RegisterServlet</servlet-class>  
     </servlet>  
     <servlet-mapping>  
         <servlet-name>register</servlet-name>  

@@ -1,4 +1,4 @@
-package com.amzi.dao;
+package com.sos.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amzi.beans.Student;
+import com.sos.to.Student;
 
 public class StudentDAO {
 	

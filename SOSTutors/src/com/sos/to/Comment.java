@@ -1,4 +1,4 @@
-package com.amzi.beans;
+package com.sos.to;
 
 import java.io.Serializable;
 import java.sql.Date;

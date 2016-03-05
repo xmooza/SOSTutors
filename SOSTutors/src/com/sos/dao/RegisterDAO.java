@@ -1,6 +1,6 @@
-package com.amzi.dao;
+package com.sos.dao;
 
-import com.amzi.beans.Student;
+import com.sos.to.Student;
 
 public class RegisterDAO {  
 	

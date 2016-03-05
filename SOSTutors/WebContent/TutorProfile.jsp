@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,7 +9,7 @@
     <meta name="author" content="SOSTutors">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-    <title>SOSTutors - Tutor</title>
+    <title>SOSTutors - ${tutor.fname}'s Profile</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -40,17 +41,26 @@
 	            <div class="col-md-4">
 	                <div class="tutorform form">
 	                    <div class="tutimg">
-	                        <img src="images/pic1_thumb.png">
+	                        <img src="images/blank_profile.png">
 	                    </div>
 	                    <div class="tutrating">
-	                        <h4><b>$9/hr</b></h4>
-	                        <h4><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></h4>
-	                    </div>
-	                    <h3>Barry Trotts</h3>
-	                    <h6><i>Waterloo University</i></h6>
-	                    <h5><b>Mathematics, Science, Physics, Economics, Computer Science</b></h5>
-	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a faucibus ipsum, sit amet luctus massa. Ut gravida est ac.</p>
-	                </div>
+	                        <h4><b>$${tutor.hourly}/hr</b></h4>
+							<h4>
+								<c:forEach begin="1" end="5" varStatus="loop">
+									<c:if test="${ tutor.rating >= loop.index }">
+										<i class="fa fa-star"></i>
+									</c:if>
+									<c:if test="${ tutor.rating < loop.index }">
+										<i class="fa fa-star-o"></i>
+									</c:if>
+								</c:forEach>
+							</h4>
+						</div>
+	                    <h3>${ tutor.fname } ${ tutor.lname }</h3>
+	                    <h6><i>${ tutor.college }</i></h6>
+						<h5><b>No Subjects Currently</b></h5>
+						<p>${ tutor.profile }</p>
+					</div>
 	            </div>
 	
 	            <div class="col-md-8">

@@ -1,43 +1,37 @@
-package com.amzi.beans;
+package com.sos.to;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Tutor implements Serializable {
+public class Student implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private int tutorID;
+	private int studentID;
 	private String email;
 	private String password;
 	private String fname;
 	private String lname;
 	private String profile;
-	private String hourly;
-	private int rating;
+	private String language;
 	private Date date_joined;
-	private String image;
-	private String college;
 	
-	public Tutor() {}
+	public Student() {}
 	
-	public Tutor(int tutorID, String email, String password, String fname, String lname, String profile, String hourly, int rating, Date date_joined, String image, String college){
-		this.tutorID = tutorID;
+	public Student(int studentID, String email, String password, String fname, String lname, String profile, String language, Date date_joined){
+		this.studentID = studentID;
 		this.email = email;
 		this.password = password;
 		this.fname = fname;
 		this.lname = lname;
 		this.profile = profile;
-		this.hourly = hourly;
-		this.rating = rating;
+		this.language = language;
 		this.date_joined = date_joined;
-		this.image = image;
-		this.college = college;
 	}
 	
-	public int getTutorID() {
-		return tutorID;
+	public int getStudentID() {
+		return studentID;
 	}
-	public void setTutorID(int tutorID) {
-		this.tutorID = tutorID;
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
 	}
 	public String getEmail() {
 		return email;
@@ -69,35 +63,17 @@ public class Tutor implements Serializable {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	public String getHourly() {
-		return hourly;
+	public String getLanguage() {
+		return language;
 	}
-	public void setHourly(String hourly) {
-		this.hourly = hourly;
-	}
-	public int getRating() {
-		return rating;
-	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 	public Date getDate_joined() {
 		return date_joined;
 	}
 	public void setDate_joined(Date date_joined) {
 		this.date_joined = date_joined;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
-	public String getCollege() {
-		return college;
-	}
-	public void setCollege(String college) {
-		this.college = college;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

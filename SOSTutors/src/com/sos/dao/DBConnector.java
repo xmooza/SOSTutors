@@ -1,4 +1,4 @@
-package com.amzi.dao;
+package com.sos.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ public class DBConnector {
     private String dbName = "sostutors";  
     private String driver = "com.mysql.jdbc.Driver";  
     private String dbUserName = "root";  
-    private String dbPassword = "Vegeta99";
+    private String dbPassword = "Epiphone6411";
     
     private Connection conn = null;  
     private static DBConnector connectionHelper = null;
