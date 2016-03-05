@@ -36,7 +36,7 @@
 				<li class="active"><a href="Index.jsp">Home</a></li>
 				<li><a href="About.jsp">About</a></li>
 				<li><a href="Contact.jsp">Contact</a></li>
-				<li><a href="tutorsearch">Tutor Search</a></li>
+				<li><a href="TutorSearch.jsp">Tutor Search</a></li>
 				<%
 					if (session.getAttribute("currentStudent") != null) {
 				%>
