@@ -43,6 +43,7 @@ table {
 
 .table-responsive {
 	padding: 0px 10px 0px 10px;
+	border:none;
 }
 
 .table-striped {
