@@ -115,7 +115,7 @@
 							<input type=password name=registerUserpassword maxlength=100
 								class="form-control" />
 						</div>
-
+						<!--
 						<div class="col-md-12">
 							<br /> <br /> <label class="radio-inline"> <input
 								type="radio" name="optradio"><b>Student</b>
@@ -123,7 +123,7 @@
 								name="optradio"><b>Tutor</b>
 							</label> <br /> <br />
 						</div>
-
+						-->
 						<div class="col-md-12">
 							<h4>Description</h4>
 							<textarea class="form-control" id="description" rows="5"></textarea>

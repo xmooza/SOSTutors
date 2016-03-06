@@ -4,8 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import com.sos.to.Comment;
 import com.sos.to.Session;
 import com.sos.to.Tutor;
 
@@ -72,29 +74,6 @@ public class TutorDAO {
 			}
 		}
 		return tutors;
-//		else {
-//			try {
-//				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS limit " + offset + ", " + noOfRecords + " where fname=? OR lname=?");
-//				pst.setString(1, sTerm);
-//				pst.setString(2, sTerm);
-//				rs = pst.executeQuery();
-//			} finally {
-//				if (rs == null){
-//					return tutors;
-//				}
-//				while(rs.next()){
-//					tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
-//							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
-//							rs.getString("hourly"), rs.getInt("rating"), rs.getDate("date_joined"),
-//							rs.getString("image"), rs.getString("college"));
-//					tutors.add(tutor);
-//				}
-//				rs = pst.executeQuery("SELECT FOUND_ROWS()");
-//				if (rs.next()) {
-//					this.noOfRecords = rs.getInt(1);
-//				}
-//			}
-//		}
 	}
 	
 	public int getNoRecords(){
@@ -226,43 +205,31 @@ public class TutorDAO {
 		return tutorBookings;
 	}
 
-	public ArrayList<String> getTutorComments(int tutorID) {          
+	public HashMap<String, Comment> getTutorComments(int tutorID) throws SQLException { 
+		Comment comment;
+		String studentInfo = "";
 		ResultSet rs = null;
+		ResultSet rsStudent = null;
 		PreparedStatement pst = null; 
-		ArrayList<String> tutorComments = null;
+		HashMap<String, Comment> tutorComments = new HashMap<String, Comment>();
 		DBConnector connectionManager = new DBConnector();
 
-		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from comments c, tutor s"
-					+ "where c.tutorID = s.tutorID"
-					+ "order by b.commentID desc");
-
-			pst.setString(1, Integer.toString(tutorID));
+		try {
+			pst = connectionManager.getConnection().prepareStatement("SELECT commentID, subject, content, date_posted, tutors_tutorID, students_studentID FROM comments WHERE tutors_tutorID=?");
+			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
-
-			if(rs.next()){
-
-				rs.beforeFirst();
-				tutorComments= new ArrayList<String>();
-
-				while (rs.next()){	
-					tutorComments.add(rs.getString("title"));
+		} finally {
+			while(rs.next()){
+				comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),
+						rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"));
+				pst = connectionManager.getConnection().prepareStatement("SELECT fname, lname FROM students where studentID=?");
+				pst.setInt(1, rs.getInt("students_studentID"));
+				rsStudent=pst.executeQuery();
+				while (rsStudent.next()) {
+					studentInfo = rsStudent.getString("fname") + " " + rsStudent.getString("lname");
 				}
-
+				tutorComments.put(studentInfo, comment);
 			}
-			rs.close();
-			pst.close();
-
-		} catch (SQLException sqlE){
-			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
-				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
 		}  
 		return tutorComments;
 	}

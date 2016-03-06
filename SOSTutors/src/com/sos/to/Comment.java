@@ -14,6 +14,15 @@ public class Comment implements Serializable {
 	
 	public Comment() {}
 	
+	public Comment(int commentID, String subject, String content, Date date_posted, int tutors_tutorID, int students_studentID){
+		this.commentID = commentID;
+		this.subject = subject;
+		this.content = content;
+		this.date_posted = date_posted;
+		this.tutors_tutorID = tutors_tutorID;
+		this.students_studentID = students_studentID;
+	}
+	
 	public int getCommentID() {
 		return commentID;
 	}

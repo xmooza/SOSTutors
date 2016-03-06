@@ -70,9 +70,7 @@
 	                        <div class="titlebar">
 	                            <h4>Calendar</h4>
 	                        </div>
-	                    </div>
-	
-	                    <div class="col-md-12">
+	                        
 	                        <div class="table-responsive">
 	                            <table class="table table-striped">
 	                                <thead>
@@ -84,87 +82,29 @@
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
-	                                    <tr>
-	                                        <td>Monday</td>
-	                                        <td>11:00 - 12:00</td>
-	                                        <td>
-	                                            <select name="subject" class="form-control">
-	                                                <option value="Mathematics">Mathematics</option>
-	                                                <option value="Science">Science</option>
-	                                                <option value="Physics">Physics</option>
-	                                                <option value="Economics">Economics</option>
-	                                                <option value="ComputerScience">Computer Science</option>
-	                                            </select>
-	                                        </td>
-	                                        <td>
-	                                            <button class="btn btn-default greenbtn" type="submit">Select</button>
-	                                        </td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td>Monday</td>
-	                                        <td>12:00 - 13:00</td>
-	                                        <td>
-	                                            <select name="subject" class="form-control">
-	                                                <option value="Mathematics">Mathematics</option>
-	                                                <option value="Science">Science</option>
-	                                                <option value="Physics">Physics</option>
-	                                                <option value="Economics">Economics</option>
-	                                                <option value="ComputerScience">Computer Science</option>
-	                                            </select>
-	                                        </td>
-	                                        <td>
-	                                            <button class="btn btn-default greenbtn" type="submit">Select</button>
-	                                        </td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td>Tuesday</td>
-	                                        <td>11:00 - 12:00</td>
-	                                        <td>
-	                                            <select name="subject" class="form-control">
-	                                                <option value="Mathematics">Mathematics</option>
-	                                                <option value="Science">Science</option>
-	                                                <option value="Physics">Physics</option>
-	                                                <option value="Economics">Economics</option>
-	                                                <option value="ComputerScience">Computer Science</option>
-	                                            </select>
-	                                        </td>
-	                                        <td>
-	                                            <button class="btn btn-default greenbtn" type="submit">Select</button>
-	                                        </td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td>Tuesday</td>
-	                                        <td>15:00 - 16:00</td>
-	                                        <td>
-	                                            <select name="subject" class="form-control">
-	                                                <option value="Mathematics">Mathematics</option>
-	                                                <option value="Science">Science</option>
-	                                                <option value="Physics">Physics</option>
-	                                                <option value="Economics">Economics</option>
-	                                                <option value="ComputerScience">Computer Science</option>
-	                                            </select>
-	                                        </td>
-	                                        <td>
-	                                            <button class="btn btn-default greenbtn" type="submit">Select</button>
-	                                        </td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td>Friday</td>
-	                                        <td>14:00 - 15:00</td>
-	                                        <td>
-	                                            <select name="subject" class="form-control">
-	                                                <option value="Mathematics">Mathematics</option>
-	                                                <option value="Science">Science</option>
-	                                                <option value="Physics">Physics</option>
-	                                                <option value="Economics">Economics</option>
-	                                                <option value="ComputerScience">Computer Science</option>
-	                                            </select>
-	                                        </td>
-	                                        <td>
-	                                            <button class="btn btn-default greenbtn" type="submit">Select</button>
-	                                        </td>
-	                                    </tr>
-	                                </tbody>
+	                                	               
+				                        <c:if test="${sessions.size() < 1}">
+			                        		<h5 style="text-align: center; color: white"> There are no available sessions for this tutor yet.</h5>
+			                        	</c:if>
+
+										<c:forEach var="session" items="${sessions}">
+											<tr>
+												<td>Monday</td>
+												<td>11:00 - 12:00</td>
+												<td><select name="subject" class="form-control">
+														<option value="Mathematics">Mathematics</option>
+														<option value="Science">Science</option>
+														<option value="Physics">Physics</option>
+														<option value="Economics">Economics</option>
+														<option value="ComputerScience">Computer Science</option>
+												</select></td>
+												<td>
+													<button class="btn btn-default greenbtn" type="submit">Select</button>
+												</td>
+											</tr>
+										</c:forEach>
+
+									</tbody>
 	                            </table>
 	                        </div>
 	                    </div>
@@ -172,23 +112,19 @@
 	                    <div class="col-md-12">
 	                        <div class="titlebar">
 	                            <h4>Reviews</h4>
-	                        </div>
-	                        <blockquote>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	                            <footer>Aboubacar Konde</footer>
-	                        </blockquote>
-	                        <blockquote>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	                            <footer>Aboubacar Konde</footer>
-	                        </blockquote>
-	                        <blockquote>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	                            <footer>Aboubacar Konde</footer>
-	                        </blockquote>
-	                        <blockquote>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-	                            <footer>Aboubacar Konde</footer>
-	                        </blockquote>
+	                    	</div>
+	                    	
+	                    	<c:if test="${comments.size() < 1}">
+                        		<h5 style="text-align: center; color: white"> There are no reviews for this tutor yet.</h5>
+                        	</c:if>	
+	                      
+                      		<c:forEach var="comment" items="${comments}">
+	                        	<blockquote>
+	                            	<p>${comment.value.content}</p>
+	                            	<footer>${comment.key} | ${comment.value.subject} <i>${comment.value.date_posted}</i></footer>
+	                        	</blockquote>
+                        	</c:forEach>
+
 	                    </div>
 	                </div>
 	            </div>

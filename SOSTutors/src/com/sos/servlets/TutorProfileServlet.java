@@ -1,6 +1,8 @@
 package com.sos.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,12 @@ public class TutorProfileServlet extends HttpServlet {
     	int tutorID = Integer.parseInt(request.getParameter("tutorID"));
     	TutorDAO dao = new TutorDAO();
     	
-    	request.setAttribute("tutor", dao.getTutorFromDatabaseById(tutorID));
-    	request.getRequestDispatcher("TutorProfile.jsp").forward(request, response);
+    	try {
+    		request.setAttribute("tutor", dao.getTutorFromDatabaseById(tutorID));
+			request.setAttribute("comments", dao.getTutorComments(tutorID));
+			request.getRequestDispatcher("TutorProfile.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }  
 }

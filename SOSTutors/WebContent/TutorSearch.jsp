@@ -53,7 +53,7 @@
 		                    </select>
 		                </div>
 		            </div>
-					<div class="col-md-2 col-sm-6 col-xs-6">
+					<div class="col-md-2 col-sm-12 col-xs-12">
 						<input class="btn btn-default input-lg greenbtn fullwidthbtn" type="submit" value="Search" />
 					</div>
 				</form>
@@ -72,7 +72,7 @@
 		                    <div class="row">
 		                        <div class="col-md-4">
 		                            <div class="tutimg">
-		                                <img src="images/blank_profile.png">
+		                                <img src="images/${tutor.image}">
 		                            </div>
 		                            <div class="tutrating">
 		                                <h4><b>$${ tutor.hourly }/hour</b></h4>
