@@ -110,7 +110,8 @@
 		                            </table>
 								</div>
 	                        </c:if>
-							<c:if test="${session.size() < 1}">
+	                        
+							<c:if test="${sessions.size() < 1}">
 								<br />
 								<h5 style="text-align: center; color: white">There are no available sessions for this tutor yet.</h5>
 								<br />
