@@ -102,7 +102,16 @@
 													</td>-->
 													<td>${session.booking_location}</td>
 													<td>
-														<button class="btn btn-default greenbtn" type="submit">Select</button>
+														<form>
+															<c:if test="${currentUser == null}">
+																<input class="btn btn-default greenbtn" type="submit"
+																	value="Select" disabled />
+															</c:if>
+															<c:if test="${currentUser != null}">
+																<input class="btn btn-default greenbtn" type="submit"
+																	value="Select" />
+															</c:if>
+														</form>
 													</td>
 												</tr>
 											</c:forEach>
