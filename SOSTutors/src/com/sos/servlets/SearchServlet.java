@@ -26,7 +26,12 @@ public class SearchServlet extends HttpServlet{
 			request.setAttribute("tutorList", dao.list((page-1) * perPage, perPage, request.getParameter("searchTerm"), request.getParameter("subject")));
 			request.setAttribute("noOfRecords", dao.getNoRecords());
 			request.setAttribute("noOfPages", (int) Math.ceil(dao.getNoRecords() * 1.0 / perPage * 1.0));
-			request.setAttribute("currentPage", page);
+			if (page > (int) Math.ceil(dao.getNoRecords() * 1.0 / perPage * 1.0)){
+				request.setAttribute("currentPage", (int) Math.ceil(dao.getNoRecords() * 1.0 / perPage * 1.0));
+			}
+			else{
+				request.setAttribute("currentPage", page);
+			}
 			request.getRequestDispatcher("TutorSearch.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

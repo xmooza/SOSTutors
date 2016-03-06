@@ -103,7 +103,7 @@
 		            
 	        	</c:forEach>
 	        	<div class="col-md-12" style="text-align: center; color: white; padding: 10px;">
-	        		<c:if test="${currentPage != 1}">
+	        		<c:if test="${currentPage > 1}">
 						<a style="float:left; color:white" href="tutorSearch?searchTerm=${searchTerm}&subject=${subject}&page=${currentPage - 1}">Prev</a>
 					</c:if>
 		        	Page ${currentPage} of ${noOfPages}

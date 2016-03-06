@@ -25,6 +25,9 @@ public class TutorDAO {
 			pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS limit " + offset + ", " + noOfRecords);
 			rs = pst.executeQuery();
 		} finally {
+			if (rs == null){
+				return tutors;
+			}
 			while(rs.next()){
 				tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 						rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
@@ -60,6 +63,9 @@ public class TutorDAO {
 				pst.setString(2, sTerm);
 				rs = pst.executeQuery();
 			} finally {
+				if (rs == null){
+					return tutors;
+				}
 				while(rs.next()){
 					tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
@@ -166,45 +172,6 @@ public class TutorDAO {
 		return 0;
 	}
 
-	public ArrayList<String> getTutorBookingsDB(int tutorID) {          
-		ResultSet rs = null;
-		PreparedStatement pst = null;
-		ArrayList<String> tutorBookings = null;
-		DBConnector connectionManager = new DBConnector();
-
-		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from bookings b, tutor s"
-					+ "where b.tutorID = s.tutorID"
-					+ "order by b.bookingID desc");
-
-			pst.setString(1, Integer.toString(tutorID));
-			rs = pst.executeQuery();
-
-			if(rs.next()){
-				rs.beforeFirst();
-				tutorBookings= new ArrayList<String>();
-
-				while (rs.next()){	
-					tutorBookings.add(rs.getString("title"));
-				}
-			}
-			rs.close();
-			pst.close();
-
-		} catch (SQLException sqlE){
-			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
-				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
-		return tutorBookings;
-	}
-
 	public HashMap<String, Comment> getTutorComments(int tutorID) throws SQLException { 
 		Comment comment;
 		String studentInfo = "";
@@ -219,6 +186,9 @@ public class TutorDAO {
 			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
 		} finally {
+			if (rs == null){
+				return tutorComments;
+			}
 			while(rs.next()){
 				comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),
 						rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"));
@@ -243,7 +213,12 @@ public class TutorDAO {
 		try {
 			pst = connectionManager.getConnection().prepareStatement("select * from tutors where tutorID=?");
 			pst.setInt(1, tutorId);  
-			rs = pst.executeQuery(); 
+			rs = pst.executeQuery();
+			
+			if (rs == null){
+				return tutor;
+			}
+			
 			rs.first();
 
 			tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
@@ -276,6 +251,9 @@ public class TutorDAO {
 			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
 		} finally {
+			if (rs == null){
+				return sessions;
+			}
 			while(rs.next()){
 				session = new Session(rs.getInt("sessionID"), rs.getString("subject"), rs.getBoolean("booking_available"),
 						rs.getTimestamp("booking_date"), rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
