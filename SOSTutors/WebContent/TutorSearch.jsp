@@ -37,24 +37,26 @@
 		<!-- SEARCH & FILTER FORM -->
 	    <div class="container-fluid searchform form blackform">
 	        <div class="row">
-	            <div class="col-md-7">
-	                <input class="form-control input-lg" type="text">
-	            </div>
-	            <div class="col-md-3">
-	                <div class="col-xs-5">
-	                    <select name="subject" class="form-control">
-	                        <option value="AllSub">All Subjects</option>
-	                        <option value="Math">Mathematics</option>
-	                        <option value="Science">Science</option>
-	                        <option value="English">English</option>
-	                        <option value="French">French</option>
-	                        <option value="Computers">Computer Science</option>
-	                    </select>
-	                </div>
-	            </div>
-				<div class="col-md-2 col-sm-6 col-xs-6">
-					<button class="btn btn-default input-lg greenbtn fullwidthbtn" type="button">Search</button>
-				</div>
+		        <form name="SearchForm" action="tutorSearch" method="get">
+		            <div class="col-md-7">
+		                <input name="searchTerm" class="form-control input-lg" type="text">
+		            </div>
+		            <div class="col-md-3">
+		                <div class="col-xs-5">
+		                    <select name="subject" class="form-control">
+		                        <option value="AllSub">All Subjects</option>
+		                        <option value="Math">Mathematics</option>
+		                        <option value="Science">Science</option>
+		                        <option value="English">English</option>
+		                        <option value="French">French</option>
+		                        <option value="Computers">Computer Science</option>
+		                    </select>
+		                </div>
+		            </div>
+					<div class="col-md-2 col-sm-6 col-xs-6">
+						<input class="btn btn-default input-lg greenbtn fullwidthbtn" type="submit" value="Search" />
+					</div>
+				</form>
 			</div>
 	    </div>
 	
@@ -102,11 +104,11 @@
 	        	</c:forEach>
 	        	<div class="col-md-12" style="text-align: center; color: white; padding: 10px;">
 	        		<c:if test="${currentPage != 1}">
-						<a style="float:left; color:white" href="tutorSearch?page=${currentPage - 1}">Prev</a>
+						<a style="float:left; color:white" href="tutorSearch?searchTerm=${searchTerm}&subject=${subject}&page=${currentPage - 1}">Prev</a>
 					</c:if>
 		        	Page ${currentPage} of ${noOfPages}
 		        	<c:if test="${currentPage < noOfPages}">
-						<a style="float:right; color:white" href="tutorSearch?page=${currentPage + 1}">Next</a>
+						<a style="float:right; color:white" href="tutorSearch?searchTerm=${searchTerm}&subject=${subject}&page=${currentPage + 1}">Next</a>
 					</c:if>
 	        	</div>
 

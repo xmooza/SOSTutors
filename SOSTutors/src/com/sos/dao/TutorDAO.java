@@ -38,6 +38,65 @@ public class TutorDAO {
 		return tutors;
 	}
 	
+	public List<Tutor> list(int offset, int noOfRecords, String sTerm, String sSubject) throws SQLException {
+		Tutor tutor;
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		List<Tutor> tutors = new ArrayList<Tutor>();
+		DBConnector connectionManager = new DBConnector();
+		
+		if ((sTerm == "" && sSubject == "") || (sTerm == null && sSubject == null)){
+			return this.list(offset, noOfRecords);
+		}
+		else if (sTerm == "" && sSubject.equals("AllSub")) {
+			return this.list(offset, noOfRecords);
+		}
+		else if (sSubject.equals("AllSub")){
+			try {
+				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR college LIKE '% " + sTerm + " %' LIMIT " + offset + ", " + noOfRecords);
+				pst.setString(1, sTerm);
+				pst.setString(2, sTerm);
+				rs = pst.executeQuery();
+			} finally {
+				while(rs.next()){
+					tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
+							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
+							rs.getString("hourly"), rs.getInt("rating"), rs.getDate("date_joined"),
+							rs.getString("image"), rs.getString("college"));
+					tutors.add(tutor);
+				}
+				rs = pst.executeQuery("SELECT FOUND_ROWS()");
+				if (rs.next()) {
+					this.noOfRecords = rs.getInt(1);
+				}
+			}
+		}
+		return tutors;
+//		else {
+//			try {
+//				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS limit " + offset + ", " + noOfRecords + " where fname=? OR lname=?");
+//				pst.setString(1, sTerm);
+//				pst.setString(2, sTerm);
+//				rs = pst.executeQuery();
+//			} finally {
+//				if (rs == null){
+//					return tutors;
+//				}
+//				while(rs.next()){
+//					tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
+//							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
+//							rs.getString("hourly"), rs.getInt("rating"), rs.getDate("date_joined"),
+//							rs.getString("image"), rs.getString("college"));
+//					tutors.add(tutor);
+//				}
+//				rs = pst.executeQuery("SELECT FOUND_ROWS()");
+//				if (rs.next()) {
+//					this.noOfRecords = rs.getInt(1);
+//				}
+//			}
+//		}
+	}
+	
 	public int getNoRecords(){
 		return noOfRecords;
 	}
