@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -71,54 +72,64 @@
 	                            <h4>Calendar</h4>
 	                        </div>
 	                        
-	                        <div class="table-responsive">
-	                            <table class="table table-striped">
-	                                <thead>
-	                                    <tr>
-	                                        <th style="text-align: center">Day</th>
-	                                        <th style="text-align: center">Time-Slot</th>
-	                                        <th style="text-align: center">Subject</th>
-	                                        <th style="text-align: center">Book</th>
-	                                    </tr>
-	                                </thead>
-	                                <tbody>
-	                                	               
-				                        <c:if test="${sessions.size() < 1}">
-			                        		<h5 style="text-align: center; color: white"> There are no available sessions for this tutor yet.</h5>
-			                        	</c:if>
+	                        <c:if test="${sessions.size() > 0}">
+	                        	<div class="table-responsive">
+		                            <table class="table table-striped">
+		                                <thead>
+		                                    <tr>
+		                                        <th style="text-align: center">Day</th>
+		                                        <th style="text-align: center">Date</th>
+		                                        <th style="text-align: center">Time</th>
+		                                        <!--<th style="text-align: center">Subject</th>-->
+		                                        <th style="text-align: center">Location</th>
+		                                        <th style="text-align: center">Book</th>
+		                                    </tr>
+		                                </thead>
+		                                <tbody>             
+											<c:forEach var="session" items="${sessions}">
+												<tr>
+													<td><fmt:formatDate value="${session.booking_date}" pattern="EEEEE"/></td>
+													<td><fmt:formatDate value="${session.booking_date}" pattern="MMMMM-dd"/></td>
+													<td><fmt:formatDate value="${session.booking_date}" pattern="h:mm a"/></td>
+													<!--<td>
+														<select name="subject" class="form-control">
+															<option value="Mathematics">Mathematics</option>
+															<option value="Science">Science</option>
+															<option value="Physics">Physics</option>
+															<option value="Economics">Economics</option>
+															<option value="ComputerScience">Computer Science</option>
+														</select>
+													</td>-->
+													<td>${session.booking_location}</td>
+													<td>
+														<button class="btn btn-default greenbtn" type="submit">Select</button>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+		                            </table>
+								</div>
+	                        </c:if>
+							<c:if test="${session.size() < 1}">
+								<br />
+								<h5 style="text-align: center; color: white">There are no available sessions for this tutor yet.</h5>
+								<br />
+							</c:if>
 
-										<c:forEach var="session" items="${sessions}">
-											<tr>
-												<td>Monday</td>
-												<td>11:00 - 12:00</td>
-												<td><select name="subject" class="form-control">
-														<option value="Mathematics">Mathematics</option>
-														<option value="Science">Science</option>
-														<option value="Physics">Physics</option>
-														<option value="Economics">Economics</option>
-														<option value="ComputerScience">Computer Science</option>
-												</select></td>
-												<td>
-													<button class="btn btn-default greenbtn" type="submit">Select</button>
-												</td>
-											</tr>
-										</c:forEach>
-
-									</tbody>
-	                            </table>
-	                        </div>
-	                    </div>
+						</div>
 	
 	                    <div class="col-md-12">
 	                        <div class="titlebar">
 	                            <h4>Reviews</h4>
 	                    	</div>
-	                    	
-	                    	<c:if test="${comments.size() < 1}">
-                        		<h5 style="text-align: center; color: white"> There are no reviews for this tutor yet.</h5>
-                        	</c:if>	
-	                      
-                      		<c:forEach var="comment" items="${comments}">
+
+							<c:if test="${comments.size() < 1}">
+								<br />
+								<h5 style="text-align: center; color: white">There are no reviews for this tutor yet.</h5>
+								<br />
+							</c:if>
+
+							<c:forEach var="comment" items="${comments}">
 	                        	<blockquote>
 	                            	<p>${comment.value.content}</p>
 	                            	<footer>${comment.key} | ${comment.value.subject} <i>${comment.value.date_posted}</i></footer>

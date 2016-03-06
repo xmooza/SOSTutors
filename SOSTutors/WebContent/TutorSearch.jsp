@@ -49,7 +49,6 @@
 		                        <option value="Science">Science</option>
 		                        <option value="English">English</option>
 		                        <option value="French">French</option>
-		                        <option value="Computers">Computer Science</option>
 		                    </select>
 		                </div>
 		            </div>
@@ -94,10 +93,11 @@
 		                            <h5><b>No Subjects Currently</b></h5>
 		                            <p>${ tutor.profile }</p>
 		                        </div>
-		                        <div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-		                            <a class="btn btn-default fullwidthbtn whitebtn" role="button" href="tutorProfile?tutorID=${tutor.tutorID}">More Info</a>
-		                        </div>
-		                    </div>
+								<div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
+									<a class="btn btn-default fullwidthbtn whitebtn" role="button"
+										href="tutorProfile?tutorID=${tutor.tutorID}">More Info</a>
+								</div>
+							</div>
 		                </div>
 		            </div>
 		            

@@ -2,13 +2,12 @@ package com.sos.to;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Session implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int sessionID;
 	private String subject;
-	private String content;
-	private Date date_posted;
 	private boolean booking_available;
 	private Date booking_date;
 	private String booking_location;
@@ -17,6 +16,17 @@ public class Session implements Serializable {
 	private int students_studentID;
 	
 	public Session() {}
+	
+	public Session(int sessionID, String subject, boolean booking_available, Timestamp booking_date, String booking_location, int tutors_tutorID, int categories_categoryID, int students_studentID){
+		this.sessionID = sessionID;
+		this.subject = subject;
+		this.booking_available = booking_available;
+		this.booking_date = new Date(booking_date.getTime());
+		this.booking_location = booking_location;
+		this.tutors_tutorID = tutors_tutorID;
+		this.categories_categoryID = categories_categoryID;
+		this.students_studentID = students_studentID;
+	}
 	
 	public int getSessionID() {
 		return sessionID;
@@ -29,18 +39,6 @@ public class Session implements Serializable {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public Date getDate_posted() {
-		return date_posted;
-	}
-	public void setDate_posted(Date date_posted) {
-		this.date_posted = date_posted;
 	}
 	public boolean isBooking_available() {
 		return booking_available;

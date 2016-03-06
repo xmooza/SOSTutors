@@ -53,7 +53,7 @@
 			}
 		}
 	}
-	ArrayList<Session> tutoringBookings = td.getTutorSessions(t.getTutorID());
+	//ArrayList<Session> tutoringBookings = td.getTutorSessions(t.getTutorID());
 %>
 </head>
 <body>

@@ -264,43 +264,25 @@ public class TutorDAO {
 		return tutor;
 	}
 	
-	public ArrayList<Session> getTutorSessions(int tutorID) {          
+	public List<Session> getTutorSessions(int tutorID) throws SQLException {
+		Session session;
 		ResultSet rs = null;
-		PreparedStatement pst = null; 
-		ArrayList<Session> tutorSessions = null;
+		PreparedStatement pst = null;
+		List<Session> sessions = new ArrayList<Session>();
 		DBConnector connectionManager = new DBConnector();
 		
-		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from session s"
-					+ "where s.tutorID = tutorID"
-					+ "where s.bookingID <> null"
-					+ "order by s.date_published desc");
-
-			pst.setString(1, Integer.toString(tutorID));
+		try {
+			pst = connectionManager.getConnection().prepareStatement("SELECT sessionID, subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID FROM sessions WHERE tutors_tutorID=?");
+			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
-
-			if(rs.next()){
-				rs.beforeFirst();
-				tutorSessions = new ArrayList<Session>();
-
-				while (rs.next()){
-					tutorSessions.add(new Session());
-				}
+		} finally {
+			while(rs.next()){
+				session = new Session(rs.getInt("sessionID"), rs.getString("subject"), rs.getBoolean("booking_available"),
+						rs.getTimestamp("booking_date"), rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
+						rs.getInt("categories_categoryID"), rs.getInt("students_studentID"));
+				sessions.add(session);
 			}
-			rs.close();
-			pst.close();
-
-		} catch (SQLException sqlE){
-			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
-				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
-		return tutorSessions;
+		}
+		return sessions;
 	}
 }
