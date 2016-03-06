@@ -20,6 +20,8 @@ USE `sostutors` ;
 -- -----------------------------------------------------
 -- Table `sostutors`.`categories`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `sostutors`.`categories` ;
+
 CREATE TABLE IF NOT EXISTS `sostutors`.`categories` (
   `categoryID` INT(11) NOT NULL AUTO_INCREMENT,
   `subjectEN` VARCHAR(45) NULL DEFAULT NULL,
@@ -35,6 +37,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `sostutors`.`comments`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `sostutors`.`comments` ;
+
 CREATE TABLE IF NOT EXISTS `sostutors`.`comments` (
   `commentID` INT(11) NOT NULL AUTO_INCREMENT,
   `subject` VARCHAR(45) NOT NULL,
@@ -50,6 +54,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `sostutors`.`notifications`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `sostutors`.`notifications` ;
+
 CREATE TABLE IF NOT EXISTS `sostutors`.`notifications` (
   `notificationID` INT(11) NOT NULL AUTO_INCREMENT,
   `subject` VARCHAR(45) NULL DEFAULT NULL,
@@ -66,13 +72,13 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `sostutors`.`sessions`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `sostutors`.`sessions` ;
+
 CREATE TABLE IF NOT EXISTS `sostutors`.`sessions` (
   `sessionID` INT(11) NOT NULL AUTO_INCREMENT,
   `subject` VARCHAR(15) NULL DEFAULT NULL,
-  `content` VARCHAR(100) NULL DEFAULT NULL,
-  `date_posted` DATE NULL DEFAULT NULL,
   `booking_available` TINYINT(1) NOT NULL DEFAULT '1',
-  `booking_date` DATE NULL DEFAULT NULL,
+  `booking_date` DATETIME NULL DEFAULT NULL,
   `booking_location` VARCHAR(45) NULL DEFAULT NULL,
   `tutors_tutorID` INT(11) NULL DEFAULT NULL,
   `categories_categoryID` INT(11) NULL DEFAULT NULL,
@@ -85,41 +91,43 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `sostutors`.`students`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `sostutors`.`students` ;
+
 CREATE TABLE IF NOT EXISTS `sostutors`.`students` (
   `studentID` INT(11) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `fname` VARCHAR(45) NULL DEFAULT NULL,
   `lname` VARCHAR(45) NULL DEFAULT NULL,
-  `profile` VARCHAR(100) NULL DEFAULT NULL,
+  `profile` VARCHAR(200) NULL DEFAULT NULL,
   `language` VARCHAR(10) NULL DEFAULT NULL,
   `date_joined` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`studentID`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
 -- Table `sostutors`.`tutors`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `sostutors`.`tutors` ;
+
 CREATE TABLE IF NOT EXISTS `sostutors`.`tutors` (
   `tutorID` INT(11) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `fname` VARCHAR(45) NULL DEFAULT NULL,
   `lname` VARCHAR(45) NULL DEFAULT NULL,
-  `profile` VARCHAR(100) NULL DEFAULT NULL,
   `hourly` VARCHAR(15) NULL DEFAULT NULL,
   `date_joined` DATE NULL DEFAULT NULL,
   `image` VARCHAR(45) NULL DEFAULT NULL,
   `college` VARCHAR(50) NULL DEFAULT NULL,
   `rating` INT(11) NULL DEFAULT NULL,
+  `profile` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`tutorID`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1;
 
 
