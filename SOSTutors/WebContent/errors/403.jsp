@@ -8,7 +8,7 @@
     <meta name="author" content="SOSTutors">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-    <title>SOSTutors - 404 ERROR</title>
+    <title>SOSTutors - 403 ERROR</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -37,7 +37,7 @@
 			class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform"
 			style="text-align: center; color: white; margin-top: 25px; margin-bottom: 50px;">
 			<br />
-			<h1 style="font-family: 'Quicksand'">ERROR : 404</h1>
+			<h1 style="font-family: 'Quicksand'">ERROR : 403</h1>
 			<br />
 		</div>
 	</div>

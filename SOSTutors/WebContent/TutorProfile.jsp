@@ -103,11 +103,11 @@
 													<td>${session.booking_location}</td>
 													<td>
 														<form>
-															<c:if test="${currentUser == null}">
+															<c:if test="${currentStudent == null}">
 																<input class="btn btn-default greenbtn" type="submit"
 																	value="Select" disabled />
 															</c:if>
-															<c:if test="${currentUser != null}">
+															<c:if test="${currentStudent != null}">
 																<input class="btn btn-default greenbtn" type="submit"
 																	value="Select" />
 															</c:if>

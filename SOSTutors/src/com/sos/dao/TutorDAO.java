@@ -322,7 +322,7 @@ public class TutorDAO {
 		DBConnector connectionManager = new DBConnector();
 		
 		try {
-			pst = connectionManager.getConnection().prepareStatement("SELECT sessionID, subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID FROM sessions WHERE tutors_tutorID=?");
+			pst = connectionManager.getConnection().prepareStatement("SELECT sessionID, subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID FROM sessions WHERE tutors_tutorID=? AND booking_available=1");
 			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
 		} finally {

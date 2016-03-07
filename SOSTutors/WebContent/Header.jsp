@@ -33,14 +33,14 @@
 		</div>
 		<div class="collapse navbar-collapse" id="header-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="Index.jsp">Home</a></li>
-				<li><a href="About.jsp">About</a></li>
-				<li><a href="Contact.jsp">Contact</a></li>
-				<li><a href="tutorSearch">Tutor Search</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/Index.jsp">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/About.jsp">About</a></li>
+				<li><a href="${pageContext.request.contextPath}/Contact.jsp">Contact</a></li>
+				<li><a href="${pageContext.request.contextPath}/tutorSearch">Tutor Search</a></li>
 				<%
 					if (session.getAttribute("currentStudent") != null) {
 				%>
-				<li><a id="userbtn" href="Profile.jsp"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
+				<li><a id="userbtn" href="${pageContext.request.contextPath}/Profile.jsp"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
 				<li>
 					<form action="logoutServlet" method="post">
     					<input id="userbtn" type="submit" value="Logout" />
@@ -49,7 +49,7 @@
 				<%
 					} else if (session.getAttribute("currentTutor") != null) {
 				%>
-				<li><a id="userbtn" href="TutorProfile.jsp?tutorID=<%=((Tutor) session.getAttribute("currentTutor")).getTutorID()%>"><%=((Tutor) session.getAttribute("currentTutor")).getFname()%></a></li>
+				<li><a id="userbtn" href="${pageContext.request.contextPath}/TutorProfile.jsp?tutorID=<%=((Tutor) session.getAttribute("currentTutor")).getTutorID()%>"><%=((Tutor) session.getAttribute("currentTutor")).getFname()%></a></li>
 				<li>
 					<form action="logoutServlet" method="post">
     					<input id="userbtn" type="submit" value="Logout" />
@@ -58,7 +58,7 @@
 				<%
 					} else {
 				%>
-				<li><a href="LoginRegister.jsp">Login / Register</a></li>
+				<li><a href="${pageContext.request.contextPath}/LoginRegister.jsp">Login / Register</a></li>
 				<%
 					}
 				%>

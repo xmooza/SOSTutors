@@ -18,6 +18,11 @@ public class StudentProfileServlet extends HttpServlet {
     	int tutorID = Integer.parseInt(request.getParameter("tutorID"));
     	StudentDAO dao = new StudentDAO();
     	
+    	if (request.getAttribute("currentStudent") == null && request.getAttribute("currentTutor") == null){
+    		response.sendRedirect("errors/403.jsp");
+    		return;
+    	}
+    	
     	try {
     		request.setAttribute("student", dao.getStudentFromDatabaseById(tutorID));
     		request.setAttribute("sessions", dao.getStudentSessions(tutorID));
