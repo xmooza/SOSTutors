@@ -234,9 +234,9 @@ public class StudentDAO {
 		DBConnector connectionManager = new DBConnector();
 
 		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from Messages c"
-					+ " where c.students_studentID = ?"
-					+ " order by c.MessageID asc");
+			pst = connectionManager.getConnection().prepareStatement("select * from notifications n"
+					+ " where n.students_studentID = ?"
+					+ " order by n.NotificationID asc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
@@ -244,7 +244,7 @@ public class StudentDAO {
 			if(rs.next()){
 				rs.beforeFirst();
 				while (rs.next()){	
-					Message = new Message(rs.getInt("MessageID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"),rs.getInt("sessions_sessionID"));
+					Message = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"),rs.getInt("sessions_sessionID"));
 					studentMessages.add(Message);
 				}
 			}

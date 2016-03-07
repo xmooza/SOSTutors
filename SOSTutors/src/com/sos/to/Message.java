@@ -15,8 +15,8 @@ public class Message implements Serializable {
 	
 	public Message() {}
 	
-	public Message(int MessageID, String subject, String content, Date date_posted, int tutors_tutorID, int students_studentID, int sessions_sessionID){
-		this.NotificationID = MessageID;
+	public Message(int NotificationID, String subject, String content, Date date_posted, int tutors_tutorID, int students_studentID, int sessions_sessionID){
+		this.NotificationID = NotificationID;
 		this.subject = subject;
 		this.content = content;
 		this.date_posted = date_posted;

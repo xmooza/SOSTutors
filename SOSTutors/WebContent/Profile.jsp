@@ -35,7 +35,7 @@
 <%@include file="Header.jsp"%>
 
 <%
-	StudentDAO dao = null;
+	StudentDAO dao = new StudentDAO();
 	session.setAttribute("currentPage", "Profile");
 	Student s = (Student) session.getAttribute("currentStudent");
 	List<Comment> studentComments = new ArrayList<Comment>();
@@ -46,7 +46,7 @@
 	studentSessions = dao.getStudentSessions(s.getStudentID());
 	studentMessages = dao.getStudentMessages(s.getStudentID());
 %>
-<title><%=s.getFname()%> Profile Page</title>
+<title><%=s.getFname()%>'s Profile Page</title>
 </head>
 
 <body>
@@ -54,13 +54,12 @@
 	<!-- CONTENT -->
 	<div class="content">
 		<img class="background-image" src="images/main-wall.jpg">
-		<div class="col-sm-6 col-md-6" style="padding: 25px;">
+		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform" style="text-align: center; padding: 25px">
 			<h1>
 				<%=s.getFname()%>'s Profile Page
 			</h1>
-			<br> Date Joined:
-			<%=s.getDate_joined()%>
-
+			<br> Date Joined: <%=s.getDate_joined()%>
+			<div>Sessions:</div>
 			<table style="width: 100%;">
 				<%
 					if (studentSessions != null) {
