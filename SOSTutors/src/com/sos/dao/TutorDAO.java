@@ -16,16 +16,17 @@ public class TutorDAO {
 	
 	public List<Tutor> list(int offset, int noOfRecords) throws SQLException {
 		Tutor tutor;
-		ResultSet rs = null;
 		PreparedStatement pst = null;
 		List<Tutor> tutors = new ArrayList<Tutor>();
 		DBConnector connectionManager = new DBConnector();
 		
 		try {
 			pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS limit " + offset + ", " + noOfRecords);
-			rs = pst.executeQuery();
 		} finally {
+			ResultSet rs = pst.executeQuery();
 			if (rs == null){
+				pst.close();
+				connectionManager.closeConnection();
 				return tutors;
 			}
 			while(rs.next()){
@@ -39,13 +40,14 @@ public class TutorDAO {
 			if (rs.next()) {
 				this.noOfRecords = rs.getInt(1);
 			}
+			pst.close();
+			rs.close();
 		}
 		return tutors;
 	}
 	
 	public List<Tutor> list(int offset, int noOfRecords, String sTerm, String sSubject) throws SQLException {
 		Tutor tutor;
-		ResultSet rs = null;
 		PreparedStatement pst = null;
 		List<Tutor> tutors = new ArrayList<Tutor>();
 		DBConnector connectionManager = new DBConnector();
@@ -58,14 +60,16 @@ public class TutorDAO {
 		}
 		else if (sSubject.equals("AllSub")){
 			try {
-				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR college LIKE '% " + sTerm + " %' LIMIT " + offset + ", " + noOfRecords);
+				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm + "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm + " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm + "' OR college LIKE '" + sTerm + " %'  LIMIT " + offset + ", " + noOfRecords);
+			} finally {
 				pst.setString(1, sTerm);
 				pst.setString(2, sTerm);
-				rs = pst.executeQuery();
-			} finally {
+				ResultSet rs = pst.executeQuery();
+				
 				if (rs == null){
 					return tutors;
 				}
+				
 				while(rs.next()){
 					tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
@@ -77,6 +81,82 @@ public class TutorDAO {
 				if (rs.next()) {
 					this.noOfRecords = rs.getInt(1);
 				}
+				rs.close();
+				pst.close();
+			}
+		}
+		else if (sTerm == ""){
+			try {
+				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? LIMIT " + offset + ", " + noOfRecords);
+			} finally {
+				pst.setString(1, sSubject);
+				ResultSet rs = pst.executeQuery();
+				
+				if (rs == null){
+					return tutors;
+				}
+				
+				while(rs.next()){
+					int dflag = 0;
+					tutor = new Tutor(rs.getInt("t.tutorID"), rs.getString("t.email"), rs.getString("t.password"),
+							rs.getString("t.fname"), rs.getString("t.lname"), rs.getString("t.profile"),
+							rs.getString("t.hourly"), rs.getInt("t.rating"), rs.getDate("t.date_joined"),
+							rs.getString("t.image"), rs.getString("t.college"));
+					
+					for(int i=0; i<tutors.size(); i++){
+						if (tutors.get(i).getEmail().equals(tutor.getEmail())){
+							dflag = 1;
+						}
+					}
+					
+					if(dflag==0){
+						tutors.add(tutor);
+					}
+				}
+				rs = pst.executeQuery("SELECT FOUND_ROWS()");
+				if (rs.next()) {
+					this.noOfRecords = rs.getInt(1);
+				}
+				rs.close();
+				pst.close();
+			}
+		}
+		else {
+			try {
+				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? AND (fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm + "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm + " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm + "' OR college LIKE '" + sTerm + " %') LIMIT " + offset + ", " + noOfRecords);
+			} finally {
+				pst.setString(1, sSubject);
+				pst.setString(2, sTerm);
+				pst.setString(3, sTerm);
+				ResultSet rs = pst.executeQuery();
+				
+				if (rs == null){
+					return tutors;
+				}
+				
+				while(rs.next()){
+					int dflag = 0;
+					tutor = new Tutor(rs.getInt("t.tutorID"), rs.getString("t.email"), rs.getString("t.password"),
+							rs.getString("t.fname"), rs.getString("t.lname"), rs.getString("t.profile"),
+							rs.getString("t.hourly"), rs.getInt("t.rating"), rs.getDate("t.date_joined"),
+							rs.getString("t.image"), rs.getString("t.college"));
+					
+					for(int i=0; i<tutors.size(); i++){
+						if (tutors.get(i).getEmail().equals(tutor.getEmail())){
+							dflag = 1;
+						}
+					}
+					
+					if(dflag==0){
+						tutors.add(tutor);
+					}
+				}
+				rs = pst.executeQuery("SELECT FOUND_ROWS()");
+				if (rs.next()) {
+					this.noOfRecords = rs.getInt(1);
+				}
+				rs.close();
+				pst.close();
 			}
 		}
 		return tutors;
@@ -174,31 +254,27 @@ public class TutorDAO {
 	public HashMap<String, Comment> getTutorComments(int tutorID) throws SQLException { 
 		Comment comment;
 		String studentInfo = "";
-		ResultSet rs = null;
-		ResultSet rsStudent = null;
 		PreparedStatement pst = null; 
 		HashMap<String, Comment> tutorComments = new HashMap<String, Comment>();
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager.getConnection().prepareStatement("SELECT commentID, subject, content, date_posted, tutors_tutorID, students_studentID FROM comments WHERE tutors_tutorID=?");
-			pst.setInt(1, tutorID);
-			rs = pst.executeQuery();
+			pst = connectionManager.getConnection().prepareStatement("SELECT c.commentID, c.subject, c.content, c.date_posted, c.tutors_tutorID, c.students_studentID, s.studentID, s.fname, s.lname FROM comments c LEFT JOIN students s ON c.students_studentID = s.studentID WHERE c.tutors_tutorID=?");
 		} finally {
+			pst.setInt(1, tutorID);
+			ResultSet rs = pst.executeQuery();
+			
 			if (rs == null){
 				return tutorComments;
 			}
 			while(rs.next()){
-				comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),
-						rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"));
-				pst = connectionManager.getConnection().prepareStatement("SELECT fname, lname FROM students where studentID=?");
-				pst.setInt(1, rs.getInt("students_studentID"));
-				rsStudent=pst.executeQuery();
-				while (rsStudent.next()) {
-					studentInfo = rsStudent.getString("fname") + " " + rsStudent.getString("lname");
-				}
+				comment = new Comment(rs.getInt("c.commentID"), rs.getString("c.subject"), rs.getString("c.content"),
+						rs.getDate("c.date_posted"), rs.getInt("c.tutors_tutorID"), rs.getInt("c.students_studentID"));
+				studentInfo = rs.getString("s.fname") + " " + rs.getString("s.lname");
 				tutorComments.put(studentInfo, comment);
 			}
+			rs.close();
+			pst.close();
 		}  
 		return tutorComments;
 	}
@@ -246,7 +322,7 @@ public class TutorDAO {
 		DBConnector connectionManager = new DBConnector();
 		
 		try {
-			pst = connectionManager.getConnection().prepareStatement("SELECT sessionID, subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID FROM sessions WHERE tutors_tutorID=?");
+			pst = connectionManager.getConnection().prepareStatement("SELECT sessionID, subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID FROM sessions WHERE tutors_tutorID=? AND booking_available=1");
 			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
 		} finally {

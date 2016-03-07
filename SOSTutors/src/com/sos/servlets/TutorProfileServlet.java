@@ -18,9 +18,14 @@ public class TutorProfileServlet extends HttpServlet {
     	int tutorID = Integer.parseInt(request.getParameter("tutorID"));
     	TutorDAO dao = new TutorDAO();
     	
-    	try {
-    		request.setAttribute("tutor", dao.getTutorFromDatabaseById(tutorID));
-    		request.setAttribute("sessions", dao.getTutorSessions(tutorID));
+    	if (request.getAttribute("currentStudent") == null && request.getAttribute("currentTutor") == null){
+    		response.sendRedirect("errors/403.jsp");
+    		return;
+    	}
+    	
+		try {
+			request.setAttribute("tutor", dao.getTutorFromDatabaseById(tutorID));
+			request.setAttribute("sessions", dao.getTutorSessions(tutorID));
 			request.setAttribute("comments", dao.getTutorComments(tutorID));
 			request.getRequestDispatcher("TutorProfile.jsp").forward(request, response);
 		} catch (SQLException e) {
