@@ -41,6 +41,10 @@
 					if (session.getAttribute("currentStudent") != null) {
 				%>
 				<li><a id="userbtn" href="Profile.jsp"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
+				<li>				<form action="logoutServlet" method="post">
+    <input type="submit" value="Logout" />
+</form></li>
+
 				<%
 					} else {
 				%>
