@@ -39,16 +39,17 @@
 	        <div class="row">
 		        <form name="SearchForm" action="tutorSearch" method="get">
 		            <div class="col-md-7">
-		                <input name="searchTerm" class="form-control input-lg" type="text">
+		                <input name="searchTerm" class="form-control input-lg" type="text" value="${param.searchTerm}">
 		            </div>
 		            <div class="col-md-3">
 		                <div class="col-xs-5">
 		                    <select name="subject" class="form-control">
 		                        <option value="AllSub">All Subjects</option>
-		                        <option value="Math">Mathematics</option>
-		                        <option value="Science">Science</option>
-		                        <option value="English">English</option>
-		                        <option value="French">French</option>
+		                        <option value="Mathematics" ${param.subject == "Mathematics" ? "selected='selected'" : ""}>Mathematics</option>
+		                        <option value="Science" ${param.subject == "Science" ? "selected='selected'" : ""}>Science</option>
+		                        <option value="English" ${param.subject == "English" ? "selected='selected'" : ""}>English</option>
+		                        <option value="French" ${param.subject == "French" ? "selected='selected'" : ""}>French</option>
+		                        <option value="Electronics" ${param.subject == "Electronics" ? "selected='selected'" : ""}>Electronics</option>
 		                    </select>
 		                </div>
 		            </div>
