@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page language="java" import="com.sos.to.Student, com.sos.to.Tutor, java.util.Locale,java.util.ResourceBundle"%>
+<%@ page language="java" import="com.sos.to.Student,com.sos.to.Tutor,com.sos.to.Comment,com.sos.to.Session,java.util.Locale,java.util.ResourceBundle" %>
 <%
 	//for generating the french/english page link
-	session.setAttribute("currentPage", "LoginRegister");
+	//session.setAttribute("currentPage", "LoginRegister");
 
 	//used to set keep the language consistent between pages
 	if (session.getAttribute("language") == null) {

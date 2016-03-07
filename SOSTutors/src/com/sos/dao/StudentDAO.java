@@ -1,6 +1,5 @@
 package com.sos.dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.List;
 import com.sos.to.Comment;
 import com.sos.to.Session;
 import com.sos.to.Student;
-import com.sos.to.Tutor;
 
 public class StudentDAO {
 	
@@ -148,7 +146,7 @@ public class StudentDAO {
 		return 0;
 	}
 	
-	public List<Session> getStudentSessions(int studentID) throws SQLException {
+	public static ArrayList<Session> getStudentSessions(int studentID) throws SQLException {
 		ResultSet rs = null;
 		PreparedStatement pst = null; 
 		ArrayList<Session> studentSessions = null;
@@ -156,13 +154,13 @@ public class StudentDAO {
 		DBConnector connectionManager = new DBConnector();
 
 		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from sessions s, student st"
-					+ "where s.studentID = st.studentID"
-					+ "order by b.commentID asc");
+			pst = connectionManager.getConnection().prepareStatement("select * from sessions s"
+					+ " where s.students_studentID = ?"
+					+ " order by s.sessionID asc");
 
-			pst.setString(1, Integer.toString(studentID));
+			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
-
+			if(rs==null) return null;
 			if(rs.next()){
 
 				rs.beforeFirst();
@@ -192,7 +190,7 @@ public class StudentDAO {
 		return studentSessions;
 	}
 	
-	public ArrayList<Comment> getStudentComments(int studentID) {          
+	public static ArrayList<Comment> getStudentComments(int studentID) {          
 		ResultSet rs = null;
 		PreparedStatement pst = null; 
 		ArrayList<Comment> studentComments = null;
@@ -200,13 +198,13 @@ public class StudentDAO {
 		DBConnector connectionManager = new DBConnector();
 
 		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from comments c, student s"
-					+ "where c.studentID = s.studentID"
-					+ "order by b.commentID asc");
+			pst = connectionManager.getConnection().prepareStatement("select * from comments c"
+					+ " where c.students_studentID = ?"
+					+ " order by c.commentID asc");
 
-			pst.setString(1, Integer.toString(studentID));
+			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
-
+			if(rs==null) return null;
 			if(rs.next()){
 
 				rs.beforeFirst();

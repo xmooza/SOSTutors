@@ -1,108 +1,108 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="java.util.ArrayList, java.io.IOException,com.sos.to.Student,java.util.Locale,java.util.ResourceBundle"%>
+	import="java.util.ArrayList, com.sos.dao.StudentDAO"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tutor Scheduling Website">
-    <meta name="author" content="SOSTutors">
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Student Scheduling Website">
+<meta name="author" content="SOSStudents">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-	<%
-	
-	Student s = null;
-	Boolean studentProfile;
-	
+<!-- Bootstrap -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Google -->
+<link href='https://fonts.googleapis.com/css?family=Quicksand|Roboto'
+	rel='stylesheet' type='text/css'>
+
+<!-- FontAwesome -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<!-- Custom Styles -->
+<link rel="stylesheet" type="text/css" href="styles/styles.css">
+<!-- HEADER -->
+<%@include file="Header.jsp"%>
+
+<%
+	StudentDAO dao = null;
 	session.setAttribute("currentPage","Profile");
-	ResourceBundle lang = ResourceBundle.getBundle("Profile_EN");
+	Student s = (Student)session.getAttribute("currentStudent");
+	//ArrayList<Comment> studentComments = new ArrayList<Comment>();
+	//ArrayList<Session> studentSessions = new ArrayList<Session>();
 	
-	//if the session language is FR switch to french, otherwise remains english as set above
-	if (session.getAttribute("language").toString().equals("FR")){
-		lang = ResourceBundle.getBundle("Profile_FR");
-	} 
-	
-	//if the user clicked change language, set to appropriate language
-	if (request.getParameter("language") != null){	
-		if (request.getParameter("language").equals("FR")){
-	lang = ResourceBundle.getBundle("Profile_FR");
-	session.setAttribute("language","FR");
-		} else {
-	lang = ResourceBundle.getBundle("Profile_EN");
-	session.setAttribute("language","EN");
-		}
-	}		
-	
-	s = (Student)session.getAttribute("currentStudent");
-	studentProfile = true;
-	
-	if(session.getAttribute("currentProfile") != null){
-
-		if(s == null){
-	s = (Student) session.getAttribute("currentProfile");
-	studentProfile = false;  
-		}
-	else if(s != null){ 
-	
-	if(s.getEmail().equals(((Student) session.getAttribute("currentProfile")).getEmail()) == false){
-		s = (Student) session.getAttribute("currentProfile");
-		studentProfile= false; 
-	}
-		}
-	}
-	//ArrayList<String> studentBookings = s.getStudentBookings(s.getStudentID());
-	%>
-	<title><%=s.getFname()%>'s Profile</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    <!-- Google -->
-    <link href='https://fonts.googleapis.com/css?family=Quicksand|Roboto' rel='stylesheet' type='text/css'>
-
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+	ArrayList<Comment> studentComments = dao.getStudentComments(s.getStudentID());
+	ArrayList<Session> studentSessions = dao.getStudentSessions(s.getStudentID());
+%>
+<title><%=s.getFname()%> Profile Page</title>
 </head>
 
-<body class="body">
-	<!-- HEADER -->
-	<div class="navbar navbar-fixed-top">
-		<a class="navbar-brand" href="#">SOSTutors</a>
-		<%
-			//EN language is the default, then check if needs to be changed to FR
-			String languageSwitch = "FR";
-			if (session.getAttribute("language") != null) {
-				if (session.getAttribute("language").equals("FR")) {
-					languageSwitch = "EN";
-				}
-			}
-		%>
-		<form name="langForm" action="<%=session.getAttribute("currentPage")%>.jsp" method="post">
-			<input type=hidden name=language value="<%=languageSwitch%>" /> <input class="btn btn-default input-lg" type=submit name=langbutton maxlength=100 value="<%=lang.getString("gotolang")%>" />
-		</form>
-	</div>
+<body>
 
-	<!-- TITLE -->
-	<div
-		style="margin-top: 150px; margin-bottom: 25px; text-align: center; font-family: 'Quicksand'">
-		<h1>Profile</h1>
-	</div>
-
-
-
-	<!-- RESULTS FORM -->
-	<div class="container-fluid aboutform">
+	<!-- CONTENT -->
+	<div class="content">
+		<img class="background-image" src="images/main-wall.jpg">
+<div class="col-sm-6 col-md-6" style="padding: 25px;">
 		<h1>
-			<%out.println(lang.getString("welcome"));%>,<%=s.getFname()%>!
+			<%=s.getFname()%>
+			Profile Page
 		</h1>
-	</div>
+		<br> Date Joined:
+		<%=s.getDate_joined()%>
 
+		<table style="width: 100%;">
+			<% if(studentSessions != null){ 
+										for(Session ses: studentSessions){%>
+
+			<tr>
+				<td style="width: 60%">
+					<div class="list-group">
+						<li><%= ses.getSubject() %></li>
+					</div>
+				</td>
+			</tr>
+			<%		}
+								    } else { %>
+			<tr>
+				<td>
+					<div>No Sessions</div>
+				</td>
+			</tr>
+			<%  } %>
+		</table>
+		<div>Comments:</div>
+		<table style="width: 100%;">
+			<% if(studentComments != null){ 
+										for(Comment com: studentComments){%>
+
+			<tr>
+				<td style="width: 60%">
+					<div>
+						<li><%= com.getSubject() %></li>
+					</div>
+				</td>
+			</tr>
+			<%		}
+								    } else { %>
+			<tr>
+				<td>
+					<div>No Comments</div>
+				</td>
+			</tr>
+			<%  } %>
+		</table>
+		</div>
+	</div>
 </body>
 
 </html>
