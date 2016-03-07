@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page language="java" import="com.sos.to.Student,com.sos.to.Tutor,com.sos.to.Comment,com.sos.to.Session,java.util.Locale,java.util.ResourceBundle" %>
+<%@ page language="java" import="com.sos.to.Student,com.sos.to.Tutor,com.sos.to.Comment,com.sos.to.Session,com.sos.to.Message,java.util.Locale,java.util.ResourceBundle" %>
 <%
 	//for generating the french/english page link
 	//session.setAttribute("currentPage", "LoginRegister");

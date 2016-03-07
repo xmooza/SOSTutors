@@ -27,6 +27,7 @@ public class StudentProfileServlet extends HttpServlet {
     		request.setAttribute("student", dao.getStudentFromDatabaseById(tutorID));
     		request.setAttribute("sessions", dao.getStudentSessions(tutorID));
 			request.setAttribute("comments", dao.getStudentComments(tutorID));
+			request.setAttribute("messages", dao.getStudentMessages(tutorID));
 			request.getRequestDispatcher("Profile.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

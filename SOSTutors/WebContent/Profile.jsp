@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="java.util.ArrayList, com.sos.dao.StudentDAO"%>
+	import="java.util.List, java.util.ArrayList, com.sos.dao.StudentDAO"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,13 +36,15 @@
 
 <%
 	StudentDAO dao = null;
-	session.setAttribute("currentPage","Profile");
-	Student s = (Student)session.getAttribute("currentStudent");
-	//ArrayList<Comment> studentComments = new ArrayList<Comment>();
-	//ArrayList<Session> studentSessions = new ArrayList<Session>();
-	
-	ArrayList<Comment> studentComments = dao.getStudentComments(s.getStudentID());
-	ArrayList<Session> studentSessions = dao.getStudentSessions(s.getStudentID());
+	session.setAttribute("currentPage", "Profile");
+	Student s = (Student) session.getAttribute("currentStudent");
+	List<Comment> studentComments = new ArrayList<Comment>();
+	List<Session> studentSessions = new ArrayList<Session>();
+	List<Message> studentMessages = new ArrayList<Message>();
+
+	studentComments = dao.getStudentComments(s.getStudentID());
+	studentSessions = dao.getStudentSessions(s.getStudentID());
+	studentMessages = dao.getStudentMessages(s.getStudentID());
 %>
 <title><%=s.getFname()%> Profile Page</title>
 </head>
@@ -52,55 +54,81 @@
 	<!-- CONTENT -->
 	<div class="content">
 		<img class="background-image" src="images/main-wall.jpg">
-<div class="col-sm-6 col-md-6" style="padding: 25px;">
-		<h1>
-			<%=s.getFname()%>
-			Profile Page
-		</h1>
-		<br> Date Joined:
-		<%=s.getDate_joined()%>
+		<div class="col-sm-6 col-md-6" style="padding: 25px;">
+			<h1>
+				<%=s.getFname()%>'s Profile Page
+			</h1>
+			<br> Date Joined:
+			<%=s.getDate_joined()%>
 
-		<table style="width: 100%;">
-			<% if(studentSessions != null){ 
-										for(Session ses: studentSessions){%>
+			<table style="width: 100%;">
+				<%
+					if (studentSessions != null) {
+						for (Session ses : studentSessions) {
+				%>
 
-			<tr>
-				<td style="width: 60%">
-					<div class="list-group">
-						<li><%= ses.getSubject() %></li>
-					</div>
-				</td>
-			</tr>
-			<%		}
-								    } else { %>
-			<tr>
-				<td>
-					<div>No Sessions</div>
-				</td>
-			</tr>
-			<%  } %>
-		</table>
-		<div>Comments:</div>
-		<table style="width: 100%;">
-			<% if(studentComments != null){ 
-										for(Comment com: studentComments){%>
-
-			<tr>
-				<td style="width: 60%">
-					<div>
-						<li><%= com.getSubject() %></li>
-					</div>
-				</td>
-			</tr>
-			<%		}
-								    } else { %>
-			<tr>
-				<td>
-					<div>No Comments</div>
-				</td>
-			</tr>
-			<%  } %>
-		</table>
+				<tr>
+					<td style="width: 60%">
+						<%=ses.getSubject()%>
+					</td>
+				</tr>
+				<%
+					}
+					} else {
+				%>
+				<tr>
+					<td>No tutoring sessions scheduled!</td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+			
+			<div>Messages:</div>
+			<table style="width: 100%;">
+				<%
+					if (studentMessages != null) {
+						for (Message com : studentMessages) {
+				%>
+				<tr>
+					<td style="width: 60%">
+						<%=com.getSubject()%>
+					</td>
+				</tr>
+				<%
+					}
+					} else {
+				%>
+				<tr>
+					<td>No messages!</td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+			
+			<div>Comments:</div>
+			<table style="width: 100%;">
+				<%
+					if (studentComments != null) {
+						for (Comment com : studentComments) {
+				%>
+				<tr>
+					<td style="width: 60%">
+						<%=com.getSubject()%>
+					</td>
+				</tr>
+				<%
+					}
+					} else {
+				%>
+				<tr>
+					<td>No comments made about tutors!</td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
 		</div>
 	</div>
 </body>

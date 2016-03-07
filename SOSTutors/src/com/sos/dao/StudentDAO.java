@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sos.to.Comment;
+import com.sos.to.Message;
 import com.sos.to.Session;
 import com.sos.to.Student;
 
@@ -146,10 +147,10 @@ public class StudentDAO {
 		return 0;
 	}
 	
-	public static ArrayList<Session> getStudentSessions(int studentID) throws SQLException {
+	public List<Session> getStudentSessions(int studentID) throws SQLException {
 		ResultSet rs = null;
 		PreparedStatement pst = null; 
-		ArrayList<Session> studentSessions = null;
+		ArrayList<Session> studentSessions= new ArrayList<Session>();
 		Session session = null;
 		DBConnector connectionManager = new DBConnector();
 
@@ -162,10 +163,7 @@ public class StudentDAO {
 			rs = pst.executeQuery();
 			if(rs==null) return null;
 			if(rs.next()){
-
 				rs.beforeFirst();
-				studentSessions= new ArrayList<Session>();
-
 				while (rs.next()){						
 					session = new Session(rs.getInt("sessionID"), rs.getString("subject"), rs.getBoolean("booking_available"),
 							rs.getTimestamp("booking_date"), rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
@@ -190,10 +188,10 @@ public class StudentDAO {
 		return studentSessions;
 	}
 	
-	public static ArrayList<Comment> getStudentComments(int studentID) {          
+	public List<Comment> getStudentComments(int studentID) {          
 		ResultSet rs = null;
 		PreparedStatement pst = null; 
-		ArrayList<Comment> studentComments = null;
+		List<Comment> studentComments= new ArrayList<Comment>();
 		Comment comment = null;
 		DBConnector connectionManager = new DBConnector();
 
@@ -206,10 +204,7 @@ public class StudentDAO {
 			rs = pst.executeQuery();
 			if(rs==null) return null;
 			if(rs.next()){
-
 				rs.beforeFirst();
-				studentComments= new ArrayList<Comment>();
-
 				while (rs.next()){	
 					comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"));
 					studentComments.add(comment);
@@ -231,4 +226,43 @@ public class StudentDAO {
 		}  
 		return studentComments;
 	}
+	public List<Message> getStudentMessages(int studentID) {          
+		ResultSet rs = null;
+		PreparedStatement pst = null; 
+		List<Message> studentMessages = new ArrayList<Message>();
+		Message Message = null;
+		DBConnector connectionManager = new DBConnector();
+
+		try { 
+			pst = connectionManager.getConnection().prepareStatement("select * from Messages c"
+					+ " where c.students_studentID = ?"
+					+ " order by c.MessageID asc");
+
+			pst.setInt(1, studentID);
+			rs = pst.executeQuery();
+			if(rs==null) return null;
+			if(rs.next()){
+				rs.beforeFirst();
+				while (rs.next()){	
+					Message = new Message(rs.getInt("MessageID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"),rs.getInt("sessions_sessionID"));
+					studentMessages.add(Message);
+				}
+			}
+			rs.close();
+			pst.close();
+
+		} catch (SQLException sqlE){
+			sqlE.printStackTrace();
+			return null;	
+		}finally { 
+			try {  
+				rs.close();
+				pst.close();  
+			} catch (SQLException e) {  
+				e.printStackTrace();  
+			}  
+		}  
+		return studentMessages;
+	}
+	
 }
