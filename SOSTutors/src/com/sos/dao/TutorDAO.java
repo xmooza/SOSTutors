@@ -118,21 +118,20 @@ public class TutorDAO {
 		return tutor;
 	}
 
-	public static int addTutorDB(String email, String password, String fname, String lname, String profile, String hourly, int rating, String image, String college){
+	public static int addTutorDB(String email, String password, String fname, String lname, String hourly, String image, String college, String profile){
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager.getConnection().prepareStatement("insert into tutors(email, password, fname, lname, profile, hourly, rating, date_joined, image, college) values(?,?,?,?,?,?,?, curdate(),?,?)");
+			pst = connectionManager.getConnection().prepareStatement("insert into tutors(email, password, fname, lname, hourly, date_joined, image, college, rating, profile) values(?,?,?,?,?,curdate(),?,?,0,?)");
 			pst.setString(1,email);
 			pst.setString(2, password);
 			pst.setString(3, fname);
 			pst.setString(4, lname);
-			pst.setString(5, profile);
-			pst.setString(6, hourly);
-			pst.setInt(7, rating);
-			pst.setString(8, image);
-			pst.setString(9, college);
+			pst.setString(5, hourly);
+			pst.setString(6, image);
+			pst.setString(7, college);
+			pst.setString(8, profile);
 			pst.executeUpdate(); 
 			pst.close();
 		}catch ( SQLException sqlE){

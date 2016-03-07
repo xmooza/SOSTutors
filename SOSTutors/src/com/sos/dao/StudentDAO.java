@@ -61,18 +61,17 @@ public class StudentDAO {
 		return student;
 	}
 
-	public static int addStudentDB(String email, String password, String fname, String lname, String profile, String language){
+	public static int addStudentDB(String email, String password, String fname, String lname, String profile){
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager.getConnection().prepareStatement("insert into students(email, password, fname, lname, profile, language, date_joined) values(?,?,?,?,?,? curdate())");
+			pst = connectionManager.getConnection().prepareStatement("insert into students(email, password, fname, lname, profile, date_joined) values(?,?,?,?,?,curdate())");
 			pst.setString(1,email);
 			pst.setString(2, password);
 			pst.setString(3, fname);
 			pst.setString(4, lname);
 			pst.setString(5, profile);
-			pst.setString(6, language);
 			pst.executeUpdate(); 
 			pst.close();
 		}catch ( SQLException sqlE){

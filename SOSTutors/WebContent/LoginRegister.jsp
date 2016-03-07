@@ -125,10 +125,11 @@
 						-->
 						<div class="col-md-12">
 							<h4>Description</h4>
-							<textarea class="form-control" id="description" rows="5"></textarea>
+							<textarea class="form-control" id="description" rows="5" name=registerUserprofile></textarea>
 						</div>
 
 						<div class="col-md-12">
+						<input type="hidden" name="registerUserrole" value="student">
 							<input class="btn btn-default greenbtn" type=submit value="<% out.println(lang.getString("register")); %>" style="float: right; width: 30%; margin-top: 25px"/>
 						</div>
 						<br />
