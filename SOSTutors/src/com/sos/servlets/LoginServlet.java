@@ -23,11 +23,21 @@ public class LoginServlet extends HttpServlet{
         String password=request.getParameter("loginUserpassword"); 
         String role=request.getParameter("loginUserrole");
         
-        if(role=="student")
+        if(role.contains("student"))
+        {
         	s = LoginDAO.validateStudent(email, password);
-    	else
+        }	
+    	else if(role.contains("tutor"))
+    	{
     		t = LoginDAO.validateTutor(email, password);
-        if(s != null && role=="student"){   
+    	}	
+    	else
+    	{
+    		//nothing, below will catch this
+    	}
+        
+        
+        if(s != null && role.contains("student")){   
         	
         	request.getSession().setAttribute("currentStudent", s);
         	
@@ -41,10 +51,10 @@ public class LoginServlet extends HttpServlet{
 				e.printStackTrace();
 			}    
         }
-        else if(t != null && role=="tutor")
+        else if(t != null && role.contains("tutor"))
         {   
         	request.getSession().setAttribute("currentTutor", t);
-        	RequestDispatcher rd=request.getRequestDispatcher("~/Tutor/Profile.jsp");
+        	RequestDispatcher rd=request.getRequestDispatcher("TutorProfile.jsp");
         	try {
 				rd.forward(request,response);
 			} catch (ServletException e) {

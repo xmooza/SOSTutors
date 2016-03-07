@@ -59,7 +59,7 @@
 						
 						<h4 style="color: white"><%out.println(lang.getString("password"));%></h4>
 						<input type=password name=loginUserpassword maxlength=100 class="form-control" />
-						
+						<input type="hidden" name="loginUserrole" value="student">
 						<br />
 						<br />
 						
