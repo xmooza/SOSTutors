@@ -47,6 +47,15 @@
 					</form>
 				</li>
 				<%
+					} else if (session.getAttribute("currentTutor") != null) {
+				%>
+				<li><a id="userbtn" href="TutorProfile.jsp?tutorID=<%=((Tutor) session.getAttribute("currentTutor")).getTutorID()%>"><%=((Tutor) session.getAttribute("currentTutor")).getFname()%></a></li>
+				<li>
+					<form action="logoutServlet" method="post">
+    					<input id="userbtn" type="submit" value="Logout" />
+					</form>
+				</li>
+				<%
 					} else {
 				%>
 				<li><a href="LoginRegister.jsp">Login / Register</a></li>
