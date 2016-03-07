@@ -60,7 +60,7 @@ public class TutorDAO {
 		}
 		else if (sSubject.equals("AllSub")){
 			try {
-				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR college LIKE '% " + sTerm + " %' LIMIT " + offset + ", " + noOfRecords);
+				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm + "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm + " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm + "' OR college LIKE '" + sTerm + " %'  LIMIT " + offset + ", " + noOfRecords);
 			} finally {
 				pst.setString(1, sTerm);
 				pst.setString(2, sTerm);
@@ -123,7 +123,7 @@ public class TutorDAO {
 		}
 		else {
 			try {
-				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? AND (fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR college LIKE '% " + sTerm + " %') LIMIT " + offset + ", " + noOfRecords);
+				pst = connectionManager.getConnection().prepareStatement("SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? AND (fname=? OR lname=? OR profile LIKE '% " + sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm + "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm + " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm + "' OR college LIKE '" + sTerm + " %') LIMIT " + offset + ", " + noOfRecords);
 			} finally {
 				pst.setString(1, sSubject);
 				pst.setString(2, sTerm);
