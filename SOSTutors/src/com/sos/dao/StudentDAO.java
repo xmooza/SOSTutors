@@ -1,6 +1,5 @@
 package com.sos.dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.List;
 import com.sos.to.Comment;
 import com.sos.to.Session;
 import com.sos.to.Student;
-import com.sos.to.Tutor;
 
 public class StudentDAO {
 	
