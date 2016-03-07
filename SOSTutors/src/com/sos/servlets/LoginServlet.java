@@ -21,13 +21,11 @@ public class LoginServlet extends HttpServlet{
     	       
         String email=request.getParameter("loginUseremail");    
         String password=request.getParameter("loginUserpassword"); 
-        String role=request.getParameter("loginUserrole");
         
-        if(role=="student")
-        	s = LoginDAO.validateStudent(email, password);
-    	else
-    		t = LoginDAO.validateTutor(email, password);
-        if(s != null && role=="student"){   
+        s = LoginDAO.validateStudent(email, password);
+        t = LoginDAO.validateTutor(email, password);    
+        
+        if(s != null){   
         	
         	request.getSession().setAttribute("currentStudent", s);
         	
@@ -41,10 +39,10 @@ public class LoginServlet extends HttpServlet{
 				e.printStackTrace();
 			}    
         }
-        else if(t != null && role=="tutor")
+        else if(t != null)
         {   
         	request.getSession().setAttribute("currentTutor", t);
-        	RequestDispatcher rd=request.getRequestDispatcher("~/Tutor/Profile.jsp");
+        	RequestDispatcher rd=request.getRequestDispatcher("TutorProfile.jsp");
         	try {
 				rd.forward(request,response);
 			} catch (ServletException e) {

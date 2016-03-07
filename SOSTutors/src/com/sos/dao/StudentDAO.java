@@ -1,12 +1,16 @@
 package com.sos.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sos.to.Comment;
+import com.sos.to.Session;
 import com.sos.to.Student;
+import com.sos.to.Tutor;
 
 public class StudentDAO {
 	
@@ -60,19 +64,51 @@ public class StudentDAO {
 		}
 		return student;
 	}
-
-	public static int addStudentDB(String email, String password, String fname, String lname, String profile, String language){
+	
+	public Student getStudentFromDatabaseById(int StudentId){
+		Student s = null;
+		ResultSet rs = null;
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager.getConnection().prepareStatement("insert into students(email, password, fname, lname, profile, language, date_joined) values(?,?,?,?,?,? curdate())");
+			pst = connectionManager.getConnection().prepareStatement("select * from Students where StudentID=?");
+			pst.setInt(1, StudentId);  
+			rs = pst.executeQuery();
+			
+			if (rs == null){
+				return s;
+			}
+			
+			rs.first();
+			
+			s = new Student(rs.getInt("StudentID"), rs.getString("email"), rs.getString("password"),rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),rs.getString("language"),rs.getDate("date_joined"));
+		} catch (SQLException sqlE){
+			sqlE.printStackTrace();
+			return null;
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException sqlE) {
+				sqlE.printStackTrace();
+			}
+		}
+		return s;
+	}
+	
+
+	public static int addStudentDB(String email, String password, String fname, String lname, String profile){
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+
+		try {
+			pst = connectionManager.getConnection().prepareStatement("insert into students(email, password, fname, lname, profile, date_joined) values(?,?,?,?,?,curdate())");
 			pst.setString(1,email);
 			pst.setString(2, password);
 			pst.setString(3, fname);
 			pst.setString(4, lname);
 			pst.setString(5, profile);
-			pst.setString(6, language);
 			pst.executeUpdate(); 
 			pst.close();
 		}catch ( SQLException sqlE){
@@ -111,27 +147,32 @@ public class StudentDAO {
 		}  
 		return 0;
 	}
-
-	public ArrayList<String> getStudentBookingsDB(int studentID) {          
+	
+	public List<Session> getStudentSessions(int studentID) throws SQLException {
 		ResultSet rs = null;
-		PreparedStatement pst = null;
-		ArrayList<String> studentBookings = null;
+		PreparedStatement pst = null; 
+		ArrayList<Session> studentSessions = null;
+		Session session = null;
 		DBConnector connectionManager = new DBConnector();
-		
+
 		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from bookings b, student s"
-					+ "where b.studentID = s.studentID"
-					+ "order by b.bookingID desc");
+			pst = connectionManager.getConnection().prepareStatement("select * from sessions s, student st"
+					+ "where s.studentID = st.studentID"
+					+ "order by b.commentID asc");
 
 			pst.setString(1, Integer.toString(studentID));
 			rs = pst.executeQuery();
 
 			if(rs.next()){
-				rs.beforeFirst();
-				studentBookings= new ArrayList<String>();
 
-				while (rs.next()){	
-					studentBookings.add(rs.getString("title"));
+				rs.beforeFirst();
+				studentSessions= new ArrayList<Session>();
+
+				while (rs.next()){						
+					session = new Session(rs.getInt("sessionID"), rs.getString("subject"), rs.getBoolean("booking_available"),
+							rs.getTimestamp("booking_date"), rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
+							rs.getInt("categories_categoryID"), rs.getInt("students_studentID"));
+					studentSessions.add(session);
 				}
 			}
 			rs.close();
@@ -148,19 +189,20 @@ public class StudentDAO {
 				e.printStackTrace();  
 			}  
 		}  
-		return studentBookings;
+		return studentSessions;
 	}
-
-	public ArrayList<String> getStudentComments(int studentID) {          
+	
+	public ArrayList<Comment> getStudentComments(int studentID) {          
 		ResultSet rs = null;
 		PreparedStatement pst = null; 
-		ArrayList<String> studentComments = null;
+		ArrayList<Comment> studentComments = null;
+		Comment comment = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try { 
 			pst = connectionManager.getConnection().prepareStatement("select * from comments c, student s"
 					+ "where c.studentID = s.studentID"
-					+ "order by b.commentID desc");
+					+ "order by b.commentID asc");
 
 			pst.setString(1, Integer.toString(studentID));
 			rs = pst.executeQuery();
@@ -168,10 +210,11 @@ public class StudentDAO {
 			if(rs.next()){
 
 				rs.beforeFirst();
-				studentComments= new ArrayList<String>();
+				studentComments= new ArrayList<Comment>();
 
 				while (rs.next()){	
-					studentComments.add(rs.getString("title"));
+					comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"));
+					studentComments.add(comment);
 				}
 			}
 			rs.close();
