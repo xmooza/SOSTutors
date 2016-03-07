@@ -69,7 +69,7 @@
 	                <div class="row">
 	                    <div class="col-md-12">
 	                        <div class="titlebar">
-	                            <h4>Calendar</h4>
+	                            <h4>Sessions</h4>
 	                        </div>
 	                        
 	                        <c:if test="${sessions.size() > 0}">

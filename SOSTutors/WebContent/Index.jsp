@@ -46,7 +46,7 @@
 		
 		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform" style="text-align: center; padding: 25px">
 			<img style="width: 100%; border-radius: 10px;" src="images/grumpy-cat.jpg">
-		<div>
+		</div>
 	</div>
 
 </body>

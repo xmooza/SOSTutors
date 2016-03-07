@@ -18,7 +18,7 @@ public class StudentProfileServlet extends HttpServlet {
     	int tutorID = Integer.parseInt(request.getParameter("tutorID"));
     	StudentDAO dao = new StudentDAO();
     	
-    	if (request.getAttribute("currentStudent") == null && request.getAttribute("currentTutor") == null){
+    	if (request.getSession().getAttribute("currentStudent") == null && request.getSession().getAttribute("currentTutor") == null){
     		response.sendRedirect("errors/403.jsp");
     		return;
     	}
