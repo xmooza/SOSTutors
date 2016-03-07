@@ -21,23 +21,11 @@ public class LoginServlet extends HttpServlet{
     	       
         String email=request.getParameter("loginUseremail");    
         String password=request.getParameter("loginUserpassword"); 
-        String role=request.getParameter("loginUserrole");
         
-        if(role.contains("student"))
-        {
-        	s = LoginDAO.validateStudent(email, password);
-        }	
-    	else if(role.contains("tutor"))
-    	{
-    		t = LoginDAO.validateTutor(email, password);
-    	}	
-    	else
-    	{
-    		//nothing, below will catch this
-    	}
+        s = LoginDAO.validateStudent(email, password);
+        t = LoginDAO.validateTutor(email, password);    
         
-        
-        if(s != null && role.contains("student")){   
+        if(s != null){   
         	
         	request.getSession().setAttribute("currentStudent", s);
         	
@@ -51,7 +39,7 @@ public class LoginServlet extends HttpServlet{
 				e.printStackTrace();
 			}    
         }
-        else if(t != null && role.contains("tutor"))
+        else if(t != null)
         {   
         	request.getSession().setAttribute("currentTutor", t);
         	RequestDispatcher rd=request.getRequestDispatcher("TutorProfile.jsp");
