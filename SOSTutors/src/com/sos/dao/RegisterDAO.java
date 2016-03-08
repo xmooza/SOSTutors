@@ -18,22 +18,22 @@ public class RegisterDAO {
         profile = profile.trim();
         	
         if(email.equals("")){
-        	error = "errorregister.nousername";
+        	error = "errorregister.empty";
         	return null;
         }
         	
         if(password.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         
         if(fname.equals("")){
-        	error = "errorregister.nousername";
+        	error = "errorregister.empty";
         	return null;
         }
         	
         if(lname.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         
@@ -49,7 +49,6 @@ public class RegisterDAO {
         }
         
         if(errorCode == -2){
-        	System.out.println("Error with database interaction.");
         	error = "errorregister.sql";
         	return null;
         }
@@ -74,42 +73,42 @@ public class RegisterDAO {
         
         
         if(email.equals("")){
-        	error = "errorregister.nousername";
+        	error = "errorregister.empty";
         	return null;
         }
         	
         if(password.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         
         if(fname.equals("")){
-        	error = "errorregister.nousername";
+        	error = "errorregister.empty";
         	return null;
         }
         	
         if(lname.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         
         if(hourly.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         
         if(image.equals("")){
-        	//error = "errorregister.nopass";
+        	//error = "errorregister.empty";
         	//return null;
         }
         
         if(college.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         
         if(profile.equals("")){
-        	error = "errorregister.nopass";
+        	error = "errorregister.empty";
         	return null;
         }
         	
@@ -121,7 +120,6 @@ public class RegisterDAO {
         }
         
         if(errorCode == -2){
-        	System.out.println("Error with database interaction.");
         	error = "errorregister.sql";
         	return null;
         }

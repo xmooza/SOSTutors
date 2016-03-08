@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet{
         }    
         else{
 	        request.setAttribute("errorMessage", LoginDAO.error);
-            RequestDispatcher rd=request.getRequestDispatcher("Index.jsp");    
+            RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");    
             try {
 				rd.include(request,response);
 			} catch (ServletException e) {

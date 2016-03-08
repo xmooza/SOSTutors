@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
 		        request.getRequestDispatcher("Profile.jsp").forward(request, response);    
 		    }else{
 		        request.setAttribute("errorMessage", RegisterDAO.error);
-		        request.getRequestDispatcher("Index.jsp").forward(request, response);   	            
+		        request.getRequestDispatcher("LoginRegister.jsp").forward(request, response);   	            
 		   }   
 	    }
 	    else if(role.contains("tutor"))
@@ -58,13 +58,13 @@ public class RegisterServlet extends HttpServlet {
 		        request.getRequestDispatcher("TutorProfile.jsp").forward(request, response);    
 		    }else{
 		        request.setAttribute("errorMessage", RegisterDAO.error);
-		        request.getRequestDispatcher("Index.jsp").forward(request, response);   	            
+		        request.getRequestDispatcher("LoginRegister.jsp").forward(request, response);   	            
 		   }
 		    
 	    }
 	    else{
 	        request.setAttribute("errorMessage", RegisterDAO.error);
-	        request.getRequestDispatcher("Index.jsp").forward(request, response);   	            
+	        request.getRequestDispatcher("LoginRegister.jsp").forward(request, response);   	            
 	   }
 	    
 	}

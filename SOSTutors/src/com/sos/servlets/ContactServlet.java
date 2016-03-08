@@ -23,14 +23,14 @@ public class ContactServlet extends HttpServlet {
 	    name=request.getParameter("conUsername");    
 	    content=request.getParameter("conUsercontent");
 	    subject=request.getParameter("conUsersubject");
-	    
 	  
 	    	m = MessageDAO.addMessageDB(subject, "From: "+name+" (<a href=mailto:"+email+">"+email+"</a>)<br/>" + "Content: " + content + ".", 0, 0, 0);
-		    if(m == 0){    		        	
-		        request.getRequestDispatcher("Index.jsp").forward(request, response);    
+		    if(m == 0){  
+		    	request.setAttribute("errorMessage", "messagesent");
+		        request.getRequestDispatcher("Contact.jsp").forward(request, response);    
 		    }else{
 		        request.setAttribute("errorMessage", MessageDAO.error);
-		        request.getRequestDispatcher("Index.jsp").forward(request, response);   	            
+		        request.getRequestDispatcher("Contact.jsp").forward(request, response);   	            
 		   }
 	    
 	}

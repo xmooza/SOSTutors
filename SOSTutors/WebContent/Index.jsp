@@ -44,7 +44,18 @@
     <!-- CONTENT -->
 	<div class="content">
 		<img class="background-image" src="images/main-wall.jpg">
-		
+		        	<!--Error and Messages -->
+	<%  
+		if( request.getAttribute("errorMessage") != null)
+		{ %>
+		<div class="container">
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert"><span>Close</span></button>
+				<%= lang.getString(request.getAttribute("errorMessage").toString()) %>
+			</div>
+		</div>
+	<%	}	%>
+	<!--Error and Messages End -->
 		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform" style="text-align: center; padding: 25px">
 			<img style="width: 100%; border-radius: 10px;" src="images/grumpy-cat.jpg">
 		</div>
