@@ -25,7 +25,7 @@ public class ContactServlet extends HttpServlet {
 	    subject=request.getParameter("conUsersubject");
 	    
 	  
-	    	m = MessageDAO.addMessageDB(subject, "From: "+name+"("+email+")<br/>" + " Content: " + content + ".", 0, 0, 0);
+	    	m = MessageDAO.addMessageDB(subject, "From: "+name+" (<a href=mailto:"+email+">"+email+"</a>)<br/>" + "Content: " + content + ".", 0, 0, 0);
 		    if(m == 0){    		        	
 		        request.getRequestDispatcher("Index.jsp").forward(request, response);    
 		    }else{
