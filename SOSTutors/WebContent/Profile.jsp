@@ -54,20 +54,26 @@
 	<!-- CONTENT -->
 	<div class="content">
 		<img class="background-image" src="images/main-wall.jpg">
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform" style="text-align: center; padding: 25px">
-			<h1>
+		<div
+			class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform"
+			style="color: white; margin-top: 25px; margin-bottom: 50px;">
+			<h1 style="font-family: 'Quicksand'; text-align: center">
 				<%=s.getFname()%>'s Profile Page
 			</h1>
-			<br> Date Joined: <%=s.getDate_joined()%>
+			Date Joined: <%=s.getDate_joined()%><br/>
+			First Name: <%=s.getFname()%><br/>
+			Last Name: <%=s.getLname()%><br/>
+			Email: <%=s.getEmail()%>
+			<br/><br/>
 			<div>Sessions:</div>
-			<table style="width: 100%;">
+			<table>
 				<%
-					if (studentSessions != null) {
+					if (studentSessions.size() > 0) {
 						for (Session ses : studentSessions) {
 				%>
 
 				<tr>
-					<td style="width: 60%">
+					<td>
 						<%=ses.getSubject()%>
 					</td>
 				</tr>
@@ -82,15 +88,16 @@
 					}
 				%>
 			</table>
-			
+			<br/>
 			<div>Messages:</div>
-			<table style="width: 100%;">
+			<table>
 				<%
-					if (studentMessages != null) {
+					if (studentMessages.size() > 0) {
 						for (Message com : studentMessages) {
 				%>
+				<tr><td>Subject</td><td>Content</td><td>Date Posted</td><td>Tutor</td></tr>
 				<tr>
-					<td style="width: 60%">
+					<td>
 						<%=com.getSubject()%>
 					</td>
 				</tr>
@@ -105,16 +112,25 @@
 					}
 				%>
 			</table>
-			
+			<br/>
 			<div>Comments:</div>
-			<table style="width: 100%;">
+			<table border = "1" cellpadding="10" cellspacing="10">
 				<%
-					if (studentComments != null) {
+					if (studentComments.size() > 0) {
 						for (Comment com : studentComments) {
 				%>
 				<tr>
-					<td style="width: 60%">
+					<td align = "left">
 						<%=com.getSubject()%>
+					</td>
+					<td align = "left">
+						<%=com.getContent()%>
+					</td>
+					<td align = "left">
+						<%=com.getDate_posted()%>
+					</td>
+					<td align = "left">
+						<%=com.getTutors_tutorID()%>
 					</td>
 				</tr>
 				<%
@@ -128,6 +144,8 @@
 					}
 				%>
 			</table>
+			<br/>
+			<br/>
 		</div>
 	</div>
 </body>
