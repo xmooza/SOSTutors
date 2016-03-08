@@ -32,40 +32,32 @@
 
 <!-- Initialization -->
 <%
-    	session.setAttribute("currentPage", "Contact");	
-    	if (getServletContext().getAttribute("errorCode") == null) {
-    		getServletContext().setAttribute("errorCode", 0);
-    	}
-
-    	if (getServletContext().getAttribute("errorMessage") == null) {
-    		getServletContext().setAttribute("errorMessage", "");
-    	}
-    %>
+	session.setAttribute("currentPage", "Contact");
+%>
 </head>
 
 <body>
 	<!-- HEADER -->
 	<%@include file="Header.jsp"%>
 
-
-
 	<!-- CONTENT -->
 	<div class="content">
 		<img class="background-image" src="images/main-wall.jpg">
 
 		<!--Error and Messages -->
-		<%  
-		if( request.getAttribute("errorMessage") != null)
-		{ %>
+		<%
+			if (request.getAttribute("errorMessage") != null) {
+		%>
 		<div class="container">
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">
-					<span>Close</span>
-				</button>
-				<%= lang.getString(request.getAttribute("errorMessage").toString()) %>
+			<div class="alert alert-info">
+				<<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<%=lang.getString(request.getAttribute("errorMessage")
+						.toString())%>
 			</div>
 		</div>
-		<%	}	%>
+		<%
+			}
+		%>
 		<!--Error and Messages End -->
 		<div
 			class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform"

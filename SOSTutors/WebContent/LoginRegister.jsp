@@ -32,13 +32,6 @@
 <!-- Initialization -->
 <%
 	session.setAttribute("currentPage", "Index");
-	if (getServletContext().getAttribute("errorCode") == null) {
-		getServletContext().setAttribute("errorCode", 0);
-	}
-
-	if (getServletContext().getAttribute("errorMessage") == null) {
-		getServletContext().setAttribute("errorMessage", "");
-	}
 %>
 </head>
 
@@ -58,10 +51,8 @@
 			if (request.getAttribute("errorMessage") != null) {
 		%>
 		<div class="container">
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">
-					<span>Close</span>
-				</button>
+			<div class="alert alert-info">
+				<<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<%=lang.getString(request.getAttribute("errorMessage")
 						.toString())%>
 			</div>
@@ -205,7 +196,9 @@
 
 			</div>
 		</div>
-		<%}%>
+		<%
+			}
+		%>
 	</div>
 
 	<br />
