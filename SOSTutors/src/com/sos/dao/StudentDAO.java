@@ -157,7 +157,7 @@ public class StudentDAO {
 		try { 
 			pst = connectionManager.getConnection().prepareStatement("select * from sessions s"
 					+ " where s.students_studentID = ?"
-					+ " order by s.sessionID asc");
+					+ " order by s.booking_date desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
@@ -198,7 +198,7 @@ public class StudentDAO {
 		try { 
 			pst = connectionManager.getConnection().prepareStatement("select * from comments c"
 					+ " where c.students_studentID = ?"
-					+ " order by c.commentID asc");
+					+ " order by c.date_posted desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
@@ -236,7 +236,7 @@ public class StudentDAO {
 		try { 
 			pst = connectionManager.getConnection().prepareStatement("select * from notifications n"
 					+ " where n.students_studentID = ?"
-					+ " order by n.NotificationID asc");
+					+ " order by n.date_posted desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();

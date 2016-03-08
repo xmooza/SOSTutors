@@ -39,15 +39,16 @@
 		    <br/>
 		    <h1 style="font-family: 'Quicksand'; text-align: center">Contact</h1>
 		    <br/>
-		    <form class="form-horizontal">
+		    <form class="form-horizontal" action="contactSend" method="post">
 		
 		            <h4>Name</h4>
-		            <input type="text" class="form-control" id="name">
+		            <input type="text" class="form-control" id="name" name="conUsername">
 		            <h4>Email</h4>
-		            <input type="text" class="form-control" id="email">
+		            <input type="text" class="form-control" id="email" name="conUseremail">
 		            <h4>Message</h4>
-		            <textarea class="form-control" id="message" rows="10"></textarea>
+		            <textarea class="form-control" id="message" rows="10" name="conUsercontent"></textarea>
 		            <br>
+		            <input type="hidden" name="conUsersubject" value="admin">
 		            <button id="searchbtn" class="btn btn-default greenbtn btn-lg" type="submit" style="margin: auto; width: 30%; float: right">Send</button>
 		            <br/>
 		            <br/>

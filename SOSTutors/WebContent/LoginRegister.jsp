@@ -40,13 +40,9 @@
 			
 				<!-- INFO -->
 				<div class="col-sm-6 col-md-6" style="padding: 50px 25px 25px 25px; color: white; text-align: center;">
-					<p>If this is your first time visiting SOSTutors feel free
-					to scroll down and complete our registration form for access to the
-					many features that SOSTutors offers, for FREE.</p>
+					<p><%out.println(lang.getString("intro1"));%></p>
 					<br/>
-					<p>If you aren't new here go ahead and use the login page to access
-					and schedule your next SOSTutors tutoring session.</p>
-				</div>
+					<p><%out.println(lang.getString("intro2"));%></div>
 				
 				<!-- LOGIN -->
 				<div class="col-sm-6 col-md-6" style="padding: 25px;">

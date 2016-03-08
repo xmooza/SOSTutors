@@ -11,6 +11,25 @@
 		<servlet-name>tutorProfile</servlet-name>
 		<url-pattern>/tutorProfile</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>contactSend</servlet-name>
+		<servlet-class>com.sos.servlets.ContactServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>contactSend</servlet-name>
+		<url-pattern>/contactSend</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>studentProfile</servlet-name>
+		<servlet-class>com.sos.servlets.StudentProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>studentProfile</servlet-name>
+		<url-pattern>/studentProfile</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>search</servlet-name>
 		<servlet-class>com.sos.servlets.SearchServlet</servlet-class>

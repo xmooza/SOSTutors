@@ -32,7 +32,9 @@
 <!-- Custom Styles -->
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
 <!-- HEADER -->
-<% session.setAttribute("currentPage", "Profile"); %>
+<%
+	session.setAttribute("currentPage", "Profile");
+%>
 <%@include file="Header.jsp"%>
 
 <%
@@ -47,10 +49,22 @@
 	studentSessions = dao.getStudentSessions(s.getStudentID());
 	studentMessages = dao.getStudentMessages(s.getStudentID());
 %>
-<title><%=s.getFname()%>'s Profile Page</title>
+<title>SOSTutors - <%=s.getFname()%>'s <%
+	out.println(lang.getString("profilepage"));
+%></title>
 </head>
 
 <body>
+
+	<%-- <c:import url="/studentProfile" />
+
+<c:set var="studentMessages" value="${requestScope.messages}" />
+
+<h1>List of products from servlet</h1>
+<c:forEach var="message" items= "${studentMessages}" varStatus="i">
+${message}<br>
+</c:forEach>
+ --%>
 
 	<!-- CONTENT -->
 	<div class="content">
@@ -59,14 +73,36 @@
 			class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform"
 			style="color: white; margin-top: 25px; margin-bottom: 50px;">
 			<h1 style="font-family: 'Quicksand'; text-align: center">
-				<%=s.getFname()%>'s Profile Page
+				<%=s.getFname()%>'s
+				<%
+					out.println(lang.getString("profilepage"));
+				%>
 			</h1>
-			Date Joined: <%=s.getDate_joined()%><br/>
-			First Name: <%=s.getFname()%><br/>
-			Last Name: <%=s.getLname()%><br/>
-			Email: <%=s.getEmail()%>
-			<br/><br/>
-			<div>Sessions:</div>
+			<%
+				out.println(lang.getString("joined"));
+			%>:
+			<%=s.getDate_joined()%><br />
+			<%
+				out.println(lang.getString("fname"));
+			%>:
+			<%=s.getFname()%><br />
+			<%
+				out.println(lang.getString("lname"));
+			%>:
+			<%=s.getLname()%><br />
+			<%
+				out.println(lang.getString("email"));
+			%>:
+			<%=s.getEmail()%>
+			<br />
+			<br />
+			<div class="titlebar">
+				<h4>
+					<%
+						out.println(lang.getString("sessions"));
+					%>
+				</h4>
+			</div>
 			<table>
 				<%
 					if (studentSessions.size() > 0) {
@@ -74,79 +110,104 @@
 				%>
 
 				<tr>
-					<td>
-						<%=ses.getSubject()%>
-					</td>
+					<td><%=ses.getSubject()%></td>
 				</tr>
 				<%
 					}
 					} else {
 				%>
 				<tr>
-					<td>No tutoring sessions scheduled!</td>
+					<td>
+						<%
+							out.println(lang.getString("nosessions"));
+						%>
+					</td>
 				</tr>
 				<%
 					}
 				%>
 			</table>
-			<br/>
-			<div>Messages:</div>
+			<br />
+			<div class="titlebar">
+				<h4>
+					<%
+						out.println(lang.getString("messages"));
+					%>
+				</h4>
+			</div>
 			<table>
 				<%
 					if (studentMessages.size() > 0) {
 						for (Message com : studentMessages) {
 				%>
-				<tr><td>Subject</td><td>Content</td><td>Date Posted</td><td>Tutor</td></tr>
 				<tr>
-					<td>
-						<%=com.getSubject()%>
-					</td>
+					<td><%=com.getSubject()%></td>
 				</tr>
 				<%
 					}
 					} else {
 				%>
 				<tr>
-					<td>No messages!</td>
+					<td>
+						<%
+							out.println(lang.getString("nomessages"));
+						%>
+					</td>
 				</tr>
 				<%
 					}
 				%>
 			</table>
-			<br/>
-			<div>Comments:</div>
-			<table border = "1" cellpadding="10" cellspacing="10">
+			<br />
+			<div class="titlebar">
+				<h4>
+					<%
+						out.println(lang.getString("comments"));
+					%>
+				</h4>
+			</div>
+			<table border="5" cellpadding="10" cellspacing="10">
+										<tr>
+					<td><%
+						out.println(lang.getString("subject"));
+					%></td>
+					<td><%
+						out.println(lang.getString("content"));
+					%></td>
+					<td><%
+						out.println(lang.getString("posted"));
+					%></td>
+					<td><%
+						out.println(lang.getString("tutorid"));
+					%></td>
+				</tr>
 				<%
 					if (studentComments.size() > 0) {
 						for (Comment com : studentComments) {
 				%>
+	
 				<tr>
-					<td align = "left">
-						<%=com.getSubject()%>
-					</td>
-					<td align = "left">
-						<%=com.getContent()%>
-					</td>
-					<td align = "left">
-						<%=com.getDate_posted()%>
-					</td>
-					<td align = "left">
-						<%=com.getTutors_tutorID()%>
-					</td>
+					<td align="left"><%=com.getSubject()%></td>
+					<td align="left"><%=com.getContent()%></td>
+					<td align="left"><%=com.getDate_posted()%></td>
+					<td align="left"><%=com.getTutors_tutorID()%></td>
 				</tr>
 				<%
 					}
 					} else {
 				%>
 				<tr>
-					<td>No comments made about tutors!</td>
+					<td>
+						<%
+							out.println(lang.getString("nocomments"));
+						%>
+					</td>
 				</tr>
 				<%
 					}
 				%>
 			</table>
-			<br/>
-			<br/>
+			<br /> <br />
 		</div>
 	</div>
 </body>
