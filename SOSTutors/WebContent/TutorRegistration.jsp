@@ -34,6 +34,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "TutorRegistration"); %>
 	<%@include file="Header.jsp"%>
 
 	<!-- CONTENT -->

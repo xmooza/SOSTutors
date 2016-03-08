@@ -32,6 +32,7 @@
 <!-- Custom Styles -->
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
 <!-- HEADER -->
+<% session.setAttribute("currentPage", "Profile"); %>
 <%@include file="Header.jsp"%>
 
 <%

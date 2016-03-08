@@ -27,6 +27,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "LoginRegister"); %>
 	<%@include file="Header.jsp" %>
 	
     <!-- CONTENT -->

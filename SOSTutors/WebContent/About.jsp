@@ -27,6 +27,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "About"); %>
 	<%@include file="Header.jsp" %>
     
     <!-- CONTENT -->

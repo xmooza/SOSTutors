@@ -28,6 +28,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "TutorSearch"); %>
 	<c:import url="Header.jsp"></c:import>
 	
 	<!-- CONTENT -->

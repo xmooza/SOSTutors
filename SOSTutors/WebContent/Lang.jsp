@@ -9,20 +9,20 @@
 		session.setAttribute("language", "EN");
 	}
 
-	ResourceBundle lang = ResourceBundle.getBundle("Index_EN");
+	ResourceBundle lang = ResourceBundle.getBundle(session.getAttribute("currentPage")+"_EN");
 
 	//if the session language is FR switch to french, otherwise remains english as set above
 	if (session.getAttribute("language").toString().equals("FR")) {
-		lang = ResourceBundle.getBundle("Index_FR");
+		lang = ResourceBundle.getBundle(session.getAttribute("currentPage")+"_FR");
 	}
 
 	//if the user clicked change language, set to appropriate language
 	if (request.getParameter("language") != null) {
 		if (request.getParameter("language").equals("FR")) {
-			lang = ResourceBundle.getBundle("Index_FR");
+			lang = ResourceBundle.getBundle(session.getAttribute("currentPage") + "_FR");
 			session.setAttribute("language", "FR");
 		} else {
-			lang = ResourceBundle.getBundle("Index_EN");
+			lang = ResourceBundle.getBundle(session.getAttribute("currentPage")+"_EN");
 			session.setAttribute("language", "EN");
 		}
 	}

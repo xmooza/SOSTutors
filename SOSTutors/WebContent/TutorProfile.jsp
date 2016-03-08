@@ -29,6 +29,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "TutorProfile"); %>
 	<%@include file="Header.jsp" %>
     
     <!-- CONTENT -->

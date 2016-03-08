@@ -27,6 +27,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "Contact"); %> 
 	<%@include file="Header.jsp" %>
     
     <!-- CONTENT -->
@@ -43,7 +44,7 @@
 		            <h4>Name</h4>
 		            <input type="text" class="form-control" id="name">
 		            <h4>Email</h4>
-		            <input type="email" class="form-control" id="email">
+		            <input type="text" class="form-control" id="email">
 		            <h4>Message</h4>
 		            <textarea class="form-control" id="message" rows="10"></textarea>
 		            <br>

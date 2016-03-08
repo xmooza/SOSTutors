@@ -26,6 +26,7 @@
     
     <!-- Initialization -->
     <%
+    	session.setAttribute("currentPage", "Index");	
     	if (getServletContext().getAttribute("errorCode") == null) {
     		getServletContext().setAttribute("errorCode", 0);
     	}
