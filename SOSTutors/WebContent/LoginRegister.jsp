@@ -94,26 +94,28 @@
 						</h4>
 					</div>
 					<br />
-					<form name="LoginForm" action="loginServlet" method="post">
-						<h4 style="color: white">
-							<%
-								out.println(lang.getString("email"));
-							%>
-						</h4>
-						<input type=text name=loginUseremail maxlength=100
-							class="form-control" value="" /><br />
+					<div class="col-md-12">
+						<form name="LoginForm" action="loginServlet" method="post">
+							<h4 style="color: white">
+								<%
+									out.println(lang.getString("email"));
+								%>
+							</h4>
+							<input type=text name=loginUseremail maxlength=100
+								class="form-control" value="" /><br />
 
-						<h4 style="color: white">
-							<%
-								out.println(lang.getString("password"));
-							%>
-						</h4>
-						<input type=password name=loginUserpassword maxlength=100
-							class="form-control" /> <br /> <br /> <input
-							class="btn btn-default greenbtn" type=submit
-							value="<%out.println(lang.getString("login"));%>"
-							style="float: right; width: 45%" /> <br />
-					</form>
+							<h4 style="color: white">
+								<%
+									out.println(lang.getString("password"));
+								%>
+							</h4>
+							<input type=password name=loginUserpassword maxlength=100
+								class="form-control" /> <br /> <br /> <input
+								class="btn btn-default greenbtn" type=submit
+								value="<%out.println(lang.getString("login"));%>"
+								style="float: right; width: 45%" /> <br />
+						</form>
+					</div>
 				</div>
 
 				<!-- REGISTER -->
