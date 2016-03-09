@@ -69,7 +69,6 @@ public class MessageDAO {
 	public static int addMessageDB(String subject, String content, int tutors_tutorID, int students_studentID, int sessions_sessionID){
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
-
 		try {
 			pst = connectionManager.getConnection().prepareStatement("insert into notifications(subject, content, date_posted, tutors_tutorID, students_studentID, sessions_sessionID) values(?,?,curdate(),?,?,?)");
 			pst.setString(1,subject);

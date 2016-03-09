@@ -7,12 +7,12 @@ public class RegisterDAO {
 	
 	public static String error = null;
 	
-	public static Student validateStudent(String email, String password, String fname, String lname, String profile) {          
+	public static Student validateStudent(String email, String password, String fname, String lname, String profile) throws Exception {          
         Student s = null;
+	    
         int errorCode = 0;
-        
         email = email.trim();
-        password = password.trim();
+        password =  AES.encrypt(password.trim());
         fname = fname.trim();
         lname = lname.trim();
         profile = profile.trim();
@@ -58,12 +58,12 @@ public class RegisterDAO {
         return s;  
     }  
 	
-	public static Tutor validateTutor(String email, String password, String fname, String lname, String hourly, String image, String college, String profile) {          
+	public static Tutor validateTutor(String email, String password, String fname, String lname, String hourly, String image, String college, String profile) throws Exception {          
         Tutor t = null;
         int errorCode = 0;
         
         email = email.trim();
-        password = password.trim();
+        password =  AES.encrypt(password.trim());
         fname = fname.trim();
         lname = lname.trim();
         hourly = lname.trim();

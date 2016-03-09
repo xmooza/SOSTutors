@@ -5,11 +5,11 @@ public class LoginDAO {
 	
 	public static String error = null;
 	
-    public static Student validateStudent(String email, String password) {          
+    public static Student validateStudent(String email, String password) throws Exception {          
         Student s = null;
 
         email = email.trim();
-        password = password.trim();
+        password =  AES.encrypt(password.trim());
             
         if(email == ""){
             error = "error.invaliduser";
@@ -28,11 +28,11 @@ public class LoginDAO {
         }
         return s;   
     }  
-    public static Tutor validateTutor(String email, String password) {          
+    public static Tutor validateTutor(String email, String password) throws Exception {          
         Tutor t = null;
 
         email = email.trim();
-        password = password.trim();
+        password =  AES.encrypt(password.trim());
             
         if(email == ""){
             error = "error.invaliduser";

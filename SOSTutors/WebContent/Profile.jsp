@@ -94,8 +94,7 @@ ${message}<br>
 				out.println(lang.getString("email"));
 			%>:
 			<%=s.getEmail()%>
-			<br />
-			<br />
+			<br /> <br />
 			<div class="titlebar">
 				<h4>
 					<%
@@ -167,25 +166,12 @@ ${message}<br>
 				</h4>
 			</div>
 			<table border="5" cellpadding="10" cellspacing="10">
-										<tr>
-					<td><%
-						out.println(lang.getString("subject"));
-					%></td>
-					<td><%
-						out.println(lang.getString("content"));
-					%></td>
-					<td><%
-						out.println(lang.getString("posted"));
-					%></td>
-					<td><%
-						out.println(lang.getString("tutorid"));
-					%></td>
-				</tr>
+
 				<%
 					if (studentComments.size() > 0) {
 						for (Comment com : studentComments) {
 				%>
-	
+
 				<tr>
 					<td align="left"><%=com.getSubject()%></td>
 					<td align="left"><%=com.getContent()%></td>
@@ -196,6 +182,28 @@ ${message}<br>
 					}
 					} else {
 				%>
+				<tr>
+					<td>
+						<%
+							out.println(lang.getString("subject"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("content"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("posted"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("tutorid"));
+						%>
+					</td>
+				</tr>
 				<tr>
 					<td>
 						<%

@@ -1,6 +1,7 @@
 package com.sos.servlets;
 
 import java.io.IOException;  
+
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
@@ -33,8 +34,14 @@ public class RegisterServlet extends HttpServlet {
 	    
 	    if(role.contains("student"))
 	    {
-	    	s = RegisterDAO.validateStudent(email, password, fname, lname, profile);
-		    if(s != null){    		        	
+	    	try {
+				s = RegisterDAO.validateStudent(email, password, fname, lname, profile);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    if(s != null){  
+		    	request.getSession().invalidate();
 		        request.getSession().setAttribute("currentStudent", s);
 		        request.getRequestDispatcher("Profile.jsp").forward(request, response);    
 		    }else{
@@ -49,11 +56,17 @@ public class RegisterServlet extends HttpServlet {
 	    	String college = "";
 	 
 	      	hourly = request.getParameter("registerUserhourly");
-	    	image = "";
+	    	image = "blank_profile.png";
 	    	college = request.getParameter("registerUsercollege");
 
-	    	t = RegisterDAO.validateTutor(email, password, fname, lname, hourly, image, college, profile);
-		    if(t != null){    		        	
+	    	try {
+				t = RegisterDAO.validateTutor(email, password, fname, lname, hourly, image, college, profile);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    if(t != null){
+		    	request.getSession().invalidate();
 		        request.getSession().setAttribute("currentTutor", t);
 		        request.getRequestDispatcher("TutorProfile.jsp").forward(request, response);    
 		    }else{
