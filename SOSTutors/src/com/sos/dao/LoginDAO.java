@@ -1,4 +1,6 @@
 package com.sos.dao;
+import java.sql.SQLException;
+
 import com.sos.to.*;
 
 public class LoginDAO { 
@@ -42,9 +44,7 @@ public class LoginDAO {
         	error = "error.invalidpass";
             return null;
         }
-            
-        t = TutorDAO.getTutorDB(email, password);
-            
+        t = TutorDAO.getTutorDB(email, password);   
         if(t == null){
             error = "error.invalidlogin";
             return null;

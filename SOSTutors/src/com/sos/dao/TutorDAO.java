@@ -185,6 +185,7 @@ public class TutorDAO {
 					rs.getString("hourly"), rs.getInt("rating"), rs.getDate("date_joined"),
 					rs.getString("image"), rs.getString("college"));
 		} catch (SQLException sqlE){
+			System.out.println("TUTORDAO GETUTORDB");
 			sqlE.printStackTrace();
 			return null;
 		} finally {

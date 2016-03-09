@@ -20,23 +20,22 @@ public class LoginServlet extends HttpServlet{
     	Tutor t = null;
     	       
         String email=request.getParameter("loginUseremail");    
-        String password=request.getParameter("loginUserpassword"); 
-        
-        if(email=="admin" && password=="rules")
-        {
-        	request.getSession().invalidate();
-        	request.getSession().setAttribute("admin", "true");
-        	RequestDispatcher rd=request.getRequestDispatcher("AdminHome.jsp");
-        	try {
-				rd.forward(request,response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}    
-        }
-        
+        String password=request.getParameter("loginUserpassword");
         try {
+			if(LoginDAO.validateStudent(email, password)!=null)
+			{
+				s = LoginDAO.validateStudent(email, password);
+			}
+			else
+			{
+				t = LoginDAO.validateTutor(email, password);
+			}
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+        
+/*        try {
 			s = LoginDAO.validateStudent(email, password);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -47,7 +46,7 @@ public class LoginServlet extends HttpServlet{
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}    
+		}    */
         
         if(s != null){   
         	

@@ -41,13 +41,13 @@
 	StudentDAO dao = new StudentDAO();
 	session.setAttribute("currentPage", "Profile");
 	Student s = (Student) session.getAttribute("currentStudent");
-	List<Comment> studentComments = new ArrayList<Comment>();
-	List<Session> studentSessions = new ArrayList<Session>();
-	List<Message> studentMessages = new ArrayList<Message>();
+	//List<Comment> studentComments = new ArrayList<Comment>();
+	//List<Session> studentSessions = new ArrayList<Session>();
+	//List<Message> studentMessages = new ArrayList<Message>();
 
-	studentComments = dao.getStudentComments(s.getStudentID());
-	studentSessions = dao.getStudentSessions(s.getStudentID());
-	studentMessages = dao.getStudentMessages(s.getStudentID());
+	List<Comment> studentComments = dao.getStudentComments(s.getStudentID());
+	List<Session> studentSessions = dao.getStudentSessions(s.getStudentID());
+	List<Message> studentMessages = dao.getStudentMessages(s.getStudentID());
 %>
 <title>SOSTutors - <%=s.getFname()%>'s <%
 	out.println(lang.getString("profilepage"));
@@ -104,8 +104,35 @@ ${message}<br>
 			</div>
 			<table>
 				<%
-					if (studentSessions.size() > 0) {
-						for (Session ses : studentSessions) {
+					if (studentSessions.size() > 0) { %>
+				<tr>
+					<td>
+						<%
+							out.println(lang.getString("subject"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("booking_date"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("booking_location"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("categories_categoryID"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("tutors_tutorID"));
+						%>
+					</td>
+				</tr>
+				<%for (Session ses : studentSessions) {
 				%>
 
 				<tr>
@@ -136,11 +163,36 @@ ${message}<br>
 			</div>
 			<table>
 				<%
-					if (studentMessages.size() > 0) {
-						for (Message com : studentMessages) {
+					if (studentMessages.size() > 0) { %>
+				<tr>
+					<td>
+						<%
+							out.println(lang.getString("subject"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("content"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("posted"));
+						%>
+					</td>
+					<td>
+						<%
+							out.println(lang.getString("tutorid"));
+						%>
+					</td>
+				</tr>
+				<%for (Message com : studentMessages) {
 				%>
 				<tr>
-					<td><%=com.getSubject()%></td>
+					<td align="left"><%=com.getSubject()%></td>
+					<td align="left"><%=com.getContent()%></td>
+					<td align="left"><%=com.getDate_posted()%></td>
+					<td align="left"><%=com.getTutors_tutorID()%></td>
 				</tr>
 				<%
 					}
@@ -168,20 +220,7 @@ ${message}<br>
 			<table border="5" cellpadding="10" cellspacing="10">
 
 				<%
-					if (studentComments.size() > 0) {
-						for (Comment com : studentComments) {
-				%>
-
-				<tr>
-					<td align="left"><%=com.getSubject()%></td>
-					<td align="left"><%=com.getContent()%></td>
-					<td align="left"><%=com.getDate_posted()%></td>
-					<td align="left"><%=com.getTutors_tutorID()%></td>
-				</tr>
-				<%
-					}
-					} else {
-				%>
+					if (studentComments.size() > 0) { %>
 				<tr>
 					<td>
 						<%
@@ -204,6 +243,20 @@ ${message}<br>
 						%>
 					</td>
 				</tr>
+				<%for (Comment com : studentComments) {
+				%>
+
+				<tr>
+					<td align="left"><%=com.getSubject()%></td>
+					<td align="left"><%=com.getContent()%></td>
+					<td align="left"><%=com.getDate_posted()%></td>
+					<td align="left"><%=com.getTutors_tutorID()%></td>
+				</tr>
+				<%
+					}
+					} else {
+				%>
+
 				<tr>
 					<td>
 						<%
