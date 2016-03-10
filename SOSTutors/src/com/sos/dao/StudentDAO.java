@@ -286,4 +286,39 @@ public class StudentDAO {
 		}
 	}
 	
+	public static List<Student> getAdminStudents() {          
+		ResultSet rs = null;
+		PreparedStatement pst = null; 
+		List<Student> students = new ArrayList<Student>();
+		Student student = null;
+		DBConnector connectionManager = new DBConnector();
+
+		try { 
+			pst = connectionManager.getConnection().prepareStatement("select * from students");
+			rs = pst.executeQuery();
+			if(rs==null) return null;
+			if(rs.next()){
+				rs.beforeFirst();
+				while (rs.next()){	
+					student = new Student(rs.getInt("StudentID"), rs.getString("email"), rs.getString("password"),rs.getString("fname"),rs.getString("lname"),rs.getString("profile"),rs.getString("language"),rs.getDate("date_joined"));
+					students.add(student);
+				}
+			}
+			rs.close();
+			pst.close();
+
+		} catch (SQLException sqlE){
+			sqlE.printStackTrace();
+			return null;	
+		}finally { 
+			try {  
+				rs.close();
+				pst.close();  
+			} catch (SQLException e) {  
+				e.printStackTrace();  
+			}  
+		}  
+		return students;
+	}
+	
 }

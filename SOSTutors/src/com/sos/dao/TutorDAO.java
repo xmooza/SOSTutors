@@ -342,4 +342,40 @@ public class TutorDAO {
 		}
 		return sessions;
 	}
+	
+	public static List<Tutor> getAdminTutors() {          
+		ResultSet rs = null;
+		PreparedStatement pst = null; 
+		List<Tutor> tutors = new ArrayList<Tutor>();
+		Tutor tutor = null;
+		DBConnector connectionManager = new DBConnector();
+
+		try { 
+			pst = connectionManager.getConnection().prepareStatement("select * from tutors");
+			rs = pst.executeQuery();
+			if(rs==null) return null;
+			if(rs.next()){
+				rs.beforeFirst();
+				while (rs.next()){	
+					tutor = new Tutor(rs.getInt("TutorID"), rs.getString("email"), rs.getString("password"),rs.getString("fname"),rs.getString("lname"),rs.getString("profile"),rs.getString("hourly"),rs.getInt("rating"),rs.getDate("date_joined"),rs.getString("image"),rs.getString("college"));
+					tutors.add(tutor);
+				}
+			}
+			rs.close();
+			pst.close();
+
+		} catch (SQLException sqlE){
+			sqlE.printStackTrace();
+			return null;	
+		}finally { 
+			try {  
+				rs.close();
+				pst.close();  
+			} catch (SQLException e) {  
+				e.printStackTrace();  
+			}  
+		}  
+		return tutors;
+	}
+
 }

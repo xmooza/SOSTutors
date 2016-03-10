@@ -91,7 +91,26 @@ public class MessageDAO {
 		return 0;
 	}
 	
-	
+	public static int deleteMessageDB(int id){
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+		try {
+			pst = connectionManager.getConnection().prepareStatement("delete from notifications where NotificationID=?");
+			pst.setInt(1,id);
+			pst.executeUpdate(); 
+			pst.close();
+		}catch ( SQLException sqlE){
+			sqlE.printStackTrace();
+			return -3;
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException sqlE) {
+				sqlE.printStackTrace();
+			}
+		}
+		return 0;
+	}
 	
 	public List<Message> getMessageByRoleAndID(int id, String role) {          
 		ResultSet rs = null;
@@ -141,7 +160,7 @@ public class MessageDAO {
 		return messages;
 	}
 	
-	public List<Message> getAdminMessages() {          
+	public static List<Message> getAdminMessages() {          
 		ResultSet rs = null;
 		PreparedStatement pst = null; 
 		List<Message> messages= new ArrayList<Message>();
