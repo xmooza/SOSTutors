@@ -15,7 +15,7 @@ import com.sos.to.Tutor;
 public class LoginServlet extends HttpServlet{  
     private static final long serialVersionUID = 1L;  
     
-    public void doPost(HttpServletRequest request, HttpServletResponse response){ 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{ 
     	Student s = null;
     	Tutor t = null;
     	       
@@ -52,15 +52,17 @@ public class LoginServlet extends HttpServlet{
         	
         	request.getSession().setAttribute("currentStudent", s);
         	
-        	RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");    
-            
-        	try {
-				rd.forward(request,response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}    
+//        	RequestDispatcher rd=request.getRequestDispatcher("/studentProfile");    
+//            
+//        	try {
+//				rd.forward(request,response);
+//			} catch (ServletException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}    
+        	
+        	response.sendRedirect("studentProfile");
         }
         else if(t != null)
         {   

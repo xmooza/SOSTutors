@@ -44,7 +44,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>YOU LEARN, WE TAKE CARE OF THE REST</h1>
-				<a href="TutorRegistration.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;">Become a Student</a>
+				<a href="LoginRegister.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;">Become a Student</a>
 				&nbsp;
 				&nbsp;
 				<a href="TutorRegistration.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;">Become a Tutor</a>				
@@ -79,7 +79,7 @@
 						class="fa fa-circle fa-stack-2x"></i> <i
 						class="fa fa-user fa-stack-1x fa-inverse"></i>
 					</span>
-					<h2 style="font-weight: bold;">One to One</h2>
+					<h3 style="font-weight: bold;">One to One</h3>
 					<p>Finish assignments, prep for tests and make sense out of the
 						most far-fetched course material with our tutors at your side.
 						Every private tutoring session is tailored to your current
@@ -92,7 +92,7 @@
 						class="fa fa-circle fa-stack-2x"></i> <i
 						class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 					</span>
-					<h2 style="font-weight: bold;">One to Many</h2>
+					<h3 style="font-weight: bold;">One to Many</h3>
 					<p>Private sessions are closed while mini-groups are open
 						sessions that any student taking the course can join. The more who
 						attend, the less it costs for everyone there!</p>
@@ -103,7 +103,7 @@
 						class="fa fa-circle fa-stack-2x"></i> <i
 						class="fa fa-money fa-stack-1x fa-inverse"></i>
 					</span>
-					<h2 style="font-weight: bold;">Senior Discount</h2>
+					<h3 style="font-weight: bold;">Senior Discount</h3>
 					<p>We understand that for many student paying for a tutor might
 						hurt your finances. However every time you get tutored by one of
 						our elite and qualified teachers you can accumulate credit that
@@ -112,8 +112,6 @@
 				</div>
 			</div>
 		</div>
-		<br/>
-		<br/>
 		<br/>
 		<br/>
 		<!-- End container -->
