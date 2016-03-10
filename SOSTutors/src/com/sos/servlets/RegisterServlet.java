@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 				request.getSession().invalidate();
 				request.getSession().setAttribute("currentStudent", s);
 				response.sendRedirect("studentProfile");
-				} else {
+			} else {
 				request.setAttribute("errorMessage", RegisterDAO.error);
 				request.getRequestDispatcher("LoginRegister.jsp").forward(request, response);
 			}

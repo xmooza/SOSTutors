@@ -32,7 +32,6 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		if (s != null) {
-
 			request.getSession().setAttribute("currentStudent", s);
 			response.sendRedirect("studentProfile");
 		} else if (t != null) {

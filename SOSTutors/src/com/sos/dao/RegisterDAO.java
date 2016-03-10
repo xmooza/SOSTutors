@@ -10,14 +10,14 @@ public class RegisterDAO {
 	public static Student validateStudent(String email, String password, String fname, String lname, String profile)
 			throws Exception {
 		Student s = null;
-
+		
 		int errorCode = 0;
-		email = email.trim();
-		password = AES.encrypt(password.trim());
-		fname = fname.trim();
-		lname = lname.trim();
-		profile = profile.trim();
-
+		email = "";
+		password = "";
+		fname = "";
+		lname = "";
+		profile = "";
+		
 		if (email.equals("")) {
 			error = "errorregister.empty";
 			return null;
@@ -42,6 +42,12 @@ public class RegisterDAO {
 			profile = "";
 		}
 
+		email = email.trim();
+		password = AES.encrypt(password.trim());
+		fname = fname.trim();
+		lname = lname.trim();
+		profile = profile.trim();
+
 		errorCode = StudentDAO.addStudentDB(email, password, fname, lname, profile);
 
 		if (errorCode == -1) {
@@ -63,16 +69,6 @@ public class RegisterDAO {
 			String image, String college, String profile) throws Exception {
 		Tutor t = null;
 		int errorCode = 0;
-
-		email = email.trim();
-		password = AES.encrypt(password.trim());
-		fname = fname.trim();
-		lname = lname.trim();
-		hourly = lname.trim();
-		image = image.trim();
-		college = college.trim();
-		profile = profile.trim();
-
 		if (email.equals("")) {
 			error = "errorregister.empty";
 			return null;
@@ -112,7 +108,16 @@ public class RegisterDAO {
 			error = "errorregister.empty";
 			return null;
 		}
-
+		
+		email = email.trim();
+		password = AES.encrypt(password.trim());
+		fname = fname.trim();
+		lname = lname.trim();
+		hourly = lname.trim();
+		image = image.trim();
+		college = college.trim();
+		profile = profile.trim();
+		
 		errorCode = TutorDAO.addTutorDB(email, password, fname, lname, hourly, image, college, profile);
 
 		if (errorCode == -1) {
