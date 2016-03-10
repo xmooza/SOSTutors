@@ -31,9 +31,7 @@
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
 <!-- Initialization -->
-<%
-	session.setAttribute("currentPage", "Contact");
-%>
+<%session.setAttribute("currentPage", "Contact");%>
 </head>
 
 <body>
@@ -67,17 +65,17 @@
 			<br />
 			<form class="form-horizontal" action="contactSend" method="post">
 
-				<h4>Name</h4>
+				<h4><%out.println(lang.getString("name"));%></h4>
 				<input type="text" class="form-control" id="name" name="conUsername">
-				<h4>Email</h4>
+				<h4><%out.println(lang.getString("email"));%></h4>
 				<input type="text" class="form-control" id="email"
 					name="conUseremail">
-				<h4>Message</h4>
+				<h4><%out.println(lang.getString("message"));%></h4>
 				<textarea class="form-control" id="message" rows="10"
 					name="conUsercontent"></textarea>
 				<br> <input type="hidden" name="conUsersubject" value="admin">
 				<button id="searchbtn" class="btn btn-default greenbtn"
-					type="submit" style="margin: auto; width: 30%; float: right">Send</button>
+					type="submit" style="margin: auto; width: 30%; float: right"><%out.println(lang.getString("send"));%></button>
 				<br /> <br />
 			</form>
 			<br />

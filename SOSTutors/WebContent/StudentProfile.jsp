@@ -40,6 +40,7 @@
 
 <body>
 	<!-- HEADER -->
+	<% session.setAttribute("currentPage", "StudentProfile"); %>
 	<%@include file="Header.jsp"%>
 
 	<!-- CONTENT -->

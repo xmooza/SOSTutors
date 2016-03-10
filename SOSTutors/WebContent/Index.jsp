@@ -43,11 +43,11 @@
 		<img class="background-image" src="images/main-wall.jpg">
 		<div class="jumbotron">
 			<div class="container">
-				<h1>YOU LEARN, WE TAKE CARE OF THE REST</h1>
-				<a href="LoginRegister.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;">Become a Student</a>
+				<h1><%out.println(lang.getString("intro1"));%></h1>
+				<a href="LoginRegister.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;"><%out.println(lang.getString("intro2"));%></a>
 				&nbsp;
 				&nbsp;
-				<a href="TutorRegistration.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;">Become a Tutor</a>				
+				<a href="TutorRegistration.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;"><%out.println(lang.getString("intro3"));%></a>				
 			</div>
 		</div>
 		
@@ -59,18 +59,14 @@
 		
 		<div class="container homepage" style="margin-top:-25px;">
 			<!-- <img class="img-circle" ng-src="https://placehold.it/192x192" alt=""src="https://placehold.it/192x192"> -->
-			<h2 style="font-weight: bold;">Who We Are</h2>
+			<h2 style="font-weight: bold;"><%out.println(lang.getString("intro4"));%></h2>
 			<hr>
-			<p style="color: white">Ever since we started this compagny, we only had one thing in
-				mind help student not only people but also Ever since we started
-				this compagny, we only had one thing in mind help student not only
-				people but also .</p>
+			<p style="color: white"><%out.println(lang.getString("intro5"));%></p>
 
 		</div>
 
 		<div class="container homepage">
-			<h2 style="font-weight: bold">Tutoring
-				services</h2>
+			<h2 style="font-weight: bold"><%out.println(lang.getString("intro6"));%></h2>
 			<hr>
 			<div class="row">
 				<div class="col-md-4">
@@ -79,11 +75,8 @@
 						class="fa fa-circle fa-stack-2x"></i> <i
 						class="fa fa-user fa-stack-1x fa-inverse"></i>
 					</span>
-					<h3 style="font-weight: bold;">One to One</h3>
-					<p>Finish assignments, prep for tests and make sense out of the
-						most far-fetched course material with our tutors at your side.
-						Every private tutoring session is tailored to your current
-						academic needs. Solving problems becomes as easy as pie.
+					<h3 style="font-weight: bold;"><%out.println(lang.getString("intro12"));%></h3>
+					<p><%out.println(lang.getString("intro7"));%>
 					</p>
 				</div>
 				<div class="col-md-4">
@@ -92,10 +85,8 @@
 						class="fa fa-circle fa-stack-2x"></i> <i
 						class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 					</span>
-					<h3 style="font-weight: bold;">One to Many</h3>
-					<p>Private sessions are closed while mini-groups are open
-						sessions that any student taking the course can join. The more who
-						attend, the less it costs for everyone there!</p>
+					<h3 style="font-weight: bold;"><%out.println(lang.getString("intro11"));%></h3>
+					<p><%out.println(lang.getString("intro8"));%></p>
 				</div>
 				<div class="col-md-4">
 				<br/>
@@ -103,11 +94,8 @@
 						class="fa fa-circle fa-stack-2x"></i> <i
 						class="fa fa-money fa-stack-1x fa-inverse"></i>
 					</span>
-					<h3 style="font-weight: bold;">Senior Discount</h3>
-					<p>We understand that for many student paying for a tutor might
-						hurt your finances. However every time you get tutored by one of
-						our elite and qualified teachers you can accumulate credit that
-						will eventually get redeem on a free tutoring for you or yourself
+					<h3 style="font-weight: bold;"><%out.println(lang.getString("intro10"));%></h3>
+					<p><%out.println(lang.getString("intro9"));%>
 					</p>
 				</div>
 			</div>
