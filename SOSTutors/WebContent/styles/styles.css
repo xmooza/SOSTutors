@@ -17,6 +17,64 @@ body {
 .blackform {
 	background-color: rgba(33, 33, 33, 0.85);
 }
+/* Home page CSS */
+.homepage {
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.homepage h2, .homepage h3{
+	color: #e74c3c;
+	font-family: "Arvo", courier, serif;
+	text-transform: uppercase;
+
+}
+.homepage h2{
+	font-size: 30px;
+}
+
+.homepage h3 {
+	font-size: 26px;
+}
+
+.homepage p{
+	font-size: 21px;
+	font-weight: 300;
+}
+
+.homepage a{
+	color: #e74c3c;
+}
+
+.jumbotron{
+	text-align: center;
+	background-image: url("images/main-wall.jpg");
+	height: 600px;
+	color: white;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+
+.btn {
+    border: none;
+    border-radius: 3px;
+    padding: 11px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    transition: border 0.2s, color 0.2s, background 0.2s;
+}
+.btn-danger{
+	background-color: #bf2d1d;
+    box-shadow: 0 3px 0 #932316;
+}
+/* End of home page CSS */
 
 .background-image {
 	top: 0;
