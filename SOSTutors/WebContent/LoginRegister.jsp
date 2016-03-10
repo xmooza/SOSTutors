@@ -51,10 +51,9 @@
 			if (request.getAttribute("errorMessage") != null) {
 		%>
 		<div class="container">
-			<div class="alert alert-info">
-				<<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<%=lang.getString(request.getAttribute("errorMessage")
-						.toString())%>
+			<div class="alert alert-danger">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<%=lang.getString(request.getAttribute("errorMessage").toString())%>
 			</div>
 		</div>
 		<%

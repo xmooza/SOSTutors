@@ -1,5 +1,4 @@
 package com.sos.dao;
-import java.sql.SQLException;
 
 import com.sos.to.*;
 
@@ -9,10 +8,7 @@ public class LoginDAO {
 	
     public static Student validateStudent(String email, String password) throws Exception {          
         Student s = null;
-
-        email = email.trim();
-        password =  AES.encrypt(password.trim());
-            
+        
         if(email == ""){
             error = "error.invaliduser";
             return null;
@@ -21,6 +17,9 @@ public class LoginDAO {
         	error = "error.invalidpass";
             return null;
         }
+
+        email = email.trim();
+        password =  AES.encrypt(password.trim());
             
         s = StudentDAO.getStudentDB(email, password);
             
@@ -32,10 +31,7 @@ public class LoginDAO {
     }  
     public static Tutor validateTutor(String email, String password) throws Exception {          
         Tutor t = null;
-
-        email = email.trim();
-        password =  AES.encrypt(password.trim());
-            
+        
         if(email == ""){
             error = "error.invaliduser";
             return null;
@@ -44,6 +40,10 @@ public class LoginDAO {
         	error = "error.invalidpass";
             return null;
         }
+
+        email = email.trim();
+        password =  AES.encrypt(password.trim());
+            
         t = TutorDAO.getTutorDB(email, password);   
         if(t == null){
             error = "error.invalidlogin";

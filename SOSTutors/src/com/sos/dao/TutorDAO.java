@@ -178,7 +178,10 @@ public class TutorDAO {
 			pst.setString(2, password);  
 
 			rs = pst.executeQuery(); 
-			rs.first();
+
+			if (!rs.first()){
+				return null;
+			}
 
 			tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 					rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),

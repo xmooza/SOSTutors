@@ -45,9 +45,12 @@ public class StudentDAO {
 			pst.setString(1, email);  
 			pst.setString(2, password);  
 
-			rs = pst.executeQuery(); 
-			rs.first();
+			rs = pst.executeQuery();	
 
+			if (!rs.first()){
+				return null;
+			}
+			
 			student = new Student(rs.getInt("studentID"), rs.getString("email"), rs.getString("password"), rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("language"), rs.getDate("date_joined"));
 		} catch (SQLException sqlE){
 			sqlE.printStackTrace();
