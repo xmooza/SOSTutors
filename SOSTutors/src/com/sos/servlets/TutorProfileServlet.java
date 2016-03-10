@@ -43,7 +43,7 @@ public class TutorProfileServlet extends HttpServlet {
 
 		try {
 			StudentDAO sdao = new StudentDAO();
-			sdao.updateStudentSessions(tutorID,
+			sdao.updateStudentSession(tutorID,
 					((Student) request.getSession().getAttribute("currentStudent")).getStudentID(), sessionID, 0);
 			response.sendRedirect("tutorProfile?tutorID=" + tutorID);
 		} catch (SQLException e) {

@@ -280,7 +280,7 @@ public class StudentDAO {
 		return studentMessages;
 	}
 
-	public void updateStudentSessions(int tutorID, int studentID, int sessionID, int avail) throws SQLException {
+	public void updateStudentSession(int tutorID, int studentID, int sessionID, int avail) throws SQLException {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
@@ -292,6 +292,24 @@ public class StudentDAO {
 			pst.setInt(2, avail);
 			pst.setInt(3, tutorID);
 			pst.setInt(4, sessionID);
+
+			pst.executeUpdate();
+
+			pst.close();
+		}
+	}
+	
+	public void cancelStudentSession(int studentID, int sessionID, int avail) throws SQLException {
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+
+		try {
+			pst = connectionManager.getConnection().prepareStatement(
+					"UPDATE sessions SET students_studentID=?, booking_available=? WHERE sessionID=?");
+		} finally {
+			pst.setInt(1, studentID);
+			pst.setInt(2, avail);
+			pst.setInt(3, sessionID);
 
 			pst.executeUpdate();
 

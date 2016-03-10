@@ -26,4 +26,17 @@ public class StudentProfileServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int sessionID = Integer.parseInt(request.getParameter("sessionID"));
+
+		try {
+			StudentDAO sdao = new StudentDAO();
+			sdao.cancelStudentSession(0, sessionID, 1);
+			response.sendRedirect("studentProfile");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -40,7 +40,9 @@
 
 <body>
 	<!-- HEADER -->
-	<% session.setAttribute("currentPage", "StudentProfile"); %>
+	<%
+		session.setAttribute("currentPage", "StudentProfile");
+	%>
 	<%@include file="Header.jsp"%>
 
 	<!-- CONTENT -->
@@ -76,21 +78,24 @@
 
 				<div class="col-md-4">
 					<div class="tutorform form col-md-12" style="padding-left: 20px;">
-						<h2 style="font-weight: bold">${currentStudent.fname} ${currentStudent.lname}</h2>
+						<h2 style="font-weight: bold">${currentStudent.fname}
+							${currentStudent.lname}</h2>
 						<br />
 						<h5 style="margin-bottom: 20px;">
-							<i class="fa fa-briefcase fa-lg"></i>&nbsp;&nbsp;<b>Status :</b> Student
+							<i class="fa fa-briefcase fa-lg"></i>&nbsp;&nbsp;<b>Status :</b>
+							Student
 						</h5>
 						<h5 style="margin-bottom: 20px;">
 							<i class="fa fa-envelope fa-lg"></i>&nbsp;&nbsp;<b>Email :</b>
 							${currentStudent.email}
 						</h5>
 						<h5 style="margin-bottom: 20px;">
-							<i class="fa fa-clock-o fa-lg"></i>&nbsp;&nbsp;<b>Date Joined :</b>
-							${currentStudent.email}
+							<i class="fa fa-clock-o fa-lg"></i>&nbsp;&nbsp;<b>Date Joined
+								:</b> ${currentStudent.email}
 						</h5>
 						<h5 style="margin-bottom: 20px;">
-							<i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;Description : ${currentStudent.profile}
+							<i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;Description :
+							${currentStudent.profile}
 						</h5>
 					</div>
 				</div>
@@ -135,7 +140,14 @@
 													</td>-->
 												<td>${session.booking_location}</td>
 												<td>TODO: SQL JOIN</td>
-												<td><a class="btn btn-danger">Cancel</a></td>
+												<td>
+													<form name="cancelSession" action="studentProfile"
+														method="post">
+														<input class="btn btn-danger" type="submit" value="Cancel" />
+														<input type="hidden" name="sessionID"
+															value="${session.sessionID}" />
+													</form>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -174,7 +186,8 @@
 										out.println(lang.getString("fname"));
 									%>
 								</h4>
-								<input type=text name=loginUseremail value="${currentStudent.fname}" maxlength=100
+								<input type=text name=loginUseremail
+									value="${currentStudent.fname}" maxlength=100
 									class="form-control" value="" />
 
 								<h4 style="color: white">
@@ -182,7 +195,8 @@
 										out.println(lang.getString("lname"));
 									%>
 								</h4>
-								<input type=text name=loginUseremail value="${currentStudent.lname}" maxlength=100
+								<input type=text name=loginUseremail
+									value="${currentStudent.lname}" maxlength=100
 									class="form-control" value="" />
 
 								<h4 style="color: white">
@@ -191,7 +205,8 @@
 									%>
 								</h4>
 								<input type=text name=loginUseremail maxlength=100
-									class="form-control" value="${currentStudent.email}" /> <br /> <br />
+									class="form-control" value="${currentStudent.email}" /> <br />
+								<br />
 
 								<h4 style="color: white">Previous Password</h4>
 								<input type=password name=registerUserpassword maxlength=100
@@ -200,8 +215,8 @@
 								<input type=password name=registerUserpassword maxlength=100
 									class="form-control" /> <br /> <br /> <input
 									class="btn btn-default greenbtn buttonPadding" type=submit
-									value="Update Profile"
-									style="float: right; width: 25%;" /> <br /> <br /> <br />
+									value="Update Profile" style="float: right; width: 25%;" /> <br />
+								<br /> <br />
 							</form>
 						</div>
 					</div>
