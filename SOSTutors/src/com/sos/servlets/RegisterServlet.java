@@ -41,8 +41,8 @@ public class RegisterServlet extends HttpServlet {
 			if (s != null) {
 				request.getSession().invalidate();
 				request.getSession().setAttribute("currentStudent", s);
-				request.getRequestDispatcher("Profile.jsp").forward(request, response);
-			} else {
+				response.sendRedirect("studentProfile");
+				} else {
 				request.setAttribute("errorMessage", RegisterDAO.error);
 				request.getRequestDispatcher("LoginRegister.jsp").forward(request, response);
 			}
