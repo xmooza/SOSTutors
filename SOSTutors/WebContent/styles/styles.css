@@ -25,18 +25,17 @@ body {
 	padding-bottom: 30px;
 }
 
-.homepage h2, .homepage h3{
+.homepage h2, .homepage h3 {
 	color: #e74c3c;
 	font-family: 'Roboto', sans-serif;
-	/*font-family: "Arvo", courier, serif;*/
 	text-transform: uppercase;
-
 }
 
 .jumbotron h1 {
 	font-family: 'Roboto', sans-serif;
 }
-.homepage h2{
+
+.homepage h2 {
 	font-size: 30px;
 }
 
@@ -44,14 +43,14 @@ body {
 	font-size: 26px;
 }
 
-.homepage p{
+.homepage p {
 	font-size: 18px;
 	font-family: 'Roboto', sans-serif;
 	color: white;
 	font-weight: 300;
 }
 
-.homepage a{
+.homepage a {
 	color: #e74c3c;
 }
 
@@ -60,30 +59,29 @@ body {
 	margin-top: -25px;
 	text-align: center;
 	height: 600px;
-	color: white; 
+	color: white;
 	padding-top: 150px;
 }
 
-
 .homepage .btn {
-    border: none;
-    border-radius: 3px;
-    padding: 11px 20px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    transition: border 0.2s, color 0.2s, background 0.2s;
+	border: none;
+	border-radius: 3px;
+	padding: 11px 20px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	color: #FFF;
+	font-family: 'Roboto', sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.1rem;
+	transition: border 0.2s, color 0.2s, background 0.2s;
 }
-.homepage .btn-danger{
+
+.homepage .btn-danger {
 	background-color: #bf2d1d;
-    box-shadow: 0 3px 0 #932316;
+	box-shadow: 0 3px 0 #932316;
 }
 /* End of home page CSS */
-
 .background-image {
 	top: 0;
 	left: 0;
@@ -95,14 +93,14 @@ body {
 	min-width: 1024px;
 }
 
-.profileContainer{
+.profileContainer {
 	color: black;
 	border-radius: 5px;
 	padding: 5px 5px 5px 10px;
 	/* background-color: #F44336; */
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	width: 400px;
-	height: 400px; 
+	height: 400px;
 	background-color: #F3F3F3;
 }
 
@@ -120,7 +118,7 @@ table {
 
 .table-responsive {
 	padding: 0px 10px 0px 10px;
-	border:none;
+	border: none;
 }
 
 .table-striped {
@@ -171,6 +169,7 @@ blockquote {
 	background-color: #43A047;
 	border-bottom: 3px solid #388E3C;
 }
+
 .langbtn {
 	color: white;
 	position: absolute;

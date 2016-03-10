@@ -18,6 +18,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!-- Google -->
 <link href='https://fonts.googleapis.com/css?family=Quicksand|Roboto'
@@ -29,13 +31,6 @@
 
 <!-- Custom Styles -->
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
-<link rel="stylesheet" type="text/css" href="styles/fullcalendar.css">
-<link rel="stylesheet" type="text/css"
-	href="styles/fullcalendar.print.css" media="print">
-
-<!-- Custom Script -->
-<script type="text/javascript" src="scripts/fullcalendar.js"></script>
-<script type="text/javascript" src="scripts/gcal.js"></script>
 </head>
 
 <body>
