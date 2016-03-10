@@ -118,11 +118,11 @@
 									<tbody>
 										<c:forEach var="session" items="${sessions}">
 											<tr>
-												<td><fmt:formatDate value="${session.booking_date}"
+												<td><fmt:formatDate value="${session.value.booking_date}"
 														pattern="EEEEE" /></td>
-												<td><fmt:formatDate value="${session.booking_date}"
+												<td><fmt:formatDate value="${session.value.booking_date}"
 														pattern="MMM-dd" /></td>
-												<td><fmt:formatDate value="${session.booking_date}"
+												<td><fmt:formatDate value="${session.value.booking_date}"
 														pattern="h:mm a" /></td>
 												<!--<td>
 														<select name="subject" class="form-control">
@@ -133,14 +133,14 @@
 															<option value="ComputerScience">Computer Science</option>
 														</select>
 													</td>-->
-												<td>${session.booking_location}</td>
-												<td>TODO: SQL JOIN</td>
+												<td>${session.value.booking_location}</td>
+												<td>${session.key}</td>
 												<td>
 													<form name="cancelSession" action="studentProfile"
 														method="post">
 														<input class="btn btn-danger" type="submit" value="Cancel" />
 														<input type="hidden" name="sessionID"
-															value="${session.sessionID}" />
+															value="${session.value.sessionID}" />
 													</form>
 												</td>
 											</tr>

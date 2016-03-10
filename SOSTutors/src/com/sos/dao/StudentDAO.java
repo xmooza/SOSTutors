@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.sos.to.Comment;
@@ -157,16 +158,17 @@ public class StudentDAO {
 		return 0;
 	}
 
-	public List<Session> getStudentSessions(int studentID) throws SQLException {
+	public HashMap<String, Session> getStudentSessions(int studentID) throws SQLException {
 		ResultSet rs = null;
 		PreparedStatement pst = null;
-		ArrayList<Session> studentSessions = new ArrayList<Session>();
+		String tutorInfo = "";
+		HashMap<String, Session> studentSessions = new HashMap<String, Session>();
 		Session session = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"select * from sessions s" + " where s.students_studentID = ?" + " order by s.booking_date desc");
+					"SELECT * FROM sessions s LEFT JOIN tutors ON  s.tutors_tutorID = tutorID where s.students_studentID = ?" + " order by s.booking_date desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
@@ -179,7 +181,8 @@ public class StudentDAO {
 							rs.getBoolean("booking_available"), rs.getTimestamp("booking_date"),
 							rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
 							rs.getInt("categories_categoryID"), rs.getInt("students_studentID"));
-					studentSessions.add(session);
+					tutorInfo = rs.getString("fname") + " " + rs.getString("lname");
+					studentSessions.put(tutorInfo, session);
 				}
 			}
 			rs.close();
@@ -298,7 +301,7 @@ public class StudentDAO {
 			pst.close();
 		}
 	}
-	
+
 	public void cancelStudentSession(int studentID, int sessionID, int avail) throws SQLException {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
