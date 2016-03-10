@@ -19,6 +19,7 @@ body {
 }
 /* Home page CSS */
 .homepage {
+	margin-top: 50px;
 	text-align: center;
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -26,9 +27,14 @@ body {
 
 .homepage h2, .homepage h3{
 	color: #e74c3c;
-	font-family: "Arvo", courier, serif;
+	font-family: 'Roboto', sans-serif;
+	/*font-family: "Arvo", courier, serif;*/
 	text-transform: uppercase;
 
+}
+
+.jumbotron h1 {
+	font-family: 'Roboto', sans-serif;
 }
 .homepage h2{
 	font-size: 30px;
@@ -39,7 +45,9 @@ body {
 }
 
 .homepage p{
-	font-size: 21px;
+	font-size: 18px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
 	font-weight: 300;
 }
 
@@ -47,21 +55,21 @@ body {
 	color: #e74c3c;
 }
 
-.jumbotron{
+.jumbotron {
+	background-color: transparent;
+	margin-top: -25px;
 	text-align: center;
-	background-image: url("images/main-wall.jpg");
 	height: 600px;
-	color: white;
-	padding-top: 30px;
-	padding-bottom: 30px;
+	color: white; 
+	padding-top: 150px;
 }
 
 
-.btn {
+.homepage .btn {
     border: none;
     border-radius: 3px;
     padding: 11px 20px;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 10px;
     color: #FFF;
     font-family: 'Roboto', sans-serif;
@@ -70,7 +78,7 @@ body {
     letter-spacing: 0.1rem;
     transition: border 0.2s, color 0.2s, background 0.2s;
 }
-.btn-danger{
+.homepage .btn-danger{
 	background-color: #bf2d1d;
     box-shadow: 0 3px 0 #932316;
 }
@@ -138,6 +146,11 @@ blockquote {
 /* BUTTON IDs and CLASSES */
 .fullwidthbtn {
 	width: 100%;
+}
+
+.redbtn {
+	border: none;
+	background-color: #F44336;
 }
 
 .whitebtn {
@@ -224,6 +237,11 @@ blockquote {
 	background-color: transparent;
 	border: none;
 	border-radius: 0px;
+}
+
+.navbar li input {
+	width: 100%;
+	text-align: left;
 }
 
 .navbar-collapse {

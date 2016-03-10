@@ -76,7 +76,7 @@
 				<textarea class="form-control" id="message" rows="10"
 					name="conUsercontent"></textarea>
 				<br> <input type="hidden" name="conUsersubject" value="admin">
-				<button id="searchbtn" class="btn btn-default greenbtn btn-lg"
+				<button id="searchbtn" class="btn btn-default greenbtn"
 					type="submit" style="margin: auto; width: 30%; float: right">Send</button>
 				<br /> <br />
 			</form>
