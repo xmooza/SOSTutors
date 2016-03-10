@@ -12,20 +12,23 @@ import com.sos.to.Session;
 import com.sos.to.Student;
 
 public class StudentDAO {
-	
+
 	public List<Student> list() throws SQLException {
 		Student student;
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		List<Student> students = new ArrayList<Student>();
 		DBConnector connectionManager = new DBConnector();
-		
+
 		try {
-			pst = connectionManager.getConnection().prepareStatement("SELECT tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM STUDENTS");
+			pst = connectionManager.getConnection().prepareStatement(
+					"SELECT tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM STUDENTS");
 			rs = pst.executeQuery();
 		} finally {
-			while(rs.next()){
-				student = new Student(rs.getInt("studentID"), rs.getString("email"), rs.getString("password"), rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("language"), rs.getDate("date_joined"));
+			while (rs.next()) {
+				student = new Student(rs.getInt("studentID"), rs.getString("email"), rs.getString("password"),
+						rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("language"),
+						rs.getDate("date_joined"));
 				students.add(student);
 			}
 			rs.close();
@@ -33,26 +36,29 @@ public class StudentDAO {
 		}
 		return students;
 	}
-	
-	public static Student getStudentDB(String email, String password){
+
+	public static Student getStudentDB(String email, String password) {
 		Student student = null;
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager.getConnection().prepareStatement("select * from students where email=? and password=?");
-			pst.setString(1, email);  
-			pst.setString(2, password);  
+			pst = connectionManager.getConnection()
+					.prepareStatement("select * from students where email=? and password=?");
+			pst.setString(1, email);
+			pst.setString(2, password);
 
-			rs = pst.executeQuery();	
+			rs = pst.executeQuery();
 
-			if (!rs.first()){
+			if (!rs.first()) {
 				return null;
 			}
-			
-			student = new Student(rs.getInt("studentID"), rs.getString("email"), rs.getString("password"), rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("language"), rs.getDate("date_joined"));
-		} catch (SQLException sqlE){
+
+			student = new Student(rs.getInt("studentID"), rs.getString("email"), rs.getString("password"),
+					rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("language"),
+					rs.getDate("date_joined"));
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return null;
 		} finally {
@@ -66,8 +72,8 @@ public class StudentDAO {
 		}
 		return student;
 	}
-	
-	public Student getStudentFromDatabaseById(int StudentId){
+
+	public Student getStudentFromDatabaseById(int StudentId) {
 		Student s = null;
 		ResultSet rs = null;
 		PreparedStatement pst = null;
@@ -75,17 +81,19 @@ public class StudentDAO {
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement("select * from Students where StudentID=?");
-			pst.setInt(1, StudentId);  
+			pst.setInt(1, StudentId);
 			rs = pst.executeQuery();
-			
-			if (rs == null){
+
+			if (rs == null) {
 				return s;
 			}
-			
+
 			rs.first();
-			
-			s = new Student(rs.getInt("StudentID"), rs.getString("email"), rs.getString("password"),rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),rs.getString("language"),rs.getDate("date_joined"));
-		} catch (SQLException sqlE){
+
+			s = new Student(rs.getInt("StudentID"), rs.getString("email"), rs.getString("password"),
+					rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("language"),
+					rs.getDate("date_joined"));
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return null;
 		} finally {
@@ -98,22 +106,22 @@ public class StudentDAO {
 		}
 		return s;
 	}
-	
 
-	public static int addStudentDB(String email, String password, String fname, String lname, String profile){
+	public static int addStudentDB(String email, String password, String fname, String lname, String profile) {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager.getConnection().prepareStatement("insert into students(email, password, fname, lname, profile, date_joined) values(?,?,?,?,?,curdate())");
-			pst.setString(1,email);
+			pst = connectionManager.getConnection().prepareStatement(
+					"insert into students(email, password, fname, lname, profile, date_joined) values(?,?,?,?,?,curdate())");
+			pst.setString(1, email);
 			pst.setString(2, password);
 			pst.setString(3, fname);
 			pst.setString(4, lname);
 			pst.setString(5, profile);
-			pst.executeUpdate(); 
+			pst.executeUpdate();
 			pst.close();
-		}catch ( SQLException sqlE){
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return -3;
 		} finally {
@@ -130,46 +138,46 @@ public class StudentDAO {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
-		try
-		{
-			pst = connectionManager.getConnection().prepareStatement("update students set email=?, password=? where studentID=?"); 
+		try {
+			pst = connectionManager.getConnection()
+					.prepareStatement("update students set email=?, password=? where studentID=?");
 			pst.setString(1, newEmail);
-			pst.setString(2, newPass); 
-			pst.setString(3, Integer.toString(studentID));	        
+			pst.setString(2, newPass);
+			pst.setString(3, Integer.toString(studentID));
 		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return -2;
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		finally {   
-			try {  
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
 		return 0;
 	}
-	
+
 	public List<Session> getStudentSessions(int studentID) throws SQLException {
 		ResultSet rs = null;
-		PreparedStatement pst = null; 
-		ArrayList<Session> studentSessions= new ArrayList<Session>();
+		PreparedStatement pst = null;
+		ArrayList<Session> studentSessions = new ArrayList<Session>();
 		Session session = null;
 		DBConnector connectionManager = new DBConnector();
 
-		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from sessions s"
-					+ " where s.students_studentID = ?"
-					+ " order by s.booking_date desc");
+		try {
+			pst = connectionManager.getConnection().prepareStatement(
+					"select * from sessions s" + " where s.students_studentID = ?" + " order by s.booking_date desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
-			if(rs==null) return null;
-			if(rs.next()){
+			if (rs == null)
+				return null;
+			if (rs.next()) {
 				rs.beforeFirst();
-				while (rs.next()){						
-					session = new Session(rs.getInt("sessionID"), rs.getString("subject"), rs.getBoolean("booking_available"),
-							rs.getTimestamp("booking_date"), rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
+				while (rs.next()) {
+					session = new Session(rs.getInt("sessionID"), rs.getString("subject"),
+							rs.getBoolean("booking_available"), rs.getTimestamp("booking_date"),
+							rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
 							rs.getInt("categories_categoryID"), rs.getInt("students_studentID"));
 					studentSessions.add(session);
 				}
@@ -177,148 +185,156 @@ public class StudentDAO {
 			rs.close();
 			pst.close();
 
-		} catch (SQLException sqlE){
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
+			return null;
+		} finally {
+			try {
 				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return studentSessions;
 	}
-	
-	public List<Comment> getStudentComments(int studentID) {          
+
+	public List<Comment> getStudentComments(int studentID) {
 		ResultSet rs = null;
-		PreparedStatement pst = null; 
-		List<Comment> studentComments= new ArrayList<Comment>();
+		PreparedStatement pst = null;
+		List<Comment> studentComments = new ArrayList<Comment>();
 		Comment comment = null;
 		DBConnector connectionManager = new DBConnector();
 
-		try { 
-			pst = connectionManager.getConnection().prepareStatement("select * from comments c"
-					+ " where c.students_studentID = ?"
-					+ " order by c.date_posted desc");
+		try {
+			pst = connectionManager.getConnection().prepareStatement(
+					"select * from comments c" + " where c.students_studentID = ?" + " order by c.date_posted desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
-			if(rs==null) return null;
-			if(rs.next()){
+			if (rs == null)
+				return null;
+			if (rs.next()) {
 				rs.beforeFirst();
-				while (rs.next()){	
-					comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"));
+				while (rs.next()) {
+					comment = new Comment(rs.getInt("commentID"), rs.getString("subject"), rs.getString("content"),
+							rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"));
 					studentComments.add(comment);
 				}
 			}
 			rs.close();
 			pst.close();
 
-		} catch (SQLException sqlE){
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
+			return null;
+		} finally {
+			try {
 				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return studentComments;
 	}
-	public List<Message> getStudentMessages(int studentID) {          
+
+	public List<Message> getStudentMessages(int studentID) {
 		ResultSet rs = null;
-		PreparedStatement pst = null; 
+		PreparedStatement pst = null;
 		List<Message> studentMessages = new ArrayList<Message>();
 		Message Message = null;
 		DBConnector connectionManager = new DBConnector();
 
-		try { 
+		try {
 			pst = connectionManager.getConnection().prepareStatement("select * from notifications n"
-					+ " where n.students_studentID = ?"
-					+ " order by n.date_posted desc");
+					+ " where n.students_studentID = ?" + " order by n.date_posted desc");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
-			if(rs==null) return null;
-			if(rs.next()){
+			if (rs == null)
+				return null;
+			if (rs.next()) {
 				rs.beforeFirst();
-				while (rs.next()){	
-					Message = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),rs.getDate("date_posted"), rs.getInt("tutors_tutorID"),rs.getInt("students_studentID"),rs.getInt("sessions_sessionID"));
+				while (rs.next()) {
+					Message = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),
+							rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"),
+							rs.getInt("sessions_sessionID"));
 					studentMessages.add(Message);
 				}
 			}
 			rs.close();
 			pst.close();
 
-		} catch (SQLException sqlE){
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
+			return null;
+		} finally {
+			try {
 				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return studentMessages;
 	}
 
 	public void updateStudentSessions(int tutorID, int studentID, int sessionID, int avail) throws SQLException {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
-		
+
 		try {
-			pst = connectionManager.getConnection().prepareStatement("UPDATE sessions SET students_studentID=?, booking_available=? WHERE tutors_tutorID=? AND sessionID=?");
+			pst = connectionManager.getConnection().prepareStatement(
+					"UPDATE sessions SET students_studentID=?, booking_available=? WHERE tutors_tutorID=? AND sessionID=?");
 		} finally {
 			pst.setInt(1, studentID);
 			pst.setInt(2, avail);
 			pst.setInt(3, tutorID);
 			pst.setInt(4, sessionID);
-			
+
 			pst.executeUpdate();
-			
+
 			pst.close();
 		}
 	}
-	
-	public static List<Student> getAdminStudents() {          
+
+	public static List<Student> getAdminStudents() {
 		ResultSet rs = null;
-		PreparedStatement pst = null; 
+		PreparedStatement pst = null;
 		List<Student> students = new ArrayList<Student>();
 		Student student = null;
 		DBConnector connectionManager = new DBConnector();
 
-		try { 
+		try {
 			pst = connectionManager.getConnection().prepareStatement("select * from students");
 			rs = pst.executeQuery();
-			if(rs==null) return null;
-			if(rs.next()){
+			if (rs == null)
+				return null;
+			if (rs.next()) {
 				rs.beforeFirst();
-				while (rs.next()){	
-					student = new Student(rs.getInt("StudentID"), rs.getString("email"), rs.getString("password"),rs.getString("fname"),rs.getString("lname"),rs.getString("profile"),rs.getString("language"),rs.getDate("date_joined"));
+				while (rs.next()) {
+					student = new Student(rs.getInt("StudentID"), rs.getString("email"), rs.getString("password"),
+							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
+							rs.getString("language"), rs.getDate("date_joined"));
 					students.add(student);
 				}
 			}
 			rs.close();
 			pst.close();
 
-		} catch (SQLException sqlE){
+		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
-			return null;	
-		}finally { 
-			try {  
+			return null;
+		} finally {
+			try {
 				rs.close();
-				pst.close();  
-			} catch (SQLException e) {  
-				e.printStackTrace();  
-			}  
-		}  
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return students;
 	}
-	
+
 }
