@@ -90,7 +90,7 @@
 											<c:forEach var="session" items="${sessions}">
 												<tr>
 													<td><fmt:formatDate value="${session.booking_date}" pattern="EEEEE"/></td>
-													<td><fmt:formatDate value="${session.booking_date}" pattern="MMMMM-dd"/></td>
+													<td><fmt:formatDate value="${session.booking_date}" pattern="MMM-dd"/></td>
 													<td><fmt:formatDate value="${session.booking_date}" pattern="h:mm a"/></td>
 													<!--<td>
 														<select name="subject" class="form-control">
@@ -103,14 +103,14 @@
 													</td>-->
 													<td>${session.booking_location}</td>
 													<td>
-														<form>
+														<form name="selectSession" action="tutorProfile" method="post">
 															<c:if test="${currentStudent == null}">
-																<input class="btn btn-default greenbtn" type="submit"
-																	value="Select" disabled />
+																<input class="btn btn-default greenbtn" type="submit" value="Select" disabled />
 															</c:if>
 															<c:if test="${currentStudent != null}">
-																<input class="btn btn-default greenbtn" type="submit"
-																	value="Select" />
+																<input class="btn btn-default greenbtn" type="submit" value="Select" />
+																<input type="hidden" name="sessionID" value="${session.sessionID}" />
+																<input type="hidden" name="tutorID"	value="${tutor.tutorID}" />
 															</c:if>
 														</form>
 													</td>
