@@ -89,7 +89,7 @@
 							${currentStudent.email}
 						</h5>
 						<h5 style="margin-bottom: 20px;">
-							<i class="fa fa-pencil fa-lg"></i></i>&nbsp;&nbsp;Description : ${currentStudent.profile}
+							<i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;Description : ${currentStudent.profile}
 						</h5>
 					</div>
 				</div>
