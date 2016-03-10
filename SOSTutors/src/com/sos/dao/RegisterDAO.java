@@ -12,11 +12,6 @@ public class RegisterDAO {
 		Student s = null;
 		
 		int errorCode = 0;
-		email = "";
-		password = "";
-		fname = "";
-		lname = "";
-		profile = "";
 		
 		if (email.equals("")) {
 			error = "errorregister.empty";
