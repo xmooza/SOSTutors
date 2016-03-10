@@ -86,7 +86,7 @@
 						</h5>
 						<h5 style="margin-bottom: 20px;">
 							<i class="fa fa-clock-o fa-lg"></i>&nbsp;&nbsp;<b>Date Joined
-								:</b> ${currentStudent.booking_date}
+								:</b> ${currentStudent.date_joined}
 						</h5>
 						<h5 style="margin-bottom: 20px;">
 							<i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;Description :
