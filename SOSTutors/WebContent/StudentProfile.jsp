@@ -33,6 +33,11 @@
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 
+<!-- Stylesheets etc -->
+	<link rel="stylesheet" type="text/css" href="styles/jquery-ui-1.9.2.custom.css" />
+	<link rel="stylesheet" type="text/css" href="styles/fullcalendar.css" />
+	<link rel="stylesheet" type="text/css" href="styles/view_calendar.css" />
+	<link rel="stylesheet" type="text/css" href="styles/jquery.miniColors.css" />
 <body>
 	<!-- HEADER -->
 	<%
@@ -165,7 +170,36 @@
 						<c:if
 							test="${calendarEntries.size() < 1 || calendarEntries == null}">
 							<br />
-							<h5 style="text-align: center; color: white">Coming Soon...</h5>
+							<!-- Calendar div -->
+							<div id="calendar">
+							</div>
+				
+							<!-- Event generation -->
+							<div id="event_generation_wrapper">
+								<div class='left'>
+									<div class='text'>Background:</div><br /> 	
+									<div class='text'>Border:</div><br />
+									<div class='text'>Text:</div><br />	
+								</div>
+								<div class='right'>
+									<input id="txt_background_color" type='hidden' class='color_picker' value='#2795C3' /><br />
+									<input id="txt_border_color" type='hidden' class='color_picker' value='#6AB3D3' /><br />
+									<input id="txt_text_color" type='hidden' class='color_picker' value='#ffffff' /><br />
+								</div>
+								<input id='txt_title' type='text' value='Title' /><br />
+								<textarea id='txt_description'>Description</textarea><br />
+								<input id='txt_price' type='text' value='5.00' /><br />
+								<input id='txt_available' type='text' value='5' /><br />
+								<input id="btn_gen_event" type="button" value="New Template" class='btn' />
+								<input id="btn_update_event" type="button" value="Update Event" class='btn'/>
+								<input id="txt_current_event" type="hidden" value="" />
+							</div>
+				
+							<!-- Booking types list -->
+							<div id='external_events'>
+								<div id='external_event_template' class='external-event ui-draggable'>One Hour</div>
+							</div>
+							<!-- <h5 style="text-align: center; color: white">Coming Soon...</h5> -->
 							<br />
 						</c:if>
 					</div>
@@ -220,6 +254,13 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Include scripts at bottom to aid dom loading and prevent hangs -->
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+	<script type='text/javascript' src='js/jquery-ui-1.9.2.custom.min.js'></script>
+	<script type='text/javascript' src='js/fullcalendar.js'></script>
+	<script type='text/javascript' src='js/view_calendar.js'></script>
+	<script type='text/javascript' src='js/jquery.miniColors.js'></script>
 </body>
 
 </html>
