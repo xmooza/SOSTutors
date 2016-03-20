@@ -146,14 +146,13 @@
 						<div class="titlebar">
 							<h4>Calendar</h4>
 						</div>
-						<c:if
-							test="${calendarEntries.size() < 1 || calendarEntries == null}">
+						<c:if test="${calendarEntries.size() < 1 || calendarEntries == null}">
 							<br />
 							<!-- Calendar div -->
 							<div id="calendar"></div>
 
 							<!-- Event generation -->
-							<div id="event_generation_wrapper">
+							<!--<div id="event_generation_wrapper">
 								<div class='left'>
 									<div class='text'>Background:</div>
 									<br />
@@ -177,15 +176,15 @@
 									class='btn' /> <input id="btn_update_event" type="button"
 									value="Update Event" class='btn' /> <input
 									id="txt_current_event" type="hidden" value="" />
-							</div>
+							</div>-->
 
 							<!-- Booking types list -->
-							<div id='external_events'>
+							<!-- <div id='external_events'>
 								<div id='external_event_template'
 									class='external-event ui-draggable'>One Hour</div>
 							</div>
-							<!-- <h5 style="text-align: center; color: white">Coming Soon...</h5> -->
-							<br />
+							<h5 style="text-align: center; color: white">Coming Soon...</h5>
+							<br /> -->
 						</c:if>
 					</div>
 
@@ -246,7 +245,6 @@
 	<script type='text/javascript' src='js/jquery-ui-1.9.2.custom.min.js'></script>
 	<script type='text/javascript' src='js/fullcalendar.js'></script>
 	<script type='text/javascript' src='js/view_calendar.js'></script>
-	<script type='text/javascript' src='js/jquery.miniColors.js'></script>
 </body>
 
 </html>
