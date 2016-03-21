@@ -106,7 +106,8 @@ function initialise_color_pickers(){
 
 /* Initialises calendar */
 function initialise_calendar(){
-
+    var jsonData = $.parseJSON(document.getElementById("calendarEvents").value);
+	
 	//Initialise calendar
 	$('#calendar').fullCalendar({
 		theme: true,
@@ -114,31 +115,19 @@ function initialise_calendar(){
 		header: {
 			left: 'today prev,next',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
+			right: 'month,agendaWeek'
 		},
-		defaultView: 'agendaWeek',
-		minTime: '6:00am',
-		maxTime: '6:00pm',
+		defaultView: 'month',
 		allDaySlot: false,
 		columnFormat: {
 			month: 'ddd',
 			week: 'ddd dd/MM',
 			day: 'dddd M/d'
 		},
-		eventSources: [
-			{
-				url: 'calendar_events.json',
-				editable: false
-			}
-		],
-		droppable: true,
-		drop: function(date, all_day){
-			external_event_dropped(date, all_day, this);
-		},
-		eventClick: function(cal_event, js_event, view){
-			calendar_event_clicked(cal_event, js_event, view);
-		},
-		editable: true
+        events: jsonData,
+        eventRender: function(event, element) {
+            element.attr('title', event.title + element.start);
+        }
 	});	
 
 	//Initialise external events
