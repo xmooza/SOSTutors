@@ -238,6 +238,10 @@ blockquote {
 	border-radius: 0px;
 }
 
+.navbar li {
+	max-height: 75px;
+}
+
 .navbar li input {
 	width: 100%;
 	text-align: left;

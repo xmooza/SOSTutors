@@ -158,17 +158,17 @@ public class StudentDAO {
 		return 0;
 	}
 
-	public HashMap<String, Session> getStudentSessions(int studentID) throws SQLException {
+	public HashMap<Session, String> getStudentSessions(int studentID) throws SQLException {
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		String tutorInfo = "";
-		HashMap<String, Session> studentSessions = new HashMap<String, Session>();
+		HashMap<Session, String> studentSessions = new HashMap<Session, String>();
 		Session session = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"SELECT * FROM sessions s LEFT JOIN tutors ON  s.tutors_tutorID = tutorID where s.students_studentID = ?" + " order by s.booking_date desc");
+					"SELECT * FROM sessions s LEFT JOIN tutors ON  s.tutors_tutorID = tutorID where s.students_studentID = ?");
 
 			pst.setInt(1, studentID);
 			rs = pst.executeQuery();
@@ -182,7 +182,7 @@ public class StudentDAO {
 							rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
 							rs.getInt("categories_categoryID"), rs.getInt("students_studentID"));
 					tutorInfo = rs.getString("fname") + " " + rs.getString("lname");
-					studentSessions.put(tutorInfo, session);
+					studentSessions.put(session, tutorInfo);
 				}
 			}
 			rs.close();

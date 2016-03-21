@@ -43,19 +43,14 @@
 				<li><a href="${pageContext.request.contextPath}/Contact.jsp">Contact</a></li>
 				<li><a href="${pageContext.request.contextPath}/tutorSearch">Tutor
 						Search</a></li>
-				<%
-					if (session.getAttribute("currentStudent") != null) {
-				%>
-				<li><a id="userbtn"
-					href="${pageContext.request.contextPath}/studentProfile"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
+				<% if (session.getAttribute("currentStudent") != null) { %>
+				<li><a id="userbtn"	href="${pageContext.request.contextPath}/studentProfile"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
 				<li>
 					<form action="logoutServlet" method="post">
-						<input id="userbtn" type="submit" value="Logout" />
+						<input id="userbtn" type="submit" value="Logout"/>
 					</form>
 				</li>
-				<%
-					} else if (session.getAttribute("currentTutor") != null) {
-				%>
+				<% } else if (session.getAttribute("currentTutor") != null) { %>
 				<li><a id="userbtn"
 					href="${pageContext.request.contextPath}/TutorProfile.jsp?tutorID=<%=((Tutor) session.getAttribute("currentTutor")).getTutorID()%>"><%=((Tutor) session.getAttribute("currentTutor")).getFname()%></a></li>
 				<li>
@@ -63,15 +58,11 @@
 						<input id="userbtn" type="submit" value="Logout" />
 					</form>
 				</li>
-				<%
-					} else {
-				%>
+				<% } else { %>
 				<li><a
 					href="${pageContext.request.contextPath}/LoginRegister.jsp">Login
 						/ Register</a></li>
-				<%
-					}
-				%>
+				<% } %>
 			</ul>
 		</div>
 	</div>

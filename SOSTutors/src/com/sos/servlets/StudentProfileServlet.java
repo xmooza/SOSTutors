@@ -26,7 +26,7 @@ public class StudentProfileServlet extends HttpServlet {
 		Iterator it;
 		StudentDAO dao = new StudentDAO();
 		ArrayList<Calendar> calendarEvents = new ArrayList<Calendar>();
-		HashMap<String, Session> temp = new HashMap<String, Session>();
+		HashMap<Session, String> temp = new HashMap<Session, String>();
 		Student s = (Student) request.getSession().getAttribute("currentStudent");
 
 		try {
@@ -36,7 +36,7 @@ public class StudentProfileServlet extends HttpServlet {
 			while (it.hasNext()) {
 				@SuppressWarnings("rawtypes")
 				Map.Entry me = (Map.Entry) it.next();
-				Session c = (Session) me.getValue();
+				Session c = (Session) me.getKey();
 				calendarEvents.add(new Calendar("Session", false, c.getBooking_date(), c.getBooking_date()));
 			}
 			

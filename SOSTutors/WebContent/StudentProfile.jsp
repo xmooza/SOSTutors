@@ -103,11 +103,11 @@
 										<c:forEach var="session" items="${sessions}">
 											<tr>
 												<td><fmt:formatDate
-														value="${session.value.booking_date}" pattern="EEEEE" /></td>
+														value="${session.key.booking_date}" pattern="EEEEE" /></td>
 												<td><fmt:formatDate
-														value="${session.value.booking_date}" pattern="MMM-dd" /></td>
+														value="${session.key.booking_date}" pattern="MMM-dd" /></td>
 												<td><fmt:formatDate
-														value="${session.value.booking_date}" pattern="h:mm a" /></td>
+														value="${session.key.booking_date}" pattern="h:mm a" /></td>
 												<!--<td>
 														<select name="subject" class="form-control">
 															<option value="Mathematics">Mathematics</option>
@@ -117,14 +117,14 @@
 															<option value="ComputerScience">Computer Science</option>
 														</select>
 													</td>-->
-												<td>${session.value.booking_location}</td>
-												<td>${session.key}</td>
+												<td>${session.key.booking_location}</td>
+												<td>${session.value}</td>
 												<td>
 													<form name="cancelSession" action="studentProfile"
 														method="post">
 														<input class="btn btn-danger" type="submit" value="Cancel" />
 														<input type="hidden" name="sessionID"
-															value="${session.value.sessionID}" />
+															value="${session.key.sessionID}" />
 													</form>
 												</td>
 											</tr>
