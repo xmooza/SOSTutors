@@ -4,7 +4,7 @@
 	pageEncoding="ISO-8859-1"
 	import="java.util.List, java.util.ArrayList, com.sos.dao.MessageDAO,com.sos.dao.StudentDAO,com.sos.dao.TutorDAO, com.sos.to.Message, com.sos.to.Tutor, com.sos.to.Student"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -84,7 +84,7 @@ ${message}<br>
 			<div class="titlebar">
 				<h4>Messages</h4>
 			</div>
-			<table border=5 width="100%">
+			<table style="width: 100%">
 				<tr>
 					<td>To</td>
 					<td>Message</td>
@@ -118,7 +118,7 @@ ${message}<br>
 			<div class="titlebar">
 				<h4>Tutors</h4>
 			</div>
-			<table border=5 width="100%">
+			<table style="width: 100%">
 				<tr>
 					<td>Name</td>
 					<td>Email</td>
@@ -155,7 +155,7 @@ ${message}<br>
 			<div class="titlebar">
 				<h4>Students</h4>
 			</div>
-			<table border=5 width="100%">
+			<table style="width: 100%">
 				<tr>
 					<td>Name</td>
 					<td>Email</td>

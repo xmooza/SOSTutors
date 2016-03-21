@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -48,7 +48,7 @@
 		%>
 		<div class="container">
 			<div class="alert alert-info">
-				<<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<%=lang.getString(request.getAttribute("errorMessage")
 						.toString())%>
 			</div>
