@@ -44,10 +44,8 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1><%out.println(lang.getString("intro1"));%></h1>
-				<a href="LoginRegister.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;"><%out.println(lang.getString("intro2"));%></a>
-				&nbsp;
-				&nbsp;
-				<a href="TutorRegistration.jsp" class="btn btn-danger redbtn btn-lg" style="margin-top: 100px;"><%out.println(lang.getString("intro3"));%></a>				
+				<br/>
+				<a href="LoginRegister.jsp" class="btn btn-danger btn-lg" style="margin-top: 100px;"><%=lang.getString("intro2")%></a>			
 			</div>
 		</div>
 		
@@ -100,6 +98,7 @@
 				</div>
 			</div>
 		</div>
+		<br/>
 		<br/>
 		<br/>
 		<!-- End container -->

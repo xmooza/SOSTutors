@@ -70,6 +70,7 @@
 				<!-- INFO -->
 				<div class="col-sm-6 col-md-6"
 					style="padding: 50px 25px 25px 25px; color: white; text-align: center;">
+					<br />
 					<p>
 						<%
 							out.println(lang.getString("intro1"));

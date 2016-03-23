@@ -57,11 +57,14 @@
 			}
 		%>
 		<!--Error and Messages End -->
+		
 		<div
 			class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form blackform"
 			style="text-align: left; color: white; margin-top: 25px; margin-bottom: 50px;">
 			<br />
 			<h1 style="font-family: 'Quicksand'; text-align: center">Contact</h1>
+			<br />
+			<p style="text-align: center">If you would like to get in contact with us regarding the services that we provide or our team feel free to leave us a message here. We will get back to you as soon as we can, cheers.</p>
 			<br />
 			<form class="form-horizontal" action="contactSend" method="post">
 
