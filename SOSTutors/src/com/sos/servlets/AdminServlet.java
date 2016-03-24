@@ -53,6 +53,10 @@ public class AdminServlet extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("stuid").trim());
 			v = StudentDAO.deleteStudentDB(id);
 		}
+		if(request.getParameter("sesid")!=null){
+			id = Integer.parseInt(request.getParameter("sesid").trim());
+			v = AdminDAO.deleteCategoryDB(id);
+		}
 		if(request.getParameter("catid")!=null){
 			id = Integer.parseInt(request.getParameter("catid").trim());
 			v = AdminDAO.deleteCategoryDB(id);

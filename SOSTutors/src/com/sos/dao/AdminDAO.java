@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sos.to.Category;
+import com.sos.to.Session;
 
 public class AdminDAO {
 
@@ -131,6 +132,74 @@ public class AdminDAO {
 		try {
 			pst = connectionManager.getConnection()
 					.prepareStatement("delete from categories where categoryID=?");
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException sqlE) {
+			sqlE.printStackTrace();
+			return -3;
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException sqlE) {
+				sqlE.printStackTrace();
+			}
+		}
+		return 0;
+	}
+	
+	public static List<Session> getSessionsDB() {
+		
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		List<Session> sessions = new ArrayList<Session>();
+		Session session = null;
+		DBConnector connectionManager = new DBConnector();
+
+		try {
+			pst = connectionManager.getConnection().prepareStatement(
+					"select * from sessions");
+			rs = pst.executeQuery();
+			if (rs == null)
+				return null;
+			if (rs.next()) {
+				rs.beforeFirst();
+				while (rs.next()) {
+					session = new Session(
+							rs.getInt("sessionID"),
+							rs.getString("subject"),
+							rs.getBoolean("booking_available"),
+							rs.getTimestamp("booking_date"),
+							rs.getString("booking_location"),
+							rs.getInt("tutors_tutorID"),
+							rs.getInt("categories_categoryID"),
+							rs.getInt("students_studentID"));
+					sessions.add(session);
+				}
+			}
+			rs.close();
+			pst.close();
+
+		} catch (SQLException sqlE) {
+			sqlE.printStackTrace();
+			return null;
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return sessions;
+	}
+
+	public static int deleteSessionDB(int id) {
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+		try {
+			pst = connectionManager.getConnection()
+					.prepareStatement("delete from sessions where sessionID=?");
 			pst.setInt(1, id);
 			pst.executeUpdate();
 			pst.close();

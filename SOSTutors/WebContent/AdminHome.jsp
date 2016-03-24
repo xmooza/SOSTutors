@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="java.util.List, java.util.ArrayList, com.sos.dao.AdminDAO, com.sos.dao.MessageDAO,com.sos.dao.StudentDAO,com.sos.dao.TutorDAO, com.sos.to.Message, com.sos.to.Tutor, com.sos.to.Student, com.sos.to.Category"%>
+	import="java.util.List, java.util.ArrayList, com.sos.dao.AdminDAO, com.sos.dao.MessageDAO,com.sos.dao.StudentDAO,com.sos.dao.TutorDAO, com.sos.to.Message, com.sos.to.Tutor, com.sos.to.Student, com.sos.to.Category, com.sos.to.Session"%>
 <!DOCTYPE html>
 <HTML>
 <HEAD>
@@ -40,6 +40,9 @@
 	
 	List<Student> adminStudents= new ArrayList<Student>();
 	adminStudents = StudentDAO.getAdminStudents();
+	
+	List<Session> adminSessions = new ArrayList<Session>();
+	adminSessions = AdminDAO.getSessionsDB();
 	
 	List<Category> adminCategories= new ArrayList<Category>();
 	adminCategories = AdminDAO.getCategoriesDB();
@@ -88,23 +91,24 @@
 
 		<div class="tabbable">
 			<ul class="tabs">
-				<li><a href="#tab1">Messages</a></li>
-				<li><a href="#tab2">Tutors</a></li>
-				<li><a href="#tab3">Students</a></li>
-				<li><a href="#tab4">Subjects</a></li>
+				<li><a href="#tab1"><B>Messages</B></a></li>
+				<li><a href="#tab2"><B>Tutors</B></a></li>
+				<li><a href="#tab3"><B>Students</B></a></li>
+				<li><a href="#tab4"><B>Sessions</B></a></li>
+				<li><a href="#tab5"><B>Subjects</B></a></li>
 			</ul>
 			<div class="tabcontent">
 				<div id="tab1" class="tab">
 					<DIV CLASS="titlebar">
 						<H4>Messages</H4>
 					</DIV>
-					<TABLE STYLE="width: 100%">
+					<TABLE STYLE="width: 100%" BORDER="1">
 						<TR>
-							<TD>To</TD>
-							<TD>Message</TD>
-							<TD>Date Posted</TD>
-							<TD>Delete</TD>
-							<TD>Reply</TD>
+							<TD><B>To</B></TD>
+							<TD><B>Message</B></TD>
+							<TD><B>Date Posted</B></TD>
+							<TD><B>Delete</B></TD>
+							<TD><B>Reply</B></TD>
 						</TR>
 						<%
 							if (adminMessages.size() > 0) {
@@ -135,15 +139,15 @@
 					<DIV CLASS="titlebar">
 						<H4>Tutors</H4>
 					</DIV>
-					<TABLE STYLE="width: 100%">
+					<TABLE STYLE="width: 100%" BORDER="1">
 						<TR>
-							<TD>Name</TD>
-							<TD>Email</TD>
-							<TD>College</TD>
-							<TD>Rating</TD>
-							<TD>Date Joined</TD>
-							<TD>Delete</TD>
-							<TD>Edit</TD>
+							<TD><B>Name</B></TD>
+							<TD><B>Email</B></TD>
+							<TD><B>College</B></TD>
+							<TD><B>Rating</B></TD>
+							<TD><B>Date Joined</B></TD>
+							<TD><B>Delete</B></TD>
+							<TD><B>Edit</B></TD>
 						</TR>
 						<%
 							if (adminTutors.size() > 0) {
@@ -151,10 +155,10 @@
 						%>
 						<TR>
 							<TD ALIGN="left"><%=tut.getLname()%>, <%=tut.getFname()%></TD>
-							<TD ALIGN="left"><%=tut.getEmail()%></TD>
+							<TD ALIGN="left"><a href=mailto:<%=tut.getEmail()%>><%=tut.getEmail()%></a></TD>
 							<TD ALIGN="left"><%=tut.getCollege()%></TD>
-							<TD ALIGN="left"><%=tut.getRating()%></TD>
-							<TD ALIGN="left"><%=tut.getDate_joined()%></TD>
+							<TD><%=tut.getRating()%></TD>
+							<TD><%=tut.getDate_joined()%></TD>
 							<TD><A HREF="adminServlet?tutid=<%=tut.getTutorID()%>"
 								ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
 							<TD><A HREF="adminEdit?tutid=">Edit</A></TD>
@@ -177,13 +181,13 @@
 					<DIV CLASS="titlebar">
 						<H4>Students</H4>
 					</DIV>
-					<TABLE STYLE="width: 100%">
+					<TABLE STYLE="width: 100%" BORDER="1">
 						<TR>
-							<TD>Name</TD>
-							<TD>Email</TD>
-							<TD>Date Joined</TD>
-							<TD>Delete</TD>
-							<TD>Edit</TD>
+							<TD><B>Name</B></TD>
+							<TD><B>Email</B></TD>
+							<TD><B>Date Joined</B></TD>
+							<TD><B>Delete</B></TD>
+							<TD><B>Edit</B></TD>
 						</TR>
 						<%
 							if (adminStudents.size() > 0) {
@@ -191,8 +195,8 @@
 						%>
 						<TR>
 							<TD ALIGN="left"><%=st.getLname()%>, <%=st.getFname()%></TD>
-							<TD ALIGN="left"><%=st.getEmail()%></TD>
-							<TD ALIGN="left"><%=st.getDate_joined()%></TD>
+							<TD ALIGN="left"><a href=mailto:<%=st.getEmail()%>><%=st.getEmail()%></a></TD>
+							<TD><%=st.getDate_joined()%></TD>
 							<TD><A HREF="adminServlet?stuid=<%=st.getStudentID()%>"
 								ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
 							<TD><A HREF="adminEdit?stuid=">Edit</A></TD>
@@ -210,18 +214,55 @@
 						%>
 					</TABLE>
 				</DIV>
-
+				
 				<div id="tab4" class="tab">
+					<DIV CLASS="titlebar">
+						<H4>Sessions</H4>
+					</DIV>
+					<TABLE STYLE="width: 100%" BORDER="1">
+						<TR>
+							<TD><B>Subject</B></TD>
+							<TD><B>Booked</B></TD>
+							<TD><B>Date</B></TD>
+							<TD><B>Delete</B></TD>
+						</TR>
+						<%
+							if (adminSessions.size() > 0) {
+								for (Session ses : adminSessions) {
+						%>
+						<TR>
+							<TD ALIGN="left"><%=ses.getSubject()%></TD>
+							<TD><%=ses.isBooking_available()%></TD>
+							<TD><%=ses.getBooking_date()%></TD>
+							<TD><A HREF="adminServlet?sesid=<%=ses.getSessionID()%>" ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
+						</TR>
+
+						<%
+							}
+							} else {
+						%>
+						<TR>
+							<TD>No Categories!</TD>
+						</TR>
+						<%
+							}
+						%>
+					</TABLE>
+					<BR/>
+				</DIV>
+				
+
+				<div id="tab5" class="tab">
 					<DIV CLASS="titlebar">
 						<H4>Categories</H4>
 					</DIV>
-					<TABLE STYLE="width: 100%">
+					<TABLE STYLE="width: 100%" BORDER="1">
 						<TR>
-							<TD>Subject</TD>
-							<TD>Description</TD>
-							<TD>Language</TD>
-							<TD>Delete</TD>
-							<TD>Edit</TD>
+							<TD><B>Subject</B></TD>
+							<TD><B>Description</B></TD>
+							<TD><B>Language</B></TD>
+							<TD><B>Delete</B></TD>
+							<TD><B>Edit</B></TD>
 						</TR>
 						<%
 							if (adminCategories.size() > 0) {
@@ -230,7 +271,7 @@
 						<TR>
 							<TD ALIGN="left"><%=cat.getSubjectEN()%><%=cat.getSubjectFR()%></TD>
 							<TD ALIGN="left"><%=cat.getDescriptionEN()%><%=cat.getDescriptionFR()%></TD>
-							<TD ALIGN="left"><%=cat.getLanguage()%></TD>
+							<TD><%=cat.getLanguage()%></TD>
 							<TD><A HREF="adminServlet?catid=<%=cat.getCategoryID()%>"
 								ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
 							<TD><A HREF="adminEdit?catid=">Edit</A></TD>
@@ -265,6 +306,7 @@
 					</form>
 					<br />
 				</DIV>
+				
 			</DIV>
 		</DIV>
 	</DIV>
