@@ -62,11 +62,11 @@ public class AdminDAO {
 		String descriptionEN = "";
 		String descriptionFR = "";
 		
-		if (language.contains("english")) {
+		if (language.contains("English")) {
 			subjectEN = subject;
 			descriptionEN = description;
 			
-		} else if (language.contains("french")) {
+		} else if (language.contains("French")) {
 			subjectFR = subject;
 			descriptionFR = description; 
 		}
