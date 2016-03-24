@@ -135,16 +135,19 @@ public class StudentDAO {
 		return 0;
 	}
 
-	public static int updateStudentDB(String role, String newEmail, String newPass, int studentID) {
+	public static int updateStudentDB(int studentID, String email, String password, String fname, String lname, String profile) {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
 			pst = connectionManager.getConnection()
-					.prepareStatement("update students set email=?, password=? where studentID=?");
-			pst.setString(1, newEmail);
-			pst.setString(2, newPass);
-			pst.setString(3, Integer.toString(studentID));
+					.prepareStatement("update students set email=?, password=?, fname=?, lname=?, profile=? where studentID=?");
+			pst.setString(1, email);
+			pst.setString(2, password);
+			pst.setString(3, fname);
+			pst.setString(4, lname);
+			pst.setString(5, profile);
+			pst.setString(6, Integer.toString(studentID));
 		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return -2;

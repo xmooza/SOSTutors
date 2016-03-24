@@ -50,7 +50,7 @@
 
 <!-- Custom Styles -->
 <TITLE>SOSTutors - Admin Home's</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="styles/styles.css">
+
 <SCRIPT TYPE="text/javascript">
 	$(document).ready(function() {
 		$(".tabbable").find(".tab").hide();
@@ -161,7 +161,7 @@
 							<TD><%=tut.getDate_joined()%></TD>
 							<TD><A HREF="adminServlet?tutid=<%=tut.getTutorID()%>"
 								ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
-							<TD><A HREF="adminEdit?tutid=">Edit</A></TD>
+							<TD><A HREF="editServlet?tutid=<%=tut.getTutorID()%>">Edit</A></TD>
 						</TR>
 
 						<%
@@ -199,7 +199,7 @@
 							<TD><%=st.getDate_joined()%></TD>
 							<TD><A HREF="adminServlet?stuid=<%=st.getStudentID()%>"
 								ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
-							<TD><A HREF="adminEdit?stuid=">Edit</A></TD>
+							<TD><A HREF="editServlet?stuid=<%=st.getStudentID()%>">Edit</A></TD>
 						</TR>
 
 						<%
