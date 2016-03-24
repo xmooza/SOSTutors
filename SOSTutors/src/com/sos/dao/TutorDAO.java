@@ -393,5 +393,27 @@ public class TutorDAO {
 		}
 		return tutors;
 	}
+	
+	public static int deleteTutorDB(int id) {
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+		try {
+			pst = connectionManager.getConnection()
+					.prepareStatement("delete from tutors where TutorID=?");
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException sqlE) {
+			sqlE.printStackTrace();
+			return -3;
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException sqlE) {
+				sqlE.printStackTrace();
+			}
+		}
+		return 0;
+	}
 
 }

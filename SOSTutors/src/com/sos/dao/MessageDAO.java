@@ -21,11 +21,11 @@ public class MessageDAO {
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"select NotificationID, subject, content, date_posted, tutors_tutorID, students_studentID, sessions_sessionID from notifications");
+					"select notificationID, subject, content, date_posted, tutors_tutorID, students_studentID, sessions_sessionID from notifications");
 			rs = pst.executeQuery();
 		} finally {
 			while (rs.next()) {
-				message = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),
+				message = new Message(rs.getInt("notificationID"), rs.getString("subject"), rs.getString("content"),
 						rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"),
 						rs.getInt("sessions_sessionID"));
 				messages.add(message);
@@ -44,7 +44,7 @@ public class MessageDAO {
 
 		try {
 			pst = connectionManager.getConnection()
-					.prepareStatement("select * from notifications where NotificationID=?");
+					.prepareStatement("select * from notifications where notificationID=?");
 			pst.setInt(1, MessageId);
 			rs = pst.executeQuery();
 
@@ -54,7 +54,7 @@ public class MessageDAO {
 
 			rs.first();
 
-			m = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),
+			m = new Message(rs.getInt("notificationID"), rs.getString("subject"), rs.getString("content"),
 					rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"),
 					rs.getInt("sessions_sessionID"));
 		} catch (SQLException sqlE) {
@@ -103,7 +103,7 @@ public class MessageDAO {
 		DBConnector connectionManager = new DBConnector();
 		try {
 			pst = connectionManager.getConnection()
-					.prepareStatement("delete from notifications where NotificationID=?");
+					.prepareStatement("delete from notifications where notificationID=?");
 			pst.setInt(1, id);
 			pst.executeUpdate();
 			pst.close();
@@ -143,7 +143,7 @@ public class MessageDAO {
 			if (rs.next()) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					message = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),
+					message = new Message(rs.getInt("notificationID"), rs.getString("subject"), rs.getString("content"),
 							rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"),
 							rs.getInt("sessions_sessionID"));
 					messages.add(message);
@@ -183,7 +183,7 @@ public class MessageDAO {
 			if (rs.next()) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					message = new Message(rs.getInt("NotificationID"), rs.getString("subject"), rs.getString("content"),
+					message = new Message(rs.getInt("notificationID"), rs.getString("subject"), rs.getString("content"),
 							rs.getDate("date_posted"), rs.getInt("tutors_tutorID"), rs.getInt("students_studentID"),
 							rs.getInt("sessions_sessionID"));
 					messages.add(message);

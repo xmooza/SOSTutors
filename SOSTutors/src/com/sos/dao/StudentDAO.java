@@ -357,5 +357,27 @@ public class StudentDAO {
 		}
 		return students;
 	}
+	
+	public static int deleteStudentDB(int id) {
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+		try {
+			pst = connectionManager.getConnection()
+					.prepareStatement("delete from students where StudentID=?");
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException sqlE) {
+			sqlE.printStackTrace();
+			return -3;
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException sqlE) {
+				sqlE.printStackTrace();
+			}
+		}
+		return 0;
+	}
 
 }

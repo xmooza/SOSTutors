@@ -31,12 +31,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>adminDelete</servlet-name>
+		<servlet-name>adminServlet</servlet-name>
 		<servlet-class>com.sos.servlets.AdminServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>adminDelete</servlet-name>
-		<url-pattern>/adminDelete</url-pattern>
+		<servlet-name>adminServlet</servlet-name>
+		<url-pattern>/adminServlet</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
