@@ -1,14 +1,13 @@
 package com.sos.servlets;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sos.dao.RegisterDAO;
+import com.sos.dao.AES;
 import com.sos.dao.TutorDAO;
 import com.sos.dao.StudentDAO;
 import com.sos.to.Tutor;
@@ -54,7 +53,7 @@ public class EditServlet extends HttpServlet {
 			}
 		}
 	}
-
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = "";
 		String password = "";
@@ -76,7 +75,12 @@ public class EditServlet extends HttpServlet {
 		if (role.contains("student")) {
 			id = Integer.parseInt(request.getParameter("editStudentid"));
 			email = request.getParameter("editStudentemail");
-			password = request.getParameter("editStudentpassword");
+			try {
+				password = AES.encrypt((request.getParameter("editStudentpassword")));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			fname = request.getParameter("editStudentfname");
 			lname = request.getParameter("editStudentlname");
 			profile = request.getParameter("editStudentprofile");
@@ -85,7 +89,12 @@ public class EditServlet extends HttpServlet {
 		if (role.contains("tutor")) {
 			id = Integer.parseInt(request.getParameter("editTutorid"));
 			email = request.getParameter("editTutoremail");
-			password = request.getParameter("editTutorpassword");
+			try {
+				password = AES.encrypt((request.getParameter("editTutorpassword")));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			fname = request.getParameter("editTutorfname");
 			lname = request.getParameter("editTutorlname");
 			profile = request.getParameter("editTutorprofile");

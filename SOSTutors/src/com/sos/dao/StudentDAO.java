@@ -147,7 +147,9 @@ public class StudentDAO {
 			pst.setString(3, fname);
 			pst.setString(4, lname);
 			pst.setString(5, profile);
-			pst.setString(6, Integer.toString(studentID));
+			pst.setInt(6, studentID);
+			pst.executeUpdate();
+			pst.close();
 		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return -2;

@@ -324,6 +324,8 @@ public class TutorDAO {
 			pst.setString(8, image);
 			pst.setString(9, college);
 			pst.setInt(10, studentID);
+			pst.executeUpdate();
+			pst.close();
 		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return -2;
