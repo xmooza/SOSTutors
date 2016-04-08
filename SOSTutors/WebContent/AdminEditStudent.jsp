@@ -85,7 +85,7 @@
 						<div class="col-md-6">
 							<h4>Password</h4>
 							<input type=password name=editStudentpassword maxlength=100
-								value="" class="form-control" />
+								value="${student.password}" class="form-control" />
 						</div>
 						<div class="col-md-12">
 							<h4>Description</h4>

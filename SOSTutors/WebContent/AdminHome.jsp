@@ -108,7 +108,6 @@
 							<TD><B>Message</B></TD>
 							<TD><B>Date Posted</B></TD>
 							<TD><B>Delete</B></TD>
-							<TD><B>Reply</B></TD>
 						</TR>
 						<%
 							if (adminMessages.size() > 0) {
@@ -121,7 +120,6 @@
 							<TD><A
 								HREF="adminServlet?msgid=<%=com.getNotificationID()%>"
 								ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
-							<TD><A HREF="adminReply?msgid=<%=com.getNotificationID()%>">Reply</A></TD>
 						</TR>
 						<%
 							}
