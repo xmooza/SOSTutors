@@ -38,11 +38,10 @@
 		<div class="collapse navbar-collapse" id="header-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a
-					href="${pageContext.request.contextPath}/Index.jsp">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/About.jsp">About</a></li>
-				<li><a href="${pageContext.request.contextPath}/Contact.jsp">Contact</a></li>
-				<li><a href="${pageContext.request.contextPath}/tutorSearch">Tutor
-						Search</a></li>
+					href="${pageContext.request.contextPath}/Index.jsp"><%out.println(lang.getString("home"));%></a></li>
+				<li><a href="${pageContext.request.contextPath}/About.jsp"><%out.println(lang.getString("about"));%></a></li>
+				<li><a href="${pageContext.request.contextPath}/Contact.jsp"><%out.println(lang.getString("contact"));%></a></li>
+				<li><a href="${pageContext.request.contextPath}/tutorSearch"><%out.println(lang.getString("tutorsearch"));%></a></li>
 				<% if (session.getAttribute("currentStudent") != null) { %>
 				<li><a id="userbtn"	href="${pageContext.request.contextPath}/studentProfile"><%=((Student) session.getAttribute("currentStudent")).getFname()%></a></li>
 				<li>
@@ -60,8 +59,7 @@
 				</li>
 				<% } else { %>
 				<li><a
-					href="${pageContext.request.contextPath}/LoginRegister.jsp">Login
-						/ Register</a></li>
+					href="${pageContext.request.contextPath}/LoginRegister.jsp"><%out.println(lang.getString("logreg"));%></a></li>
 				<% } %>
 			</ul>
 		</div>
