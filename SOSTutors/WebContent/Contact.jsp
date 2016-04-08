@@ -64,7 +64,7 @@
 			<br />
 			<h1 style="font-family: 'Quicksand'; text-align: center">Contact</h1>
 			<br />
-			<p style="text-align: center">If you would like to get in contact with us regarding the services that we provide or our team feel free to leave us a message here. We will get back to you as soon as we can, cheers.</p>
+			<p style="text-align: center"><%out.println(lang.getString("intro"));%></p>
 			<br />
 			<form class="form-horizontal" action="contactSend" method="post">
 

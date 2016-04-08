@@ -85,7 +85,7 @@
 						<div class="col-md-6">
 							<h4>Password</h4>
 							<input type=password name=editTutorpassword maxlength=100
-								value="" class="form-control" />
+								value="${tutor.password}" class="form-control" />
 						</div>
 						<div class="col-md-12">
 							<h4>Description</h4>
@@ -95,25 +95,25 @@
 
 						<div class="col-md-12">
 							<h4>Hourly</h4>
-							<input type=text name=editTutoremail maxlength=100
+							<input type=text name=editTutorhourly maxlength=100
 								class="form-control" value="${tutor.hourly}" />
 						</div>
 
 						<div class="col-md-12">
 							<h4>Rating</h4>
-							<input type=text name=editTutoremail maxlength=100
+							<input type=text name=editTutorrating maxlength=100
 								class="form-control" value="${tutor.rating}" />
 						</div>
 
 						<div class="col-md-12">
 							<h4>Image</h4>
-							<input type=text name=editTutoremail maxlength=100
+							<input type=text name=editTutorimage maxlength=100
 								class="form-control" value="${tutor.image}" />
 						</div>
 
 						<div class="col-md-12">
 							<h4>College</h4>
-							<input type=text name=editTutoremail maxlength=100
+							<input type=text name=editTutorcollege maxlength=100
 								class="form-control" value="${tutor.college}" />
 						</div>
 						<div class="col-md-12">
