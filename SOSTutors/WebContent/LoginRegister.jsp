@@ -122,15 +122,17 @@
 				<div class="col-sm-12 col-md-12"
 					style="padding: 25px; color: white;">
 					<div class="titlebar">
-						<h4>
-							<%
-								out.println(lang.getString("register"));
-							%>
-						</h4>
+						<%-- <h4><%out.println(lang.getString("register"));%></h4> --%>
+						<h4>Register as Student</h4>
 					</div>
 					<br />
 					<form name="LoginForm" action="registerServlet" method="post">
-
+						<div class="col-md-12">
+							<p>Here you can register as a student and have isntant access
+								to scheduling and attending tutoring sessions with any of the
+								large number of tutors we currently have working to help you be
+								a better student!</p>
+						</div>
 						<div class="col-md-6">
 							<h4>
 								<%
@@ -180,6 +182,7 @@
 						</div>
 						-->
 						<div class="col-md-12">
+							<br />
 							<h4>Description</h4>
 							<textarea class="form-control" id="description" rows="5"
 								name=registerUserprofile></textarea>
@@ -187,13 +190,155 @@
 
 						<div class="col-md-12">
 							<input type="hidden" name="registerUserrole" value="student">
-							<input class="btn btn-default greenbtn" type=submit
-								value="<%out.println(lang.getString("register"));%>"
+							<br /> <input class="btn btn-default greenbtn" type=submit
+								value="Register Student"
 								style="float: right; width: 30%; margin-top: 25px" />
 						</div>
-						<br />
 					</form>
+				</div>
 
+				<!-- REGISTER -->
+				<div class="col-sm-12 col-md-12"
+					style="padding: 25px; color: white;">
+					<div class="titlebar">
+						<%-- <h4><%out.println(lang.getString("register"));%></h4> --%>
+						<h4>Register as Tutor</h4>
+					</div>
+					<br />
+					<form name="LoginForm" action="registerServlet" method="post">
+						<%-- 
+						<div class="col-sm-4">
+							<img ng-src="https://placehold.it/192x192" alt=""
+								src="https://placehold.it/192x192">
+						</div>
+					
+						<div class="col-sm-8">
+							<h4>Your Photo</h4>
+							<p>Make a first good impression, the better your photo the
+								more bookings you will receive. The best photos are professional
+								looking headshots, not full-body shots.In other words, just your
+								shoulders and up ideally. And make sure it’s just you in the
+								photo. Think about which photo you would want to send in to get
+								a job interview that is what we need.</p>
+							<input class="btn btn-default greenbtn" type=submit value="<% out.println(lang.getString("register")); %>" 
+		                    style="float: right; width: 30%; margin-top: 25px"/>
+							<input class="btn btn-default greenbtn" type="file" name="file"
+								value="Upload image"
+								style="float: right; width: 30%; margin-top: 25px" /> <br>
+						</div>
+ --%>
+						<div class="col-md-12">
+							<p>Here you can apply to be a tutor in our system. If you are
+								accepted you will receive an email with login details when your
+								credentials are checked and verified. Once this is done you will
+								be able to join the community and begin tutoring students to
+								reach their full potential!</p>
+						</div>
+						<div class="col-md-6">
+							<h4>
+								<%
+									out.println(lang.getString("fname"));
+								%>
+							</h4>
+							<input type=text name=registerUserfname value="" maxlength=100
+								class="form-control" value="" />
+						</div>
+
+						<div class="col-md-6">
+							<h4>
+								<%
+									out.println(lang.getString("email"));
+								%>
+							</h4>
+							<input type=text name=registerUseremail value="" maxlength=100
+								class="form-control" value="" />
+						</div>
+
+						<div class="col-md-6">
+							<h4>
+								<%
+									out.println(lang.getString("lname"));
+								%>
+							</h4>
+							<input type=text name=registerUserlname value="" maxlength=100
+								class="form-control" value="" />
+						</div>
+
+						<div class="col-md-6">
+							<h4>
+								<%
+									out.println(lang.getString("password"));
+								%>
+							</h4>
+							<input type=password name=registerUserpassword maxlength=100
+								class="form-control" />
+						</div>
+
+						<div class="col-md-6">
+							<h4>
+								<%-- <%
+									out.println(lang.getString("email"));
+								%> --%>
+								Hourly Rate
+							</h4>
+							<input type=text name=registerUserhourly value="" maxlength=100
+								class="form-control" value="" />
+						</div>
+						<div class="col-md-6">
+							<h4>
+								<%-- <%
+									out.println(lang.getString("email"));
+								%> --%>
+								Reference 1
+							</h4>
+							<input type=text name=registerUserhourly value="" maxlength=100
+								class="form-control" value="" />
+						</div>
+
+						<div class="col-md-6">
+							<h4>
+								<%-- <%
+									out.println(lang.getString("password"));
+								%> --%>
+								College
+							</h4>
+							<input type=text name=registerUsercollege maxlength=100
+								class="form-control" />
+						</div>
+						<div class="col-md-6">
+							<h4>
+								<%-- <%
+									out.println(lang.getString("email"));
+								%> --%>
+								Reference 2
+							</h4>
+							<input type=text name=registerUserhourly value="" maxlength=100
+								class="form-control" value="" />
+						</div>
+						<div class="col-md-12">
+							<br />
+							<h4>About me</h4>
+							<textarea name=registerUserprofile class="form-control"
+								id="description" rows="8"></textarea>
+						</div>
+						<div class="col-md-12">
+							<input type="hidden" name="registerUserrole" value="student">
+							<br /> <input class="btn btn-default greenbtn" type=submit
+								value="Register Tutor"
+								style="float: right; width: 30%; margin-top: 25px" />
+						</div>
+
+						<!-- <div class="col-md-4 col-md-offset-6"">
+							<div class="btn-group" role="group" aria-label="...">
+								<button type="button" class="btn btn-default">1</button>
+								<button type="button" class="btn btn-default">2</button>
+								<button type="button" class="btn btn-default">3</button>
+								<button type="button" class="btn btn-default">...</button>
+							</div>
+						</div> -->
+
+
+					</form>
 				</div>
 
 			</div>
