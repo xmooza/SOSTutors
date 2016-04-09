@@ -11,7 +11,14 @@
 		<servlet-name>tutorProfile</servlet-name>
 		<url-pattern>/tutorProfile</url-pattern>
 	</servlet-mapping>
-	
+		<servlet>
+		<servlet-name>tutorUserProfile</servlet-name>
+		<servlet-class>com.sos.servlets.TutorUserProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tutorUserProfile</servlet-name>
+		<url-pattern>/tutorUserProfile</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>contactSend</servlet-name>
 		<servlet-class>com.sos.servlets.ContactServlet</servlet-class>

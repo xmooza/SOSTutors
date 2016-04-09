@@ -412,37 +412,48 @@ public class TutorDAO {
 		return tutor;
 	}
 
-	public List<Session> getTutorSessions(int tutorID) throws SQLException {
-		Session session;
+	public HashMap<Session, String> getTutorSessions(int tutorID) throws SQLException {
 		ResultSet rs = null;
 		PreparedStatement pst = null;
-		List<Session> sessions = new ArrayList<Session>();
+		String studentInfo = "";
+		HashMap<Session, String> studentSessions = new HashMap<Session, String>();
+		Session session = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
-			pst = connectionManager
-					.getConnection()
-					.prepareStatement(
-							"SELECT sessionID, subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID FROM sessions WHERE tutors_tutorID=? AND booking_available=1");
+			pst = connectionManager.getConnection().prepareStatement(
+					"SELECT * FROM sessions s LEFT JOIN students ON  s.students_studentID = studentID where s.tutors_tutorID = ?");
+
 			pst.setInt(1, tutorID);
 			rs = pst.executeQuery();
-		} finally {
-			if (rs == null) {
-				return sessions;
+			if (rs == null)
+				return null;
+			if (rs.next()) {
+				rs.beforeFirst();
+				while (rs.next()) {
+					session = new Session(rs.getInt("sessionID"), rs.getString("subject"),
+							rs.getBoolean("booking_available"), rs.getTimestamp("booking_date"),
+							rs.getString("booking_location"), rs.getInt("tutors_tutorID"),
+							rs.getInt("categories_categoryID"), rs.getInt("students_studentID"));
+					studentInfo = rs.getString("fname") + " " + rs.getString("lname");
+					studentSessions.put(session, studentInfo);
+				}
 			}
-			while (rs.next()) {
-				session = new Session(rs.getInt("sessionID"),
-						rs.getString("subject"),
-						rs.getBoolean("booking_available"),
-						rs.getTimestamp("booking_date"),
-						rs.getString("booking_location"),
-						rs.getInt("tutors_tutorID"),
-						rs.getInt("categories_categoryID"),
-						rs.getInt("students_studentID"));
-				sessions.add(session);
+			rs.close();
+			pst.close();
+
+		} catch (SQLException sqlE) {
+			sqlE.printStackTrace();
+			return null;
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
-		return sessions;
+		return studentSessions;
 	}
 
 	public static List<Tutor> getAdminTutors() {

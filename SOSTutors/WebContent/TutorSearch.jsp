@@ -96,7 +96,7 @@
 		                            <p>${ tutor.profile }</p>
 		                        </div>
 								<div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
-									<c:if test="${currentStudent!=null}">
+									<c:if test="${currentStudent!=null || currentTutor!=null}">
 										<a class="btn btn-default fullwidthbtn whitebtn" type="button" href="tutorProfile?tutorID=${tutor.tutorID}">More Info</a>
 									</c:if>
 								</div>

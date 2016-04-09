@@ -51,7 +51,7 @@
 				</li>
 				<% } else if (session.getAttribute("currentTutor") != null) { %>
 				<li><a id="userbtn"
-					href="${pageContext.request.contextPath}/TutorProfile.jsp?tutorID=<%=((Tutor) session.getAttribute("currentTutor")).getTutorID()%>"><%=((Tutor) session.getAttribute("currentTutor")).getFname()%></a></li>
+					href="${pageContext.request.contextPath}/tutorUserProfile?tutorID=<%=((Tutor) session.getAttribute("currentTutor")).getTutorID()%>"><%=((Tutor) session.getAttribute("currentTutor")).getFname()%></a></li>
 				<li>
 					<form action="logoutServlet" method="post">
 						<input id="userbtn" type="submit" value="Logout" />

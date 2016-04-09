@@ -37,14 +37,7 @@ public class LoginServlet extends HttpServlet {
 		} else if (t != null) {
 			request.getSession().invalidate();
 			request.getSession().setAttribute("currentTutor", t);
-			RequestDispatcher rd = request.getRequestDispatcher("TutorProfile.jsp");
-			try {
-				rd.forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			response.sendRedirect("tutorUserProfile");
 		} else {
 			request.setAttribute("errorMessage", LoginDAO.error);
 			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
