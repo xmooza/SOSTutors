@@ -164,7 +164,7 @@
 										out.println(lang.getString("fname"));
 									%>
 								</h4>
-								<input type=text name=loginUseremail
+								<input type=text name=editStudentFname
 									value="${currentStudent.fname}" maxlength=100
 									class="form-control" value="" />
 
@@ -173,7 +173,7 @@
 										out.println(lang.getString("lname"));
 									%>
 								</h4>
-								<input type=text name=loginUseremail
+								<input type=text name=editStudentLname
 									value="${currentStudent.lname}" maxlength=100
 									class="form-control" value="" />
 
@@ -182,18 +182,26 @@
 										out.println(lang.getString("email"));
 									%>
 								</h4>
-								<input type=text name=loginUseremail maxlength=100
-									class="form-control" value="${currentStudent.email}" /> <br />
+								<input type=text name=editStudentEmail maxlength=100
+									class="form-control" value="${currentStudent.email}" /> 
+									
+								<h4 style="color: white">Description</h4>
+								<textarea class="form-control" id="description" rows="5"
+								name=editStudentprofile>${currentStudent.profile}</textarea>
+								<br />
 								<br />
 
 								<h4 style="color: white">Previous Password</h4>
-								<input type=password name=registerUserpassword maxlength=100
+								<input type=password name=editStudentPassword maxlength=100
 									class="form-control" />
 								<h4 style="color: white">New Password</h4>
-								<input type=password name=registerUserpassword maxlength=100
-									class="form-control" /> <br /> <br /> <input
-									class="btn btn-default greenbtn buttonPadding" type=submit
-									value="Update Profile" style="float: right; width: 25%;" /> <br />
+								<input type=password name=editNewPassword maxlength=100
+									class="form-control" /> <br /> <br /> 
+									
+								<input type="hidden" name="editStudentRole" value="student">
+								<br /> <input class="btn btn-default greenbtn buttonPadding" type=submit
+								value="Update Profile"
+								style="float: right; width: 30%; margin-top: 25px" />
 								<br /> <br />
 							</form>
 						</div>
