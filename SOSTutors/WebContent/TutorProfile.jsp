@@ -89,9 +89,9 @@
 		                                <tbody>             
 											<c:forEach var="session" items="${sessions}">
 												<tr>
-													<td><fmt:formatDate value="${session.booking_date}" pattern="EEEEE"/></td>
-													<td><fmt:formatDate value="${session.booking_date}" pattern="MMM-dd"/></td>
-													<td><fmt:formatDate value="${session.booking_date}" pattern="h:mm a"/></td>
+													<td><fmt:formatDate value="${session.key.booking_date}" pattern="EEEEE"/></td>
+													<td><fmt:formatDate value="${session.key.booking_date}" pattern="MMM-dd"/></td>
+													<td><fmt:formatDate value="${session.key.booking_date}" pattern="h:mm a"/></td>
 													<!--<td>
 														<select name="subject" class="form-control">
 															<option value="Mathematics">Mathematics</option>
@@ -101,7 +101,7 @@
 															<option value="ComputerScience">Computer Science</option>
 														</select>
 													</td>-->
-													<td>${session.booking_location}</td>
+													<td>${session.key.booking_location}</td>
 													<td>
 														<form name="selectSession" action="tutorProfile" method="post">
 															<c:if test="${currentStudent == null}">
@@ -109,7 +109,7 @@
 															</c:if>
 															<c:if test="${currentStudent != null}">
 																<input class="btn btn-default greenbtn" type="submit" value="Select" />
-																<input type="hidden" name="sessionID" value="${session.sessionID}" />
+																<input type="hidden" name="sessionID" value="${session.key.sessionID}" />
 																<input type="hidden" name="tutorID"	value="${tutor.tutorID}" />
 															</c:if>
 														</form>

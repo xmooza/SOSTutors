@@ -83,7 +83,9 @@
 						<div class="titlebar">
 							<h4>Sessions</h4>
 						</div>
-
+						<br />
+						<div style="text-align: center"><a href="CreateSession.jsp" class="btn  btn-danger">Add a Session</a></div>
+						<br/>
 						<c:if test="${sessions.size() > 0}">
 							<div class="table-responsive">
 								<table class="table table-striped">
@@ -94,7 +96,7 @@
 											<th style="text-align: center">Time</th>
 											<!--<th style="text-align: center">Subject</th>-->
 											<th style="text-align: center">Location</th>
-											<th style="text-align: center">Tutor</th>
+											<th style="text-align: center">Student</th>
 											<th style="text-align: center">Edit</th>
 										</tr>
 									</thead>
@@ -164,7 +166,7 @@
 									%>
 								</h4>
 								<input type=text name=loginUseremail
-									value="${currentStudent.fname}" maxlength=100
+									value="${currentTutor.fname}" maxlength=100
 									class="form-control" value="" />
 
 								<h4 style="color: white">
@@ -173,7 +175,7 @@
 									%>
 								</h4>
 								<input type=text name=loginUseremail
-									value="${currentStudent.lname}" maxlength=100
+									value="${currentTutor.lname}" maxlength=100
 									class="form-control" value="" />
 
 								<h4 style="color: white">
@@ -182,7 +184,7 @@
 									%>
 								</h4>
 								<input type=text name=loginUseremail maxlength=100
-									class="form-control" value="${currentStudent.email}" /> <br />
+									class="form-control" value="${currentTutor.email}" /> <br />
 								<br />
 
 								<h4 style="color: white">Previous Password</h4>
