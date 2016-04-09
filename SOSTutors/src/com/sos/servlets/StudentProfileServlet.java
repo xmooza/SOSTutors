@@ -54,6 +54,7 @@ public class StudentProfileServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int sessionID = Integer.parseInt(request.getParameter("sessionID"));
+		@SuppressWarnings("unused")
 		int s = 0;
 		String fname = "";
 		String lname = "";
