@@ -56,9 +56,9 @@ public class TutorUserProfileServlet extends HttpServlet {
 		int sessionID = Integer.parseInt(request.getParameter("sessionID"));
 
 		try {
-			StudentDAO sdao = new StudentDAO();
-			sdao.cancelStudentSession(0, sessionID, 1);
-			response.sendRedirect("studentProfile");
+			TutorDAO tdao = new TutorDAO();
+			tdao.cancelTutorSession(0, sessionID, 1);
+			response.sendRedirect("tutorUserProfile");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -468,5 +468,19 @@ public class TutorDAO {
 		}
 
 	}
+	
+	public void cancelTutorSession (int tutorID, int sessionID, int avail) throws SQLException{
+		PreparedStatement pst = null;
+		DBConnector connectionManager = new DBConnector();
+		
+		try {
+			pst = connectionManager.getConnection().prepareStatement("delete from sessions WHERE sessionID=?");
+		}
+		finally {
+			pst.setInt(1, sessionID);
+			pst.executeUpdate();
+			pst.close();
+		}
+	}
 
 }

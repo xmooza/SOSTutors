@@ -54,30 +54,30 @@ public class StudentProfileServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int sessionID = Integer.parseInt(request.getParameter("sessionID"));
-		@SuppressWarnings("unused")
-		int s = 0;
-		String fname = "";
-		String lname = "";
-		String email = "";
-		String password = "";
-		String profile = "";
-		
-		String role = "";
-		role = request.getParameter("editStudentRole");
-		if (role.contains("student")) {
-			
-			fname = request.getParameter("editStudentFname");
-			lname = request.getParameter("editStudentLname");
-			email = request.getParameter("editStudentEmail");
-			profile = request.getParameter("editStudentprofile");
-			try {
-				password = AES.encrypt((request.getParameter("editNewPassword")));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			s = StudentDAO.updateStudentDB(sessionID, email, password, fname, lname, profile);
-		}
+//		@SuppressWarnings("unused")
+//		int s = 0;
+//		String fname = "";
+//		String lname = "";
+//		String email = "";
+//		String password = "";
+//		String profile = "";
+//		
+//		String role = "";
+//		role = request.getParameter("editStudentRole");
+//		if (role.contains("student")) {
+//			
+//			fname = request.getParameter("editStudentFname");
+//			lname = request.getParameter("editStudentLname");
+//			email = request.getParameter("editStudentEmail");
+//			profile = request.getParameter("editStudentprofile");
+//			try {
+//				password = AES.encrypt((request.getParameter("editNewPassword")));
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			s = StudentDAO.updateStudentDB(sessionID, email, password, fname, lname, profile);
+//		}
 		
 		try {
 			StudentDAO sdao = new StudentDAO();

@@ -121,7 +121,7 @@
 												<td>${session.key.booking_location}</td>
 												<td>${session.value}</td>
 												<td>
-													<form name="cancelSession" action="studentProfile"
+													<form name="cancelSessionTutor" action="tutorUserProfile"
 														method="post">
 														<input class="btn btn-danger" type="submit" value="Cancel" />
 														<input type="hidden" name="sessionID"
