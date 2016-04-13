@@ -27,7 +27,7 @@ public class TutorProfileServlet extends HttpServlet {
 		}
 
 		try {
-			request.setAttribute("tutor", dao.getTutorFromDatabaseById(tutorID));
+			request.setAttribute("tutorPage", dao.getTutorFromDatabaseById(tutorID));
 			request.setAttribute("sessions", dao.getTutorSessions(tutorID));
 			request.setAttribute("comments", dao.getTutorComments(tutorID));
 			request.getRequestDispatcher("TutorProfile.jsp").forward(request, response);
