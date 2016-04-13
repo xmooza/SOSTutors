@@ -119,7 +119,12 @@
 														</select>
 													</td>-->
 												<td>${session.key.booking_location}</td>
-												<td>${session.value}</td>
+												<c:if test="${session.value == 'null null'}">
+													<td>AVAILABLE</td>
+												</c:if>
+												<c:if test="${session.value != 'null null'}">
+													<td>${session.value}</td>
+												</c:if>
 												<td>
 													<form name="cancelSessionTutor" action="tutorUserProfile"
 														method="post">
