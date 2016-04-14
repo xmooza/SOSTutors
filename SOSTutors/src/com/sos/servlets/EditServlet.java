@@ -12,6 +12,7 @@ import com.sos.dao.TutorDAO;
 import com.sos.dao.StudentDAO;
 import com.sos.to.Tutor;
 import com.sos.to.Student;
+import com.sos.to.Mail;
 
 public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -65,7 +66,7 @@ public class EditServlet extends HttpServlet {
 		String image = "";
 		String college = "";
 		int enabled = 0;
-		
+		Mail m = new Mail();
 		
 		String role = "";
 		
@@ -106,6 +107,8 @@ public class EditServlet extends HttpServlet {
 			enabled = Integer.parseInt(request.getParameter("editTutorenabled"));
 			
 			v = TutorDAO.updateTutorDB(id, email, password, fname, lname, profile, hourly, rating, image, college, enabled);
+			if(v==0)
+				m.send("SOSTutors", email, "Your SOSTutors Status", "Your account is: " + enabled + ". (0=disabled (sorry), 1=enabled (^_^)");
 		}
 		
 		

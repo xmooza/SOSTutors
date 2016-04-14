@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class Mail {
 
 
-	public void send(String emailFrom, String Password, String emailTo, String Subject, String body){
+	public void send(String emailFrom, String emailTo, String Subject, String body){
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -24,7 +24,7 @@ public class Mail {
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(emailFrom,Password);
+					return new PasswordAuthentication("xxx@gmail.com","password");
 				}
 			});
 
