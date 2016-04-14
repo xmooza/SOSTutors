@@ -221,8 +221,11 @@
 					</DIV>
 					<TABLE STYLE="width: 100%" BORDER="1">
 						<TR>
+							<TD><B>TutorID</B></TD>
+							<TD><B>StudentID</B></TD>
 							<TD><B>Subject</B></TD>
 							<TD><B>Booked</B></TD>
+							<TD><B>Location</B></TD>
 							<TD><B>Date</B></TD>
 							<TD><B>Delete</B></TD>
 						</TR>
@@ -231,8 +234,11 @@
 								for (Session ses : adminSessions) {
 						%>
 						<TR>
+							<TD><%=ses.getTutors_tutorID()%></TD>
+							<TD><%=ses.getStudents_studentID()%></TD>
 							<TD ALIGN="left"><%=ses.getSubject()%></TD>
 							<TD><%=ses.isBooking_available()%></TD>
+							<TD><%=ses.getBooking_location()%></TD>
 							<TD><%=ses.getBooking_date()%></TD>
 							<TD><A HREF="adminServlet?sesid=<%=ses.getSessionID()%>" ONCLICK="return confirm('Are you sure?')">Delete</A></TD>
 						</TR>

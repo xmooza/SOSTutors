@@ -128,10 +128,7 @@
 					<br />
 					<form name="LoginForm" action="registerServlet" method="post">
 						<div class="col-md-12">
-							<p>Here you can register as a student and have isntant access
-								to scheduling and attending tutoring sessions with any of the
-								large number of tutors we currently have working to help you be
-								a better student!</p>
+							<p><%out.println(lang.getString("studentreg"));%></p>
 						</div>
 						<div class="col-md-6">
 							<h4>
@@ -193,6 +190,7 @@
 							<br /> <input class="btn btn-default greenbtn" type=submit
 								value="Register Student"
 								style="float: right; width: 30%; margin-top: 25px" />
+								By submitting you agree to our <a href="ToS.jsp">Terms of Service</a>.
 						</div>
 					</form>
 				</div>
@@ -206,6 +204,9 @@
 					</div>
 					<br />
 					<form name="LoginForm" action="registerServlet" method="post">
+						<div class="col-md-12">
+							<p><%out.println(lang.getString("studentreg"));%></p>
+						</div>
 					<%-- 
 						<div class="col-sm-4">
 							<img ng-src="https://placehold.it/192x192" alt=""
@@ -300,7 +301,8 @@
 							<input type="hidden" name="registerUserrole" value="tutor">
 							<input class="btn btn-default greenbtn" type=submit
 								value="<% out.println(lang.getString("register")); %>"
-								style="float: right; width: 20%; margin-top: 25px; margin-bottom: 35px" />
+								style="float: right; width: 20%; margin-top: 25px; margin-bottom: 35px" /> <br/>
+								By submitting you agree to our <a href="ToS.jsp">Terms of Service</a>.
 						</div>
 
 						<!-- <div class="col-md-4 col-md-offset-6"">
