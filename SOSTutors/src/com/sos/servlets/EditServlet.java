@@ -108,7 +108,7 @@ public class EditServlet extends HttpServlet {
 			
 			v = TutorDAO.updateTutorDB(id, email, password, fname, lname, profile, hourly, rating, image, college, enabled);
 			if(v==0)
-				m.send("SOSTutors", email, "Your SOSTutors Status", "Your account is: " + enabled + ". (0=disabled (sorry), 1=enabled (^_^)");
+				m.send("no-reply@sostutors.com", email, "Your SOSTutors Status", "Hi " + fname + ". Your account is: " + enabled + ". (0=disabled (x_x), 1=enabled (^_^))");
 		}
 		
 		

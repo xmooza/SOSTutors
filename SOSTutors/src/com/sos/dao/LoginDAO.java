@@ -46,7 +46,7 @@ public class LoginDAO {
 		password = AES.encrypt(password.trim());
 
 		t = TutorDAO.getTutorDB(email, password);
-		if (t == null) {
+		if (t == null || t.getEnabled() == 0) {
 			error = "error.invalidlogin";
 			return null;
 		}
