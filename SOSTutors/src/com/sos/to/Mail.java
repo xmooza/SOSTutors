@@ -13,10 +13,9 @@ import javax.mail.internet.MimeMessage;
 public class Mail {
 
 
-	
-	public static void main(String[] args) {
+	public void send(String emailFrom, String Password, String emailTo, String Subject, String body){
 		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp-relay.gmail.com");
+		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
@@ -25,7 +24,7 @@ public class Mail {
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("safinaseem1994@gmail.com","yawer2005!");
+					return new PasswordAuthentication(emailFrom,Password);
 				}
 			});
 
@@ -33,11 +32,11 @@ public class Mail {
 
 			MimeMessage message = new MimeMessage(session);
 
-			message.setFrom(new InternetAddress("safinaseem1994@gmail.com"));
-			message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("safinaseem1994@gmail.com"));
+			message.setFrom(new InternetAddress(emailFrom));
+			message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse(emailTo));
 			
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler," + "\n\n No spam to my email, please!");
+			message.setSubject(Subject);
+			message.setText(body);
 
 			Transport.send(message);
 
