@@ -63,7 +63,15 @@
 		<url-pattern>/editServlet</url-pattern>
 	</servlet-mapping>
 
-
+	<servlet>
+		<servlet-name>EditStudentProfile</servlet-name>
+		<servlet-class>com.sos.servlets.EditStudentProfile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditStudentProfile</servlet-name>
+		<url-pattern>/EditStudentProfile</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>search</servlet-name>
 		<servlet-class>com.sos.servlets.SearchServlet</servlet-class>
