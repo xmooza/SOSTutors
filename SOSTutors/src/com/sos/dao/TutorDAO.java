@@ -22,7 +22,7 @@ public class TutorDAO {
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM TUTORS limit "
+					"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating, enabled FROM TUTORS limit "
 							+ offset + ", " + noOfRecords);
 		} finally {
 			ResultSet rs = pst.executeQuery();
@@ -34,7 +34,7 @@ public class TutorDAO {
 			while (rs.next()) {
 				tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 						rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("hourly"),
-						rs.getInt("rating"), rs.getDate("date_joined"), rs.getString("image"), rs.getString("college"));
+						rs.getInt("rating"), rs.getDate("date_joined"), rs.getString("image"), rs.getString("college"), rs.getInt("enabled"));
 				tutors.add(tutor);
 			}
 			rs = pst.executeQuery("SELECT FOUND_ROWS()");
@@ -60,7 +60,7 @@ public class TutorDAO {
 		} else if (sSubject.equals("AllSub")) {
 			try {
 				pst = connectionManager.getConnection().prepareStatement(
-						"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% "
+						"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating, enabled FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% "
 								+ sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm
 								+ "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm
 								+ " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm
@@ -78,7 +78,7 @@ public class TutorDAO {
 					tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
 							rs.getString("hourly"), rs.getInt("rating"), rs.getDate("date_joined"),
-							rs.getString("image"), rs.getString("college"));
+							rs.getString("image"), rs.getString("college"), rs.getInt("enabled"));
 					tutors.add(tutor);
 				}
 				rs = pst.executeQuery("SELECT FOUND_ROWS()");
@@ -91,7 +91,7 @@ public class TutorDAO {
 		} else if (sTerm == "") {
 			try {
 				pst = connectionManager.getConnection().prepareStatement(
-						"SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? LIMIT "
+						"SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating, t.enabled FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? LIMIT "
 								+ offset + ", " + noOfRecords);
 			} finally {
 				pst.setString(1, sSubject);
@@ -106,7 +106,7 @@ public class TutorDAO {
 					tutor = new Tutor(rs.getInt("t.tutorID"), rs.getString("t.email"), rs.getString("t.password"),
 							rs.getString("t.fname"), rs.getString("t.lname"), rs.getString("t.profile"),
 							rs.getString("t.hourly"), rs.getInt("t.rating"), rs.getDate("t.date_joined"),
-							rs.getString("t.image"), rs.getString("t.college"));
+							rs.getString("t.image"), rs.getString("t.college"), rs.getInt("enabled"));
 
 					for (int i = 0; i < tutors.size(); i++) {
 						if (tutors.get(i).getEmail().equals(tutor.getEmail())) {
@@ -128,7 +128,7 @@ public class TutorDAO {
 		} else {
 			try {
 				pst = connectionManager.getConnection().prepareStatement(
-						"SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? AND (fname=? OR lname=? OR profile LIKE '% "
+						"SELECT SQL_CALC_FOUND_ROWS t.tutorID, t.email, t.password, t.fname, t.lname, t.profile, t.hourly, t.date_joined, t.image, t.college, t.rating, t.enabled FROM tutors t LEFT JOIN sessions s ON t.tutorID = s.tutors_tutorID WHERE s.subject=? AND (fname=? OR lname=? OR profile LIKE '% "
 								+ sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm
 								+ "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm
 								+ " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm
@@ -148,7 +148,7 @@ public class TutorDAO {
 					tutor = new Tutor(rs.getInt("t.tutorID"), rs.getString("t.email"), rs.getString("t.password"),
 							rs.getString("t.fname"), rs.getString("t.lname"), rs.getString("t.profile"),
 							rs.getString("t.hourly"), rs.getInt("t.rating"), rs.getDate("t.date_joined"),
-							rs.getString("t.image"), rs.getString("t.college"));
+							rs.getString("t.image"), rs.getString("t.college"), rs.getInt("enabled"));
 
 					for (int i = 0; i < tutors.size(); i++) {
 						if (tutors.get(i).getEmail().equals(tutor.getEmail())) {
@@ -195,7 +195,7 @@ public class TutorDAO {
 
 			tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 					rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("hourly"),
-					rs.getInt("rating"), rs.getDate("date_joined"), rs.getString("image"), rs.getString("college"));
+					rs.getInt("rating"), rs.getDate("date_joined"), rs.getString("image"), rs.getString("college"), rs.getInt("enabled"));
 		} catch (SQLException sqlE) {
 			System.out.println("TUTORDAO GETUTORDB");
 			sqlE.printStackTrace();
@@ -218,7 +218,7 @@ public class TutorDAO {
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"insert into tutors(email, password, fname, lname, hourly, date_joined, image, college, rating, profile) values(?,?,?,?,?,curdate(),?,?,0,?)");
+					"insert into tutors(email, password, fname, lname, hourly, date_joined, image, college, rating, profile, enabled) values(?,?,?,?,?,curdate(),?,?,0,?,0)");
 			pst.setString(1, email);
 			pst.setString(2, password);
 			pst.setString(3, fname);
@@ -243,14 +243,14 @@ public class TutorDAO {
 	}
 
 	public static int updateTutorDB(int studentID, String email, String password, String fname, String lname,
-			String profile, String hourly, int rating, String image, String college) {
+			String profile, String hourly, int rating, String image, String college, int enabled) {
 
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"update tutors set email=?, password=?, fname=?, lname=?, profile=?, hourly=?, rating=?, image=?, college=? where tutorID=?");
+					"update tutors set email=?, password=?, fname=?, lname=?, profile=?, hourly=?, rating=?, image=?, college=?, enabled=? where tutorID=?");
 			pst.setString(1, email);
 			pst.setString(2, password);
 			pst.setString(3, fname);
@@ -260,7 +260,8 @@ public class TutorDAO {
 			pst.setInt(7, rating);
 			pst.setString(8, image);
 			pst.setString(9, college);
-			pst.setInt(10, studentID);
+			pst.setInt(10, enabled);
+			pst.setInt(11, studentID);
 			pst.executeUpdate();
 			pst.close();
 		} catch (SQLException sqlE) {
@@ -324,7 +325,7 @@ public class TutorDAO {
 
 			tutor = new Tutor(rs.getInt("tutorID"), rs.getString("email"), rs.getString("password"),
 					rs.getString("fname"), rs.getString("lname"), rs.getString("profile"), rs.getString("hourly"),
-					rs.getInt("rating"), rs.getDate("date_joined"), rs.getString("image"), rs.getString("college"));
+					rs.getInt("rating"), rs.getDate("date_joined"), rs.getString("image"), rs.getString("college"),rs.getInt("enabled"));
 		} catch (SQLException sqlE) {
 			sqlE.printStackTrace();
 			return null;
@@ -401,7 +402,7 @@ public class TutorDAO {
 					tutor = new Tutor(rs.getInt("TutorID"), rs.getString("email"), rs.getString("password"),
 							rs.getString("fname"), rs.getString("lname"), rs.getString("profile"),
 							rs.getString("hourly"), rs.getInt("rating"), rs.getDate("date_joined"),
-							rs.getString("image"), rs.getString("college"));
+							rs.getString("image"), rs.getString("college"), rs.getInt("enabled"));
 					tutors.add(tutor);
 				}
 			}

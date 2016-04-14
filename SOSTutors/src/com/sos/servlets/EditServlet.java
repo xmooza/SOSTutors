@@ -64,6 +64,7 @@ public class EditServlet extends HttpServlet {
 		int rating = 0;
 		String image = "";
 		String college = "";
+		int enabled = 0;
 		
 		
 		String role = "";
@@ -102,8 +103,9 @@ public class EditServlet extends HttpServlet {
 			rating = Integer.parseInt(request.getParameter("editTutorrating"));
 			image = request.getParameter("editTutorimage");
 			college = request.getParameter("editTutorcollege");
+			enabled = Integer.parseInt(request.getParameter("editTutorenabled"));
 			
-			v = TutorDAO.updateTutorDB(id, email, password, fname, lname, profile, hourly, rating, image, college);
+			v = TutorDAO.updateTutorDB(id, email, password, fname, lname, profile, hourly, rating, image, college, enabled);
 		}
 		
 		

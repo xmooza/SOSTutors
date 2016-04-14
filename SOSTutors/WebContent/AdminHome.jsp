@@ -139,6 +139,7 @@
 					</DIV>
 					<TABLE STYLE="width: 100%" BORDER="1">
 						<TR>
+							<TD><B>Enabled</B></TD>
 							<TD><B>Name</B></TD>
 							<TD><B>Email</B></TD>
 							<TD><B>College</B></TD>
@@ -152,6 +153,7 @@
 								for (Tutor tut : adminTutors) {
 						%>
 						<TR>
+							<TD ALIGN="center"><%=tut.getEnabled()%></TD>
 							<TD ALIGN="left"><%=tut.getLname()%>, <%=tut.getFname()%></TD>
 							<TD ALIGN="left"><a href=mailto:<%=tut.getEmail()%>><%=tut.getEmail()%></a></TD>
 							<TD ALIGN="left"><%=tut.getCollege()%></TD>

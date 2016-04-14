@@ -16,12 +16,13 @@ public class Tutor implements Serializable {
 	private Date date_joined;
 	private String image;
 	private String college;
+	private int enabled;
 
 	public Tutor() {
 	}
 
 	public Tutor(int tutorID, String email, String password, String fname, String lname, String profile, String hourly,
-			int rating, Date date_joined, String image, String college) {
+			int rating, Date date_joined, String image, String college, int enabled) {
 		this.tutorID = tutorID;
 		this.email = email;
 		this.password = password;
@@ -33,6 +34,7 @@ public class Tutor implements Serializable {
 		this.date_joined = date_joined;
 		this.image = image;
 		this.college = college;
+		this.enabled = enabled;
 	}
 
 	public int getTutorID() {
@@ -121,6 +123,14 @@ public class Tutor implements Serializable {
 
 	public void setCollege(String college) {
 		this.college = college;
+	}
+	
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 
 	public static long getSerialversionuid() {

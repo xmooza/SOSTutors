@@ -206,7 +206,7 @@
 					</div>
 					<br />
 					<form name="LoginForm" action="registerServlet" method="post">
-						<%-- 
+					<%-- 
 						<div class="col-sm-4">
 							<img ng-src="https://placehold.it/192x192" alt=""
 								src="https://placehold.it/192x192">
@@ -227,13 +227,6 @@
 								style="float: right; width: 30%; margin-top: 25px" /> <br>
 						</div>
  --%>
-						<div class="col-md-12">
-							<p>Here you can apply to be a tutor in our system. If you are
-								accepted you will receive an email with login details when your
-								credentials are checked and verified. Once this is done you will
-								be able to join the community and begin tutoring students to
-								reach their full potential!</p>
-						</div>
 						<div class="col-md-6">
 							<h4>
 								<%
@@ -279,53 +272,35 @@
 								<%-- <%
 									out.println(lang.getString("email"));
 								%> --%>
-								Hourly Rate
+								Hourly Rate:
 							</h4>
 							<input type=text name=registerUserhourly value="" maxlength=100
 								class="form-control" value="" />
 						</div>
-						<div class="col-md-6">
-							<h4>
-								<%-- <%
-									out.println(lang.getString("email"));
-								%> --%>
-								Reference 1
-							</h4>
-							<input type=text name=registerUserhourly value="" maxlength=100
-								class="form-control" value="" />
-						</div>
+						<div class="col-md-6 col-md-offset-6"></div>
 
 						<div class="col-md-6">
 							<h4>
 								<%-- <%
 									out.println(lang.getString("password"));
 								%> --%>
-								College
+								College:
 							</h4>
 							<input type=text name=registerUsercollege maxlength=100
 								class="form-control" />
 						</div>
-						<div class="col-md-6">
-							<h4>
-								<%-- <%
-									out.println(lang.getString("email"));
-								%> --%>
-								Reference 2
-							</h4>
-							<input type=text name=registerUserhourly value="" maxlength=100
-								class="form-control" value="" />
-						</div>
+						<div class="col-md-6 col-md-offset-6"></div>
 						<div class="col-md-12">
-							<br />
-							<h4>About me</h4>
+							<br /> <br />
+							<h4>About me:</h4>
 							<textarea name=registerUserprofile class="form-control"
 								id="description" rows="8"></textarea>
 						</div>
 						<div class="col-md-12">
-							<input type="hidden" name="registerUserrole" value="student">
-							<br /> <input class="btn btn-default greenbtn" type=submit
-								value="Register Tutor"
-								style="float: right; width: 30%; margin-top: 25px" />
+							<input type="hidden" name="registerUserrole" value="tutor">
+							<input class="btn btn-default greenbtn" type=submit
+								value="<% out.println(lang.getString("register")); %>"
+								style="float: right; width: 20%; margin-top: 25px; margin-bottom: 35px" />
 						</div>
 
 						<!-- <div class="col-md-4 col-md-offset-6"">
@@ -336,8 +311,6 @@
 								<button type="button" class="btn btn-default">...</button>
 							</div>
 						</div> -->
-
-
 					</form>
 				</div>
 

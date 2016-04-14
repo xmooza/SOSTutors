@@ -63,6 +63,12 @@
 					</div>
 					<br />
 					<form name="EditForm" action="editServlet" method="post">
+					
+						<div class="col-md-6">
+							<h4>Enabled</h4>
+							<input type=text name=editTutorenabled maxlength=1
+								class="form-control" value="${tutor.enabled}" />
+						</div>
 
 						<div class="col-md-6">
 							<h4>First Name</h4>
