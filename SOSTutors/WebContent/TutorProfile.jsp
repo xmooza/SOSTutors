@@ -88,7 +88,8 @@
 		                                </thead>
 		                                <tbody>             
 											<c:forEach var="session" items="${sessions}">
-												<tr>
+												<c:if test="${session.key.booking_available == true}">
+													<tr>
 													<td><fmt:formatDate value="${session.key.booking_date}" pattern="EEEEE"/></td>
 													<td><fmt:formatDate value="${session.key.booking_date}" pattern="MMM-dd"/></td>
 													<td><fmt:formatDate value="${session.key.booking_date}" pattern="h:mm a"/></td>
@@ -115,6 +116,7 @@
 														</form>
 													</td>
 												</tr>
+												</c:if>
 											</c:forEach>
 										</tbody>
 		                            </table>
