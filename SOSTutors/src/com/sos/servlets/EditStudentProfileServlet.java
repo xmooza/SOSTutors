@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sos.dao.AES;
 import com.sos.dao.StudentDAO;
+import com.sos.to.Student;
 
 public class EditStudentProfileServlet  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +34,7 @@ public class EditStudentProfileServlet  extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Student s = null;
 		String fname = "";
 		String lname = "";
 		String email = "";
@@ -62,6 +63,7 @@ public class EditStudentProfileServlet  extends HttpServlet {
 		if (v == 0) {
 			request.setAttribute("errorMessage", "Updated!");
 			request.getRequestDispatcher("StudentProfile.jsp").forward(request, response);
+			request.getSession().setAttribute("currentStudent", s);
 		} 
 		else {
 			request.setAttribute("errorMessage", "Error");

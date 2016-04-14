@@ -157,7 +157,6 @@
 							<h4>Edit profile</h4>
 						</div>
 						<div style="padding: 0px 10px 0px 10px;">
-							<!-- <form name="LoginForm" action="loginServlet" method="post"> -->
 							<form name="EditStudentForm" action="editStudentProfileServlet" method="post">
 								<h4 style="color: white">
 									<%
