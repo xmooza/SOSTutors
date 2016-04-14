@@ -3,6 +3,7 @@ package com.sos.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -444,20 +445,21 @@ public class TutorDAO {
 		return 0;
 	}
 
-	public void addTutorSession(String subject, String location, int tutorID) throws SQLException {
+	public void addTutorSession(String subject, Timestamp date, String location, int tutorID) throws SQLException {
 		PreparedStatement pst = null;
 		DBConnector connectionManager = new DBConnector();
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
 					"insert into sessions(subject, booking_available, booking_date, booking_location, tutors_tutorID, categories_categoryID, students_studentID) "
-							+ "values(?,?,curDate(),?,?,?,?)");
+							+ "values(?,?,?,?,?,?,?)");
 			pst.setString(1, subject);
 			pst.setInt(2, 1);
-			pst.setString(3, location);
-			pst.setInt(4, tutorID);
-			pst.setInt(5, 0);
+			pst.setObject(3, date);
+			pst.setString(4, location);
+			pst.setInt(5, tutorID);
 			pst.setInt(6, 0);
+			pst.setInt(7, 0);
 			pst.executeUpdate();
 			pst.close();
 		} finally {

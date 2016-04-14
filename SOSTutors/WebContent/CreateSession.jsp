@@ -116,7 +116,7 @@
 						</div>
 						<div class="col-md-12">
 							<h4>Booking Date</h4>
-							<input type="text" class="form-control" id="datepicker" />
+							<input type="text" class="form-control" name=datepicker id="datepicker" />
 						</div>
 
 						<div class="col-md-12">
