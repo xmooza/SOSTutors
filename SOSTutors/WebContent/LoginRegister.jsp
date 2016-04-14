@@ -291,7 +291,7 @@
 						</div>
 						<div class="col-md-6 col-md-offset-6"></div>
 						<div class="col-md-12">
-							<br /> <br />
+							<br />
 							<h4>About me:</h4>
 							<textarea name=registerUserprofile class="form-control"
 								id="description" rows="8"></textarea>
