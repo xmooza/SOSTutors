@@ -64,12 +64,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>EditStudentProfile</servlet-name>
-		<servlet-class>com.sos.servlets.EditStudentProfile</servlet-class>
+		<servlet-name>editStudentProfileServlet</servlet-name>
+		<servlet-class>com.sos.servlets.EditStudentProfileServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>EditStudentProfile</servlet-name>
-		<url-pattern>/EditStudentProfile</url-pattern>
+		<servlet-name>editStudentProfileServlet</servlet-name>
+		<url-pattern>/editStudentProfileServlet</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

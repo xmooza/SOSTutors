@@ -158,7 +158,7 @@
 						</div>
 						<div style="padding: 0px 10px 0px 10px;">
 							<!-- <form name="LoginForm" action="loginServlet" method="post"> -->
-							<form name="EditStudentForm" action="EditStudentProfile" method="post">
+							<form name="EditStudentForm" action="editStudentProfileServlet" method="post">
 								<h4 style="color: white">
 									<%
 										out.println(lang.getString("fname"));
@@ -197,7 +197,8 @@
 								<h4 style="color: white">New Password</h4>
 								<input type=password name=editNewPassword maxlength=100
 									class="form-control" /> <br /> <br /> 
-									
+									<input type="hidden" name="editStudentid"
+								value="${currentStudent.studentID}">
 								<input type="hidden" name="editStudentRole" value="student">
 								<br /> <input class="btn btn-default greenbtn buttonPadding" type=submit
 								value="Update Profile"
