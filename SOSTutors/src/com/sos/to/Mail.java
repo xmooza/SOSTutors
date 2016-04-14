@@ -1,52 +1,51 @@
 package com.sos.to;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
+import java.util.Properties;
+
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+ 
 
 public class Mail {
 
-	public static void send(String emailTo, String emailFrom, String subject, String message, String username,String password) {
 
-		Email email = new SimpleEmail();
-		email.setHostName("smtp.gmail.com");
-		email.setSmtpPort(465);
-		email.setStartTLSEnabled(true);
-		email.setAuthenticator(new DefaultAuthenticator(username, password));
-		email.setSSLOnConnect(true);
-		try {
-			email.setFrom(emailFrom);
-		} catch (EmailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		email.setSubject(subject);
-		try {
-			email.setMsg(message);
-		} catch (EmailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			email.addTo(emailTo);
-		} catch (EmailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			email.send();
-			System.out.println("email has sent");
-		} catch (EmailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	public static void main(String[] args) {
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp-relay.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
 
-	}
+		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props,
+			new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("safinaseem1994@gmail.com","yawer2005!");
+				}
+			});
 
-	public static void main(String [] args)
-	{
-		 send("safinaseem1994@gmail.com","safinaseem1994@gmail.com","testing","this is a testing email","safinaseem1994@gmail.com","****");
+		try {
+
+			MimeMessage message = new MimeMessage(session);
+
+			message.setFrom(new InternetAddress("safinaseem1994@gmail.com"));
+			message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("safinaseem1994@gmail.com"));
+			
+			message.setSubject("Testing Subject");
+			message.setText("Dear Mail Crawler," + "\n\n No spam to my email, please!");
+
+			Transport.send(message);
+
+			System.out.println("Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
