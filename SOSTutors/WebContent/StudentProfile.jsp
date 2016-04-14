@@ -11,8 +11,6 @@
 <meta name="author" content="SOSTutors">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>SOSTutors - ${tutor.fname}'s Profile</title>
-
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -31,6 +29,7 @@
 
 <!-- Custom Styles -->
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
+<title>SOSTutors - ${currentStudent.fname}'s Profile</title>
 </head>
 
 <!-- Stylesheets etc -->

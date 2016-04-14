@@ -33,6 +33,8 @@
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKRdRR12IHYZbO-6jcSXNEmRqjgekDmjA&libraries=places"></script>
+<script type="text/javascript" src="js/gps.js"></script>
 
 
 <!-- Custom Styles -->
@@ -43,6 +45,29 @@
 	$(function() {
 		$("#datepicker").datepicker();
 	});
+	function geoFindMe() {
+		var output = document.getElementById("out");
+
+		if (!navigator.geolocation) {
+			output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+			return;
+		}
+
+		function success(position) {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			initMap(latitude, longitude);
+		}
+		;
+
+		function error() {
+			output.innerHTML = "Unable to retrieve your location";
+		}
+		;
+
+		navigator.geolocation.getCurrentPosition(success, error);
+	}
+	google.maps.event.addDomListener(window, 'load', geoFindMe);
 </script>
 </head>
 
@@ -89,13 +114,6 @@
 									${param.subject == "Electronics" ? "selected='selected'" : ""}>Electronics</option>
 							</select>
 						</div>
-
-						<div class="col-md-6">
-							<h4>Location</h4>
-							<input type=text name=location value="" maxlength=100
-								class="form-control" value="" />
-						</div>
-
 						<div class="col-md-12">
 							<h4>Booking Date</h4>
 							<input type="text" class="form-control" id="datepicker" />
@@ -105,6 +123,12 @@
 							<h4>Booking Time</h4>
 							<input type=text name=time value="" maxlength=100
 								class="form-control" value="" />
+						</div>
+								<div class="col-md-6">
+							<h4>Location</h4>
+							<input type=text name=location value="" maxlength=100
+								class="form-control" value="" id="pac-input"/>
+								<div id="map" style="width: 500px; height: 380px;"></div>
 						</div>
 						<div class="col-md-12">
 							<input type="hidden" name="registerUserrole" value="tutor">
