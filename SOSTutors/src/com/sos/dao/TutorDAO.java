@@ -23,7 +23,7 @@ public class TutorDAO {
 
 		try {
 			pst = connectionManager.getConnection().prepareStatement(
-					"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating, enabled FROM TUTORS limit "
+					"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating, enabled FROM TUTORS WHERE enabled=1 limit "
 							+ offset + ", " + noOfRecords);
 		} finally {
 			ResultSet rs = pst.executeQuery();
@@ -61,11 +61,11 @@ public class TutorDAO {
 		} else if (sSubject.equals("AllSub")) {
 			try {
 				pst = connectionManager.getConnection().prepareStatement(
-						"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating, enabled FROM tutors WHERE fname=? OR lname=? OR profile LIKE '% "
+						"SELECT SQL_CALC_FOUND_ROWS tutorID, email, password, fname, lname, profile, hourly, date_joined, image, college, rating, enabled FROM tutors WHERE (fname=? OR lname=? OR profile LIKE '% "
 								+ sTerm + " %' OR profile LIKE '%" + sTerm + "%' OR profile LIKE '% " + sTerm
 								+ "' OR profile LIKE '" + sTerm + " %' OR college LIKE '% " + sTerm
 								+ " %' OR college LIKE '%" + sTerm + "%' OR college LIKE '% " + sTerm
-								+ "' OR college LIKE '" + sTerm + " %'  LIMIT " + offset + ", " + noOfRecords);
+								+ "' OR college LIKE '" + sTerm + " %') AND enabled=1 LIMIT " + offset + ", " + noOfRecords);
 			} finally {
 				pst.setString(1, sTerm);
 				pst.setString(2, sTerm);

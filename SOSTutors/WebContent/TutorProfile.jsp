@@ -60,7 +60,7 @@
 						</div>
 	                    <h3>${ tutorPage.fname } ${ tutorPage.lname }</h3>
 	                    <h6><i>${ tutorPage.college }</i></h6>
-						<h5><b>No Subjects Currently</b></h5>
+						<!--<h5><b>No Subjects Currently</b></h5>-->
 						<p>${ tutorPage.profile }</p>
 					</div>
 	            </div>

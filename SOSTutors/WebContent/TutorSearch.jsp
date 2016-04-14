@@ -92,7 +92,7 @@
 		                        <div class="col-md-8 tutdesc">
 		                            <h3>${ tutor.fname } ${ tutor.lname }</h3>
 		                            <h6><i>${ tutor.college }</i></h6>
-		                            <h5><b>No Subjects Currently</b></h5>
+<!--		                            <h5><b>No Subjects Currently</b></h5>	-->
 		                            <p>${ tutor.profile }</p>
 		                        </div>
 								<div class="col-md-8 col-sm-12 col-xs-12 tutinfo">
